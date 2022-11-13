@@ -1,0 +1,28 @@
+---
+title: Chokak
+stylesheets:
+  - https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap
+  - ../css/textField.css
+  - ../css/formWrapper.css
+  - ../css/linkButton.css
+  - ../css/link.css
+---
+{{!< form}}
+<main>
+  <div class="form__wrapper">
+    <form>
+      <h1>Регистрация</h1>
+      {{> textField plaseholder="Почта" name="email" type="email" required=true }}
+      {{> textField plaseholder="Логин" name="login" type="text" required=true }}
+      {{> textField plaseholder="Имя" name="name" type="text" }} 
+      {{> textField plaseholder="Фамилия" name="surname" type="text" }}
+      {{> textField plaseholder="Телефон" name="phone" type="tel" }}
+      {{> textField plaseholder="Пароль" name="password" type="password" required=true }}
+      {{> textField plaseholder="Пароль (ещё раз)" name="password-again" type="password" required=true }}
+    </form>
+    <div>
+      {{> submitButton to="./chats.hbs" label="Авторизоваться" }}
+      {{> link to="./sigin.hbs" label="Нет аккаунта?"}}
+    </div>
+  </div>
+</main>

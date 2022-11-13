@@ -1,12 +1,21 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>
-    {{> title}}
-  </title>
-</head>
+{{#block "head"}}
+  <head>
+    <meta charset="utf-8" />
+    {{#block "title"}}
+      <title>{{title}}</title>
+    {{/block}}
+    {{#block "styles"}}
+      {{#each stylesheets}}
+        <link href="{{this}}" rel="stylesheet" />
+      {{/each}}
+    {{/block}}
+  </head>
+{{/block}}
+
 <body>
   {{{body}}}
 </body>
+
 </html>
