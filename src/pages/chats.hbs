@@ -1,8 +1,35 @@
 ---
-chatsTitle: Welcome to chokak
+title:
+  chats
+stylesheets:
+  - https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap
+  - ../css/chats.css
 ---
 {{!< base}}
+<aside>
+  <header>
+    <a href="./profile.hbs" class="profile__link">Профиль ></a>
+    <input  type="search" name="search" placeholder="Поиск" />
+  </header>
+  {{> chatList }}
+    {{!-- <ul>
+      <li>
 
+        <div class="avatar"></div>
+
+        <div class="chat__info">
+          <p class="author">Aндрей</p>
+          <p class="message">Изображение</p>
+        </div>
+        <div class="metadata">
+          <p class="time">10:30</p>   
+          <label class="blue circle">
+            2
+          </div>
+        </div>
+      </li>
+    </ul> --}}
+</aside>
 <main>
-  <h1>{{chatsTitle}}</h1>
+  <p>Выберите чат, чтобы отправить сообщение</p>
 </main>

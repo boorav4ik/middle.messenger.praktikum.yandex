@@ -1,0 +1,162 @@
+body {
+    display: flex;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+aside {
+    flex: 0 0 320px;
+    background: #FBFBFB;
+    border-right: 1px solid #EAEAEA;
+    height: 100%;
+    padding: 0 10px;
+}
+
+aside>header {
+    height: 102px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #EAEAEA;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 21px 0 14px;
+}
+
+aside>header>a.profile__link {
+    text-decoration: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: right;
+    color: #999999;
+}
+
+aside>header>input[type="search"] {
+    background: #EFEFEF;
+    border-radius: 5px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    height: 32px;
+}
+
+aside>header>input[type="search"]::placeholder {
+
+    color: #999999;
+    text-align: center;
+}
+
+
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 0;
+}
+
+li {
+    padding: 12px 0;
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+li > .avatar {
+    width: 47px;
+    height: 47px;
+    background: #EFEFEF;
+    border-radius: 50%;
+}
+
+li > .message__data {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+li > .message__data> div {
+    display: flex;
+    justify-content: space-between;
+}
+
+li label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: auto;
+}
+
+li p {
+    margin-block-start: 4;
+    margin-block-end: 4;
+    font-family: 'Inter';
+    font-style: normal;
+    line-height: 13px;
+}
+
+li>.metadata {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+label.circle {
+    border-radius: 50%;
+}
+
+label.blue {
+    background-color: #3369F3;
+    color: #FFFFFF;
+}
+
+p.time {
+    font-size: 9px;
+    color: #999999;
+    font-weight: 500;
+}
+
+p.message {
+    font-weight: 500;
+    font-size: 12px;
+    color: #999999;
+    max-width: 193px;
+    text-overflow: ellipsis;
+}
+
+p.author {
+    font-weight: 600;
+    font-size: 13px;
+    color: #1E1E1E;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main>p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+}

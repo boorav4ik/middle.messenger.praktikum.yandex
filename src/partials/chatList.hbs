@@ -1,0 +1,31 @@
+<ul>
+    {{#each chatList}}
+    <li>
+        {{#if avatar}}
+        <img src="avatar" alt="avatar" class="avatar" />
+        {{else}}
+        <div class="avatar"></div>
+        {{/if}}
+
+        <div class="message__data">
+            <div>
+                <p class="author">{{ author }}</p>
+                <p class="time">{{ time }}</p>
+            </div>
+            <div class="metadata">
+                <p class="message">
+                    {{#if lastMessage.isOutgoing}}
+                    <b>Вы:</b>
+                    {{/if}}
+                    {{ lastMessage.content }}
+                </p>
+                {{#if messageCount}}
+                <label class="blue circle">
+                    {{ messageCount }}
+                </label>
+                {{/if}}
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</ul>
