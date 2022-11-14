@@ -1,17 +1,17 @@
 <ul>
     {{#each messages}}
-    <li class="{{#if outgoing}}outgoing{{else}}incoming{{/if}}">
+    <li class="{{#if outgoing}}outgoing{{else}}incoming{{/if}} {{#if image}}image__wrapper{{else}}text__wrapper{{/if}}">
         {{#if image}}
-        <div class="grey rounded">
             <img src={{image}} />
             <div class="time_label grey">{{time}}</div>
-        </div>
         {{else}}
-        <div>
             <p>{{ text }}</p>
-            <div class="time_label">{{time}}</div>
-        </div>
-
+            <div class="time_label">
+                {{#if delivered}}
+                    <span class="status">✓✓</span>
+                {{/if}}
+                <span>{{time}}</span>
+            </div>
         {{/if}}
     </li>
     {{/each}}

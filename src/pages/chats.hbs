@@ -17,10 +17,16 @@ stylesheets:
     <p>Вадим</p>
   </header>
   {{> messages }}
-  <form method="post">
-    <input type="file"/>
-    <input type="text"/>
-    <input type="submit" />
-  </form>
+  <footer>
+    <form method="post">
+      <label class="attach">
+        <img src="../images/attachIcon.png" />
+        <input type="file" name="attach"/>
+      </label>
+      <input type="text" placeholder="Сообщение" name="message"/>
+      <input type="submit" />
+    </form>
+  </footer>
+
   {{!-- <p>Выберите чат, чтобы отправить сообщение</p> --}}
 </main>
