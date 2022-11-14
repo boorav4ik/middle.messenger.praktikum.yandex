@@ -1,0 +1,18 @@
+<ul>
+    {{#each messages}}
+    <li class="{{#if outgoing}}outgoing{{else}}incoming{{/if}}">
+        {{#if image}}
+        <div class="grey rounded">
+            <img src={{image}} />
+            <div class="time_label grey">{{time}}</div>
+        </div>
+        {{else}}
+        <div>
+            <p>{{ text }}</p>
+            <div class="time_label">{{time}}</div>
+        </div>
+
+        {{/if}}
+    </li>
+    {{/each}}
+</ul>
