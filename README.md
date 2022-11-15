@@ -19,3 +19,5 @@
 - `npm run build` — собирает проект в статику в папку `./dist`,
 - `npm run start` — сначала выполняет команду `npm run build`, а затем поднимает сервер раздающий статику на `localhost:3000`,
 - `npm run dev` —  позволяет запустить сервер разработки на `localhost:1234`.
+
+[Демо приложения](https://magnificent-stroopwafel-546831.netlify.app)
