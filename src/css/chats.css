@@ -128,15 +128,10 @@ li>.metadata {
   justify-content: space-between;
 }
 
-label.circle {
+/* label.circle {
   border-radius: 50%;
   color: #999999;
-}
-
-label.blue {
-  background-color: #3369f3;
-  color: #ffffff;
-}
+} */
 
 p.time {
   font-size: 9px;

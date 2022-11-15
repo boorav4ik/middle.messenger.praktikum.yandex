@@ -1,0 +1,19 @@
+.circle {
+    border-radius: 50%;
+}
+
+.blue {
+    background-color: var(--blue-bg, #3369f3);
+    color: var(--white-color, #ffffff);
+    border: none;
+}
+
+.circle.large {
+    font-size: large;
+    width: 28px;
+    height: 28px;
+}
+
+.left {
+    transform: scale(-1, 1);
+}
