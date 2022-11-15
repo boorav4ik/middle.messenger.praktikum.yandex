@@ -279,9 +279,6 @@ label.attach>img {
   height: 32px;
 }
 
-input[type="file"] {
-  display: none;
-}
 
 input.message {
   margin: 0 16px;
