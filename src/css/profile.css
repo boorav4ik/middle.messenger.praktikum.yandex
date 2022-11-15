@@ -9,7 +9,7 @@ body {
 
 aside {
   width: 64px;
-  background: var(--sidebar-grey);
+  background-color: var(--sidebar-grey);
 }
 
 main {
@@ -23,6 +23,7 @@ main > footer {
 
 .avatar_wrapper {
   background-color: var(--main-grey);
+  position: relative;
 }
 
 .avatar_wrapper > img {
@@ -31,9 +32,29 @@ main > footer {
   margin: 31%;
 }
 
+.avatar_wrapper:hover {
+  background-color: #000000;
+  opacity: 0.5;
+}
+.avatar_wrapper:hover > img {
+  filter: invert(1);
+}
+.avatar_wrapper > p {
+  position: absolute;
+  top: 26%;
+  left: 26%;
+  width: 64px;
+  font-size: 13px;
+  line-height: 14px;
+  color: var(--white);
+  opacity: 0;
+}
+.avatar_wrapper:hover > p {
+  opacity: 1;
+}
+
 input[type="submit"] {
   width: 55%;
-  margin-left: 22.5%;
 }
 
 form > ul {
@@ -58,4 +79,22 @@ label {
 label::first-letter,
 button::first-letter {
   text-transform: uppercase;
+}
+
+dialog {
+  width: 340px;
+  height: 257px;
+  background-color: var(--white);
+  left: 64px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 6px #00000024;
+}
+
+dialog > form {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  flex-direction: column;
 }

@@ -26,6 +26,7 @@ body {
 
 .circle {
   border-radius: 50%;
+  text-align: center;
 }
 
 .blue {
@@ -38,12 +39,14 @@ body {
   font-size: large;
   width: 28px;
   height: 28px;
+  line-height: 28px;
 }
 
 .circle.xx-large {
   font-size: xx-large;
   height: 130px;
   width: 130px;
+  line-height: 130px;
 }
 
 .left {
@@ -112,4 +115,8 @@ button.contained.primary,
 .button.contained.primary {
   background-color: var(--blue);
   color: var(--white);
+}
+
+input[type="file"] {
+  display: none;
 }

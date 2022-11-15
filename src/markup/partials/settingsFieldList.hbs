@@ -1,0 +1,5 @@
+<ul {{#hidden}}hidden{{/hidden}} id={{id}}>
+    {{#each fields as |field|}}
+        {{>settingsListItem field=field name=@key}}
+    {{/each}}
+</ul>

@@ -31,16 +31,16 @@ fields:
     type: phone
     placeholder: +7 (800) 100 50 00
     label: имя в чате
-actions:
-  editData:
-    label: изменить данные
-    color: primary
-  editPassword:
-    label: изменить пароль
-    color: primary
-  exit:
-    label: выйти
-    color: error
+passwordChangeFields:
+  oldPassword:
+    type: password
+    label: Старый пароль
+  newPassword:
+    type: password
+    label: Новый пароль
+  newPasswordCheck:
+    type: password
+    label: Повторите новый пароль
 ---
 {{!< base}}
 <aside class="flex-column-center r-divider">
@@ -48,64 +48,44 @@ actions:
 </aside>
 <main class="flex-column-center">
   <header>
-    <div class="circle xx-large avatar_wrapper">
-      <img src="../images/default_image.png"/>
-    </div>
+    {{>settingsAvatar}}
   </header>
   <form>
-    <ul>
-      {{#each fields}}
-      <li class="b-divider flex-sb">
-        <label for="{{ @key }}">{{ this.label }}</label>
-        <input
-          class="none-border"
-          name="{{ @key }}"
-          type="{{ this.type}}"
-          id="{{ @key }}"
-          placeholder="{{ this.placeholder }}"
-        />
-      </li>
-      {{/each}}
-    </ul>
-    <input
-      value="Сохранить"
-      type="submit"
-      class="button contained primary"
-      id="save"
-      hidden="true"
-    />
+    {{>settingsFieldList
+      fields=fields
+      hidden=false
+      id="profileForm"
+    }}
+    {{>settingsFieldList
+      fields=passwordChangeFields
+      hidden=true
+      id="passwordForm"
+    }}
+    {{>settingsFormSubmit
+      text="Сохранить"
+      name="save"
+      hidden=true
+      error=false
+    }}
   </form>
   <footer>
-    <ul id="actions">
-      {{#each actions}}
-      <li class="b-divider">
-        <button
-          id={{@key}}
-          class="text {{this.color}}"
-        >
-          {{ this.label }}
-        </button>
-      </li>
-      {{/each}}
-    </ul>
-    </footer>
+    {{>settingsActions}}
+  </footer>
 </main>
-<script>
-  const $actions = document.getElementById("actions");
-  const actions = {};
-  const $saveButton = document.getElementById("save")
-  $saveButton.addEventListener("click", function() {
-    this.hidden = true;
-    $actions.hidden = false;
-  })
-  Array.from($actions.children).forEach(($li) => {
-    console.log($li, $li.children[0]);
-    const button = $li.children[0];
-    
-    button.addEventListener("click", function() {
-      console.log(this);
-      $actions.hidden = true
-      $saveButton.hidden = false
-    })
-  })
-</script>
+<dialog>
+  <form method="dialog" >
+    <header>
+      <h1>Загрузите фаил</h1>
+    </header>
+    <label for="avatarInput">
+      <button class="text primary">Выбрать файл на компьютере</button>
+      <input type="file" name="avatar" id="avatarInput" hidden>
+    </label>
+    {{>settingsFormSubmit
+      text="Поменять"
+      name="saveAvatar"
+      error=false
+    }}
+  </form>
+</dialog>
+<script src="../js/profile.js" type="module"></script>

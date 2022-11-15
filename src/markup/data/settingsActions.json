@@ -1,0 +1,11 @@
+{
+  "editData": {
+    "label": "изменить данные",
+    "color": "primary"
+  },
+  "editPassword": {
+    "label": "изменить пароль",
+    "color": "primary"
+  },
+  "exit": { "label": "выйти", "color": "error" }
+}
