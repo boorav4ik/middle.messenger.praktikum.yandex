@@ -4,21 +4,60 @@ stylesheets:
   - https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap
   - ../css/textField.css
   - ../css/formWrapper.css
-  - ../css/linkButton.css
+  - ../css/submitButton.css
   - ../css/link.css
+  - ../css/main.css
+fields:
+  email:
+    type: email
+    plaseholder: почта
+    required: true
+  login:
+    type: text
+    plaseholder: логин
+    required: true
+  first_name:
+    type: text
+    plaseholder: имя
+    required: false
+  second_name:
+    type: text
+    plaseholder: фамилия
+    required: false
+  phone:
+    type: tel
+    plaseholder: телефон
+    required: false
+  password:
+    type: password
+    plaseholder: пароль
+    required: true
+  password-again:
+    type: password
+    plaseholder: пароль (ещё раз)
+    required: true
 ---
 {{!< form}}
 <main>
   <div class="form__wrapper">
     <form>
       <h1>Регистрация</h1>
-      {{> textField plaseholder="Почта" name="email" type="email" required=true }}
+      <ul>
+        {{#each fields}}
+        <li class="text__field">
+          <input type={{ this.type }} name={{ @key }} {{#if this.required}}required{{/if}} />
+          <label>{{this.plaseholder}}</label>
+        </li>
+        {{/each}}
+      </ul>
+      
+      {{!-- {{> textField plaseholder="Почта" name="email" type="email" required=true }}
       {{> textField plaseholder="Логин" name="login" type="text" required=true }}
       {{> textField plaseholder="Имя" name="first_name" type="text" }} 
       {{> textField plaseholder="Фамилия" name="second_name" type="text" }}
       {{> textField plaseholder="Телефон" name="phone" type="tel" }}
       {{> textField plaseholder="Пароль" name="password" type="password" required=true }}
-      {{> textField plaseholder="Пароль (ещё раз)" name="password-again" type="password" required=true }}
+      {{> textField plaseholder="Пароль (ещё раз)" name="password-again" type="password" required=true }} --}}
     </form>
     <div>
       {{> submitButton to="./chats.hbs" label="Авторизоваться" }}

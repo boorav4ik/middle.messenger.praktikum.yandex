@@ -68,22 +68,48 @@ a.button {
 } */
 ul {
   list-style-type: none;
+  padding-inline-start: 0;
+  margin-block: 0;
 }
 
 .none-border {
   border: none;
 }
 
-button.text {
+button,
+.button {
+  cursor: pointer;
+}
+
+button.text,
+.button.text {
   background: none;
   border: none;
   padding: 0;
 }
 
-button.text.primary {
+button.text.primary,
+.button.text.primary {
   color: var(--blue);
 }
 
-button.text.error {
+button.text.error,
+.button.text.error {
   color: var(--red);
+}
+
+button.contained,
+.button.contained {
+  height: 37px;
+  line-height: 37px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+}
+
+button.contained.primary,
+.button.contained.primary {
+  background-color: var(--blue);
+  color: var(--white);
 }

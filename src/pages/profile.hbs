@@ -67,15 +67,45 @@ actions:
       </li>
       {{/each}}
     </ul>
-    {{> submitButton to="chats.hbs" label="Сохранить" }}
+    <input
+      value="Сохранить"
+      type="submit"
+      class="button contained primary"
+      id="save"
+      hidden="true"
+    />
   </form>
   <footer>
-    <ul>
+    <ul id="actions">
       {{#each actions}}
       <li class="b-divider">
-        <button id={{@key}} class="text {{this.color}}">{{ this.label }}</button>
+        <button
+          id={{@key}}
+          class="text {{this.color}}"
+        >
+          {{ this.label }}
+        </button>
       </li>
       {{/each}}
     </ul>
-  </footer>
+    </footer>
 </main>
+<script>
+  const $actions = document.getElementById("actions");
+  const actions = {};
+  const $saveButton = document.getElementById("save")
+  $saveButton.addEventListener("click", function() {
+    this.hidden = true;
+    $actions.hidden = false;
+  })
+  Array.from($actions.children).forEach(($li) => {
+    console.log($li, $li.children[0]);
+    const button = $li.children[0];
+    
+    button.addEventListener("click", function() {
+      console.log(this);
+      $actions.hidden = true
+      $saveButton.hidden = false
+    })
+  })
+</script>
