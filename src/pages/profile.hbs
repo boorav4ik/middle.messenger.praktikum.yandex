@@ -5,10 +5,77 @@ stylesheets:
   - https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap
   - ../css/main.css
   - ../css/profile.css
+  - ../css/submitButton.css
+fields:
+  email:
+    type: email
+    placeholder: pochta@yandex.ru
+    label: почта
+  login:
+    type: text
+    placeholder: admin
+    label: логин
+  first_name:
+    type: text
+    placeholder: Иван
+    label: имя
+  second_name:
+    type: text
+    placeholder: Иванов
+    label: фамилия
+  display_name:
+    type: text
+    placeholder: Игорь Николаев
+    label: имя в чате
+  phone:
+    type: phone
+    placeholder: +7 (800) 100 50 00
+    label: имя в чате
+actions:
+  editData:
+    label: изменить данные
+    color: primary
+  editPassword:
+    label: изменить пароль
+    color: primary
+  exit:
+    label: выйти
+    color: error
 ---
 {{!< base}}
-<aside>
-    <button class="circle blue large left">➜</div>
+<aside class="flex-column-center r-divider">
+    <a href="chats.hbs" class="button circle blue large left ">➜</div>
 </aside>
-<main>
+<main class="flex-column-center">
+  <header>
+    <div class="circle xx-large avatar_wrapper">
+      <img src="../images/default_image.png"/>
+    </div>
+  </header>
+  <form>
+    <ul>
+      {{#each fields}}
+      <li class="b-divider flex-sb">
+        <label for="{{ @key }}">{{ this.label }}</label>
+        <input
+          class="none-border"
+          name="{{ @key }}"
+          type="{{ this.type}}"
+          id="{{ @key }}"
+          placeholder="{{ this.placeholder }}"
+        />
+      </li>
+      {{/each}}
+    </ul>
+    {{> submitButton to="chats.hbs" label="Сохранить" }}
+  </form>
+  <footer>
+    <ul>
+      {{#each actions}}
+      <li class="b-divider">
+        <button id={{@key}} class="text {{this.color}}">{{ this.label }}</button>
+      </li>
+      {{/each}}
+    </ul>
+  </footer>
 </main>

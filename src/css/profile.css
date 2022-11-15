@@ -1,10 +1,56 @@
 body {
-    display: flex;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    font-family: "Inter";
-    font-style: normal;
+  display: flex;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Inter";
+  font-style: normal;
 }
 
-aside {}
+aside {
+  width: 64px;
+  background: var(--sidebar-grey);
+}
+
+main {
+  flex: 1;
+}
+
+main > form,
+main > footer {
+  width: 510px;
+}
+
+.avatar_wrapper {
+  background-color: var(--main-grey);
+}
+
+.avatar_wrapper > img {
+  width: 38%;
+  height: 38%;
+  margin: 31%;
+}
+
+form {
+  margin-top: 97px;
+  margin-bottom: 59px;
+}
+
+li {
+  height: 33px;
+  line-height: 33px;
+}
+
+input {
+  text-align: right;
+}
+
+label {
+  font-size: 13px;
+  color: var(--main-black);
+}
+
+label::first-letter,
+button::first-letter {
+  text-transform: uppercase;
+}
