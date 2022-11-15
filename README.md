@@ -11,7 +11,7 @@
 
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
-![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 ## Установка
 Перед тем как запустить проект, небходимо клонировать данный репозиторий к себе и воспользоваться командой `npm i` для установки зависимостей.
 
