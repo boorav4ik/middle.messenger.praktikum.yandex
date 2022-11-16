@@ -12,7 +12,7 @@
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-## Установка
+# Установка
 Перед тем как запустить проект, небходимо клонировать данный репозиторий к себе и воспользоваться командой `npm i` для установки зависимостей.
 
 Для запуска используйте команды:
@@ -21,3 +21,8 @@
 - `npm run dev` —  позволяет запустить сервер разработки на `localhost:1234`.
 
 [Демо приложения](https://magnificent-stroopwafel-546831.netlify.app)
+
+----
+#  Спринт 1  [Pull requests !1](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/1)
+- сверстаны страницы при помощи шаблонизатора Handlebars
+- добавлен запуск сервера для раздачи статики на 3000 порту
