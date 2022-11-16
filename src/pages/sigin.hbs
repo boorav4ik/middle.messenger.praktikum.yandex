@@ -9,32 +9,26 @@ stylesheets:
 fields:
   email:
     type: email
-    plaseholder: почта
-    required: true
+    plaseholder: Почта
   login:
     type: text
-    plaseholder: логин
-    required: true
+    plaseholder: Логин
   first_name:
     type: text
-    plaseholder: имя
+    plaseholder: Имя
     required: false
   second_name:
     type: text
-    plaseholder: фамилия
-    required: false
+    plaseholder: Фамилия
   phone:
     type: tel
-    plaseholder: телефон
-    required: false
+    plaseholder: Телефон
   password:
     type: password
-    plaseholder: пароль
-    required: true
+    plaseholder: Пароль
   password-again:
     type: password
-    plaseholder: пароль (ещё раз)
-    required: true
+    plaseholder: Пароль (ещё раз)
 ---
 {{!< form}}
 <main>
@@ -44,7 +38,7 @@ fields:
       <ul>
         {{#each fields}}
         <li class="text__field">
-          <input type={{ this.type }} name={{ @key }} {{#if this.required}}required{{/if}} />
+          <input type={{ this.type }} name={{ @key }} required />
           <label>{{this.plaseholder}}</label>
         </li>
         {{/each}}

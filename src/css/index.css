@@ -1,0 +1,36 @@
+body {
+  background-image: url(../images/mainBackground.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+main {
+  flex: 0 1 48%;
+}
+
+main > h1 {
+  color: var(--blue);
+  text-shadow: 0.2em 0.2em 0.1em var(--text-grey);
+}
+
+li {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  margin: 2em;
+}
+
+li a {
+  text-align: center;
+  margin: 14px 16px;
+}

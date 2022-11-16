@@ -1,21 +1,19 @@
 <!doctype html>
 <html>
-{{#block "head"}}
-  <head>
-    <meta charset="utf-8" />
-    {{#block "title"}}
-      <title>{{title}}</title>
-    {{/block}}
-    {{#block "styles"}}
-      {{#each stylesheets}}
-        <link href="{{this}}" rel="stylesheet" />
-      {{/each}}
-    {{/block}}
-  </head>
-{{/block}}
-
-<body>
-  {{{body}}}
-</body>
-
+  {{#block "head"}}
+    <head>
+      <meta charset="utf-8" />
+      {{#block "title"}}
+        <title>{{title}}</title>
+      {{/block}}
+      {{#block "styles"}}
+        {{#each stylesheets}}
+          <link href="{{this}}" rel="stylesheet" />
+        {{/each}}
+      {{/block}}
+    </head>
+  {{/block}}
+  <body>
+    {{{body}}}
+  </body>
 </html>
