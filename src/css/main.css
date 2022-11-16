@@ -1,7 +1,12 @@
 @import url(https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap);
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 
 body {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   --main-grey: #efefef;
@@ -12,8 +17,6 @@ body {
   --white: #ffffff;
   --sidebar-grey: #fbfbfb;
   --divider: 1px solid #eaeaea;
-  margin: 0;
-  height: 100%;
 }
 
 .flex-column-center {
@@ -129,6 +132,6 @@ button.contained.primary,
   color: var(--white);
 }
 
-input[type='file'] {
+input[type="file"] {
   display: none;
 }
