@@ -45,11 +45,11 @@ passwordChangeFields:
 <aside class="flex-column-center r-divider">
     <a href="chats.hbs" class="button circle blue large left ">➜</div>
 </aside>
-<main class="flex-column-center">
+<main class="flex-column-center flex-1">
   <header>
     {{>settingsAvatar}}
   </header>
-  <form>
+  <form class="flex-column-center">
     {{>settingsFieldList
       fields=fields
       hidden=false

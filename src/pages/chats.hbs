@@ -5,25 +5,28 @@ stylesheets:
   - ../css/chats.css
   - ../css/main.css
 ---
-{{!< base}}
-<aside>
-  {{> sidebarHeader }}
-  {{> chatList }}
+{{!< base}} <aside class="flex-column h-100">
+{{> sidebarHeader }}
+{{> chatList }}
 </aside>
-<main>
+<main class="flex-column h-100 flex-1">
   <header>
-    {{> avatar size="mini" }}
-    <p>Вадим</p>
+    <div>
+      {{> avatar size="large" className="m-10"}}
+    </div>
+    <div>
+      <p>Вадим</p>
+    </div>
   </header>
   {{> messages }}
   <footer>
-    <form method="post">
+    <form method="post" class="sendMessage">
       <label class="attach">
-        <img src="../images/attachIcon.png" />
-        <input type="file" name="attach"/>
+        <img src="../images/attachIcon.png" class="medium" />
+        <input type="file" name="attach" />
       </label>
-      <input type="text" placeholder="Сообщение" name="message" class="message"/>
-      <input class="circle blue" type="submit" value="➜"/>
+      <input type="text" placeholder="Сообщение" name="message" class="flex-1 grey message" />
+      <input class="circle blue medium" type="submit" value="➜" />
     </form>
   </footer>
 </main>

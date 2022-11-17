@@ -1,244 +1,130 @@
 body {
   display: flex;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  font-family: "Inter";
-  font-style: normal;
 }
 
-aside,
+aside {
+  flex: 0 0 310px;
+  background-color: var(--sidebar-grey);
+}
+
 main {
-  flex: 0 0 320px;
-  background: #fbfbfb;
-  border-right: 1px solid #eaeaea;
-  height: 100%;
   padding: 0 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 header {
-  height: 102px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
   display: flex;
-  padding: 21px 0 14px;
+  border-bottom: var(--divider);
 }
 
 aside>header {
-  justify-content: space-between;
-  flex-direction: column;
+  flex: 0 0 102px;
+  padding: 21px 10px 14px;
 }
 
-aside>header>a.profile__link {
-  text-decoration: none;
+main>header {
+  height: 54px;
+}
 
-  font-weight: 500;
+.profile__link {
   font-size: 12px;
   line-height: 12px;
   text-align: right;
-  color: #999999;
+  color: var(--text-grey);
 }
 
-aside>header>input[type="search"] {
-  background: #efefef;
+input[type="search"] {
+  background: var(--main-grey);
   border-radius: 5px;
-  font-weight: 500;
   font-size: 12px;
   line-height: 12px;
   height: 32px;
   text-align: center;
 }
 
-aside>header>input[type="search"]::placeholder {
-  color: #999999;
-  text-align: center;
-}
-
-/* input[type="search"]::-webkit-input-placeholder::after {
-    height: 1px;
-    width: 1px;
-    background: brown;
-} */
-
-ul {
-  list-style-type: none;
-  padding-inline-start: 0;
-  margin: 0;
-  flex: 1;
-}
-
-li.chat__item {
+.chat__item {
   padding: 12px 0;
   height: 72px;
-  display: flex;
-  justify-content: space-between;
   box-sizing: border-box;
-  border-bottom: 1px solid #eaeaea;
 }
 
-.avatar {
-  width: 47px;
-  height: 47px;
-  background: #efefef;
-  border-radius: 50%;
+.chat__item>:first-child {
+  flex: 0 0 57px;
 }
 
-.avatar.mini {
-  width: 34px;
-  height: 34px;
+
+.message__data>.header {
+  flex: 0 0 15px;
 }
 
-li>.message__data {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding-left: 10px;
-}
-
-li>.message__data>div {
-  display: flex;
-  justify-content: space-between;
-}
-
-li>.message__data>div:last-child {
-  flex: 1;
-}
-
-li label {
-  display: block;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 20px;
-  margin-top: auto;
-  margin-bottom: 0;
-}
-
-li p {
-  margin-block: 2px;
-}
-
-li>.metadata {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* label.circle {
-  border-radius: 50%;
-  color: #999999;
-} */
-
-p.time {
-  font-size: 9px;
-  color: #999999;
-  font-weight: 500;
-}
-
-p.message {
-  font-weight: 500;
-  font-size: 12px;
-  color: #999999;
-  max-width: 193px;
-  text-overflow: ellipsis;
-}
-
-p.author {
+.header>.author {
   font-weight: 600;
-  font-size: 13px;
-  color: #1e1e1e;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
+.message>.content {
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--text-grey);
 }
 
-main>ul {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  width: 100%;
+.message>.count {
+  flex: 0 0 40px;
+  padding-top: 12px;
+  padding-left: 20px;
+  box-sizing: border-box;
 }
 
-main>ul>li {
+span.time {
+  font-size: 9px;
+  color: var(--text-grey);
+}
+
+li.message__item {
   margin: 10px 0;
   padding: 10px;
   min-width: 114px;
+  max-width: 402px;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 12px;
+  color: var(--main-black);
 }
 
-main>ul>li.grey {
-  background-color: #f8f8f8;
+li.message__item.image__wrapper>.time_label {
+  background-color: var(--light-grey);
 }
 
-main>ul>li.incoming {
+li.message__item.incoming {
   align-self: flex-start;
 }
 
-main>ul>li.outgoing {
+li.message__item.outgoing {
   align-self: flex-end;
-  color: #1e1e1e;
+  color: var(--main-black);
 }
 
-main>ul>li {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  color: #1e1e1e;
-  max-width: 402px;
-  border-radius: 12px;
-}
-
-.text__wrapper.outgoing {
+li.message__item.text__wrapper.outgoing {
   background-color: #e4edfd;
 }
 
-.text__wrapper.incoming {
-  background-color: #f8f8f8;
+li.message__item.text__wrapper.incoming {
+  background-color: var(--light-grey);
 }
 
-.image__wrapper {
-  border: 1px solid #eaeaea;
+li.message__item.image__wrapper {
+  border: var(--divider);
 }
 
-.image__wrapper>img {
+li.message__item.image__wrapper>img {
   max-height: 211px;
 }
 
-main>p {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 12px;
-  color: #999999;
-}
-
-main>header {
-  height: 54px;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
-
-main>header> :first-child {
-  margin-right: 10px;
-}
-
-.time_label {
-  font-weight: 500;
+li.message__item>.time_label {
   font-size: 9px;
   line-height: 9px;
   height: 9px;
   padding: 2px 7px;
   border-radius: 6px;
-  color: #999999;
+  color: var(--text-grey);
   margin-right: 0;
   margin-left: auto;
   margin-top: -13px;
@@ -246,7 +132,8 @@ main>header> :first-child {
 }
 
 .text__wrapper.outgoing .time_label {
-  color: #3369f3;
+  color: var(--blue);
+  line-height: 2;
 }
 
 .time_label>span.status {
@@ -254,48 +141,23 @@ main>header> :first-child {
   margin-right: 8px;
 }
 
-.image__wrapper>.time_label {
-  background-color: #52525280;
-  color: #ffffff;
-}
-
-.message__data.grey {
-  background-color: #52525280;
-  color: #ffffff;
-}
-
-main>footer {
-  width: 100%;
-  border-top: 1px solid #eaeaea;
-}
-
-footer>form {
-  display: flex;
-  margin: 11px 0;
-
-}
-
-label.attach>img {
-  height: 32px;
-}
-
-
 input.message {
   margin: 0 16px;
   padding: 0 20px;
   height: 32px;
-  background: #EFEFEF;
   border-radius: 30px;
-  border: none;
-  flex: 1;
 }
 
-input[type="submit"] {
-  width: 28px;
-  height: 28px;
-  background-color: #3369f3;
+input.message:focus-visible {
   border: none;
-  color: white;
-  border-radius: 50%;
-  font-size: large;
+}
+
+main>footer {
+  border-top: var(--divider);
+  flex: 0 0 54px;
+}
+
+form.sendMessage {
+  display: flex;
+  margin: 11px 0;
 }

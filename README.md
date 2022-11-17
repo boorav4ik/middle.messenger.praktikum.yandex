@@ -1,6 +1,6 @@
 # Учебный проект Мессенджер
 
-На основе [макета](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link) с использованием [Hendlebars](https://handlebarsjs.com/) собраны основные страницы:
+На основе [макета](https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE) с использованием [Hendlebars](https://handlebarsjs.com/) собраны основные страницы:
 
 - Авторизация: login.html
 - Регистрация: sigin.html

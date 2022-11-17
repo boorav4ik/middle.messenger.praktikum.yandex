@@ -3,17 +3,11 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  font-family: "Inter";
-  font-style: normal;
 }
 
 aside {
   width: 64px;
   background-color: var(--sidebar-grey);
-}
-
-main {
-  flex: 1;
 }
 
 main > form,
@@ -33,7 +27,7 @@ main > footer {
 }
 
 .avatar_wrapper:hover {
-  background-color: #000000;
+  background-color: var(--black);
   opacity: 0.5;
 }
 .avatar_wrapper:hover > img {
@@ -101,5 +95,5 @@ dialog > form {
 
 dialog::backdrop {
   opacity: 0.4;
-  background-color: #000000;
+  background-color: var(--black);
 }
