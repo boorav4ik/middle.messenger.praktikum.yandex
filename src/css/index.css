@@ -10,11 +10,11 @@ body {
 }
 
 main {
-  flex: 0 1 48%;
+  flex: 0 1 55%;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  width: 300px;
+  width: 350px;
 }
 
 li {
