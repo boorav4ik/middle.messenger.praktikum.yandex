@@ -21,10 +21,14 @@ pages:
           href="#"
         >Chokak</a></li>
       {{#each pages}}
-        <li class="r-divider"><a
+        <li class="r-divider">
+          <a
             class="button text primary"
             href="./{{this}}.hbs"
-          >{{@key}}</a></li>
+          >
+            {{@key}}
+          </a>
+        </li>
       {{/each}}
     </ul>
   </nav>
@@ -36,7 +40,7 @@ pages:
     <span style="--index: 1;">ЧЁКАК</span>
     <span style="--index: 2;">ЧЁКАК</span>
   </div>
-  <span class="right">месенджер</span>
+  <span class="right">мессенджер</span>
 </main>
 <footer>
   <h3>Chokak connecting peoples</h3>
