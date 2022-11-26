@@ -1,0 +1,9 @@
+<ul id="actions">
+  {{#each settingsActions}}
+    <li class="b-divider">
+      <button id={{@key}} class="text {{this.color}}">
+        {{this.label}}
+      </button>
+    </li>
+  {{/each}}
+</ul>

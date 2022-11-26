@@ -1,0 +1,34 @@
+<div class="list vertical flex-1">
+    <ul>
+        {{#each chatList}}
+        <li class="flex-sb b-divider chat__item">
+            <div>
+                {{> avatar size="x-large"}}
+            </div>
+            <div class="flex-column flex-1 message__data">
+                <div class="flex-sb header">
+                    <span class="author">{{ author }}</span>
+                    <span class="time">{{ time }}</span>
+                </div>
+                <div class="flex-sb flex-1 message">
+                    <div class="flex-1 content">
+                        {{#lastMessage }}
+                        <span>
+                            {{#isOutgoing}}<b>Вы:</b>{{/isOutgoing}}
+                            {{ this.content }}
+                        </span>
+                        {{/lastMessage }}
+                    </div>
+                    <div class="count">
+                        {{#messageCount}}
+                        <div class="blue circle small">
+                            {{ this }}
+                        </div>
+                        {{/messageCount}}
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>

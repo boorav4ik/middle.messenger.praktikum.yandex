@@ -1,0 +1,10 @@
+a.link {
+    text-decoration: none;
+    width: 78px;
+    height: 11px;
+    font-size: 11px;
+    line-height: 11px;
+    color: var(--blue);
+    margin: 1.3em auto;
+    display: block;
+}
