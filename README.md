@@ -35,3 +35,4 @@
 # Спринт 2
 
 - добавил ESLint, Prettier и TypeScript
+- описал сервис событий EventBus
