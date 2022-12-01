@@ -1,17 +1,17 @@
 import Block from "../../utils/Block";
-import template from "./notFound.hbs";
+import template from "./serverError.hbs";
 import Glitch from "../../components/GlithLogo";
 import "./index.css";
 
-export default class NotFoundPage extends Block {
+export default class ServerErrorPage extends Block {
   constructor() {
     super("main");
   }
 
   init() {
     this.children.content = new Glitch({
-      header: "Not Found",
-      label: "404",
+      header: "Internal Server",
+      label: "500",
       footer: "Error",
     });
   }

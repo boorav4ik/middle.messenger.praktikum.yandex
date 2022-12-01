@@ -10,6 +10,7 @@ export default class MainPage extends Block {
   }
 
   init() {
+    document.title = "Чёкак";
     this.children.navbar = new Navbar({
       logo: "Чёкак",
       pages: {
