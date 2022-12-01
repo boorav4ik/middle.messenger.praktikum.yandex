@@ -1,0 +1,16 @@
+li {
+  display: inline;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  margin: 2em;
+}
+
+li a {
+  text-align: center;
+  margin: 14px 16px;
+}
