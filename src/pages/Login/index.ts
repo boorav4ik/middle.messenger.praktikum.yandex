@@ -1,6 +1,8 @@
 import Block from "../../utils/Block";
 import template from "./login.hbs";
 import "./index.css";
+import Form from "../../components/Form";
+import Textarea from "../../components/Textarea";
 
 export default class LoginPage extends Block {
   constructor() {
@@ -9,6 +11,8 @@ export default class LoginPage extends Block {
 
   init() {
     document.title = "Login";
+    this.children.form = new Form({ fields: [], actions: [] });
+    this.children.textarea = new Textarea({ text: "sadasdads" });
   }
 
   render() {

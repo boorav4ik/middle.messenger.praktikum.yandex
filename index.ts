@@ -1,25 +1,35 @@
-// import { HomePage } from "./pages/Home";
+import LoginPage from "./src/pages/Login";
 import MainPage from "./src/pages/Main";
-import NotFoundPage from "./src/pages/NotFound";
-import ServerErrorPage from "./src/pages/ServerError";
+
+import Error from "./src/pages/Error";
 
 function router(path: string) {
   switch (path) {
     case "/":
       return new MainPage();
+    case "/login":
+      return new LoginPage();
     case "/500":
-      return new ServerErrorPage();
+      return new Error({
+        label: "500",
+        title: "Мы уже фиксим",
+        footer: "Internal Server Error",
+        header: "Мы уже фиксим",
+      });
     default:
-      return new NotFoundPage();
+      return new Error({
+        label: "404",
+        title: "Не туда попали",
+        footer: "Not Found",
+        header: "Не туда попали",
+      });
   }
 }
-window.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
-  console.log({path});
 
+window.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname!;
   const root = document.querySelector("#root")!;
   const Page = router(path);
-
   root.append(Page.getContent()!);
   Page.dispatchComponentDidMount();
 });

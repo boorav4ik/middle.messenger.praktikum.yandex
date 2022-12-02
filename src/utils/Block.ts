@@ -131,7 +131,7 @@ class Block {
     this._element!.innerHTML = "";
 
     this._element!.append(fragment);
-
+    this._element!.className = this.props.className ?? "";
     this._addEvents();
   }
 
@@ -192,6 +192,10 @@ class Block {
   }
 
   _createDocumentElement(tagName: string) {
+    const element = document.createElement(tagName);
+    if (this.props.class) {
+      element.setAttribute("class", this.props.class);
+    }
     return document.createElement(tagName);
   }
 

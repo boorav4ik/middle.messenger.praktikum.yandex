@@ -4,7 +4,7 @@ const $passwordForm = document.getElementById("passwordForm");
 const $saveButton = document.getElementById("save");
 const $avatarWrapper = document.getElementById("avatar_wrapper");
 const $chengeAvatarDialog = document.querySelector("dialog");
-console.log($chengeAvatarDialog);
+
 const actions = {
   editData() {
     $actions.hidden = true;
