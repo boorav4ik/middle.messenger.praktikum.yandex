@@ -4,15 +4,15 @@ import Glitch from "../../components/GlithLogo";
 import "./index.css";
 import Button from "../../components/Button";
 
-interface IErrorPage {
+interface IErrorPageProps {
   label: string;
   header: string;
   footer: string;
   title: string;
 }
 
-export default class NotFoundPage extends Block {
-  constructor(props: IErrorPage) {
+export default class ErrorPage extends Block {
+  constructor(props: IErrorPageProps) {
     super("main", props);
   }
 
