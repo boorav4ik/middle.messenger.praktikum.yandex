@@ -141,7 +141,8 @@ export default abstract class Block {
     this._element!.innerHTML = "";
 
     this._element!.append(fragment);
-    this._element!.className = String(this.props.className) ?? "";
+    if (typeof this.props.className === "string")
+      this._element!.className = this.props.className;
     this._addEvents();
   }
 

@@ -6,7 +6,7 @@ import "./index.css";
 interface IFormPagePage {
   name: string;
   title: string;
-  inputs: Record<string, unknown>[];
+  fields: Record<string, unknown>[];
   actions: Record<string, unknown>[];
 }
 
@@ -16,7 +16,9 @@ export default class FormPage extends Block {
   }
 
   init() {
-    document.title = this.props.title;
+    if (typeof this.props.title === "string") {
+      document.title = this.props.title;
+    }
     this.children.form = new Form(this.props);
   }
 

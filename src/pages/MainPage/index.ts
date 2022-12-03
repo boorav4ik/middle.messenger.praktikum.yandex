@@ -6,7 +6,7 @@ import Navbar from "../../components/Navbar";
 
 export default class MainPage extends Block {
   constructor() {
-    super("div");
+    super("main");
   }
 
   init() {
