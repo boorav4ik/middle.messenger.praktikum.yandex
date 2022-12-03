@@ -1,0 +1,31 @@
+.chat__item {
+  padding: 12px 0;
+  height: 72px;
+  box-sizing: border-box;
+}
+
+.chat__item > :first-child {
+  flex: 0 0 57px;
+}
+
+.message__data > .header {
+  flex: 0 0 15px;
+}
+
+.message > .content {
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--text-grey);
+}
+
+.message > .count {
+  flex: 0 0 40px;
+  padding-top: 12px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+span.time {
+  font-size: 9px;
+  color: var(--text-grey);
+}

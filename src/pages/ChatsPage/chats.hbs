@@ -1,24 +1,34 @@
 <aside class="flex-column h-100">
-  {{{sidebarHeader}}}
-  {{{chatList}}}
+  <header class="flex-column flex-sb">
+    <a href="./profile.hbs" class="profile__link">Профиль ></a>
+    <input type="search" name="search" placeholder="🔍 Поиск" />
+  </header>
+  <div class="list vertical flex-1">
+    <ul>{{{chatList}}}</ul>
+  </div>
 </aside>
 <main class="flex-column h-100 flex-1">
   <header>
     <div>
-      {{> avatar size="large" className="m-10"}}
+      {{avatar size="large" className="m-10"}}
     </div>
     <div>
       <p>Вадим</p>
     </div>
   </header>
-  {{{messages}}}
+  <ul>{{{messagList}}}</ul>
   <footer>
     <form method="post" class="sendMessage">
       <label class="attach">
-        <img src="../images/attachIcon.png" class="medium" />
+        <img src="../../images/attachIcon.png" class="medium" />
         <input type="file" name="attach" />
       </label>
-      <input type="text" placeholder="Сообщение" name="message" class="flex-1 grey message" />
+      <input
+        type="text"
+        placeholder="Сообщение"
+        name="message"
+        class="flex-1 grey message"
+      />
       <input class="circle blue medium" type="submit" value="➜" />
     </form>
   </footer>

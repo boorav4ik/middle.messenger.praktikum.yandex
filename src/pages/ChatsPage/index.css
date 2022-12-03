@@ -1,4 +1,15 @@
-.logo_wrapper {
-  width: 350px;
-  margin-top: 175px;
+.chats_wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.chats_wrapper > aside {
+  flex: 0 0 310px;
+  background-color: var(--sidebar-grey);
+  display: flex;
+  flex-direction: column;
+}
+
+.chats_wrapper > main {
+  justify-content: space-between;
 }
