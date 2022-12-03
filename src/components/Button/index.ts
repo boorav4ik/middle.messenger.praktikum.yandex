@@ -1,7 +1,7 @@
 import Block from "../../utils/Block";
 import template from "./button.hbs";
 
-interface IButtonProps {
+export interface IButtonProps {
   label: string;
   className: string;
   onClick: () => void;

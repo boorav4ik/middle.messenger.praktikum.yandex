@@ -1,7 +1,7 @@
 import { EventBus } from "../services/EventBus";
 import { v4 as makeUUID } from "uuid";
 
-class Block {
+export default abstract class Block {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -10,18 +10,12 @@ class Block {
   };
 
   public id = makeUUID();
-  protected props: any;
-  public children: Record<string, Block>;
+  protected props: Record<string, unknown>;
+  public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any };
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
   constructor(tagName = "div", propsWithChildren: any = {}) {
     const eventBus = new EventBus();
 
@@ -44,10 +38,13 @@ class Block {
 
   _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (
+        value instanceof Block ||
+        (Array.isArray(value) && value.every((item) => item instanceof Block))
+      ) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -57,6 +54,17 @@ class Block {
     return { props, children };
   }
 
+  _removeEvents() {
+    const { events = {} } = this.props as {
+      events: Record<string, () => void>;
+    };
+
+    if (!events || !this._element) return;
+
+    Object.entries(events).forEach(([event, listener]) =>
+      this._element!.removeEventListener(event, listener)
+    );
+  }
   _addEvents() {
     const { events = {} } = this.props as {
       events: Record<string, () => void>;
@@ -98,9 +106,11 @@ class Block {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child) =>
-      child.dispatchComponentDidMount()
-    );
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child))
+        child.forEach((child) => child.dispatchComponentDidMount());
+      else child.dispatchComponentDidMount();
+    });
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -127,19 +137,26 @@ class Block {
 
   private _render() {
     const fragment = this.render();
-
+    this._removeEvents();
     this._element!.innerHTML = "";
 
     this._element!.append(fragment);
-    this._element!.className = this.props.className ?? "";
+    this._element!.className = String(this.props.className) ?? "";
     this._addEvents();
   }
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
-
+    const stub = (id: string) => `<div data-id="${id}"></div>`;
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        component.forEach((item) => {
+          const itemName = contextAndStubs[name] ?? "";
+          contextAndStubs[name] = `${itemName}${stub(item.id)}`;
+        });
+        return;
+      }
+      contextAndStubs[name] = stub(component.id);
     });
 
     const html = template(contextAndStubs);
@@ -149,15 +166,20 @@ class Block {
     temp.innerHTML = html;
 
     Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
-      if (!stub) {
-        return;
+      function replaceStub(component: Block) {
+        const stub = temp.content.querySelector(`[data-id='${component.id}']`);
+        if (!stub) return;
+        stub.replaceWith(component.getContent()!);
+      }
+      if (Array.isArray(component)) {
+        component.forEach(replaceStub);
+      } else {
+        replaceStub(component);
       }
 
-      component.getContent()?.append(...Array.from(stub.childNodes));
+      // component.getContent()?.append(...Array.from(stub.childNodes));
 
-      stub.replaceWith(component.getContent()!);
+      // stub.replaceWith(component.getContent()!);
     });
 
     return temp.content;
@@ -207,5 +229,3 @@ class Block {
     this.getContent()!.style.display = "none";
   }
 }
-
-export default Block;

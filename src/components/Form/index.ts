@@ -1,11 +1,13 @@
 import Block from "../../utils/Block";
+import Button, { IButtonProps } from "../Button";
+import Input, { IInputProps } from "../Input";
 import template from "./form.hbs";
-import Textarea from "../Textarea";
 import "./index.css";
 
 interface IFormProps {
-  fields: Record<string, string>[];
-  actions: Record<string, string>[];
+  title: string;
+  fields: IInputProps[];
+  actions: IButtonProps[];
 }
 
 export default class Form extends Block {
@@ -14,7 +16,11 @@ export default class Form extends Block {
   }
 
   init() {
-    this.children.textarea = new Textarea({ text: "hskjalkjaljdfsjfskdfl" });
+    const { fields, actions } = this.props;
+    this.children.inputs = fields.map((field: IInputProps) => new Input(field));
+    this.children.buttons = actions.map(
+      (action: IButtonProps) => new Button(action)
+    );
   }
 
   render() {

@@ -1,11 +1,12 @@
 import Block from "../../utils/Block";
-import template from "./form.hbs";
+import template from "./formpage.hbs";
+import Form from "../../components/Form";
 import "./index.css";
 
 interface IFormPagePage {
   name: string;
   title: string;
-  fields: Record<string, unknown>[];
+  inputs: Record<string, unknown>[];
   actions: Record<string, unknown>[];
 }
 
@@ -16,14 +17,7 @@ export default class FormPage extends Block {
 
   init() {
     document.title = this.props.title;
-
-    // this.children.button = new Button({
-    //   label: "Назад к чатам",
-    //   className: "text primary",
-    //   onClick() {
-    //     location.replace("/");
-    //   },
-    // });
+    this.children.form = new Form(this.props);
   }
 
   render() {
