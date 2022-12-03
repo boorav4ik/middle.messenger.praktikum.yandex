@@ -7,21 +7,17 @@ aside {
   background-color: var(--sidebar-grey);
 }
 
-main {
-  padding: 0 10px;
-}
-
 header {
   display: flex;
   border-bottom: var(--divider);
 }
 
-aside>header {
+aside > header {
   flex: 0 0 102px;
   padding: 21px 10px 14px;
 }
 
-main>header {
+main > header {
   height: 54px;
 }
 
@@ -47,26 +43,25 @@ input[type="search"] {
   box-sizing: border-box;
 }
 
-.chat__item>:first-child {
+.chat__item > :first-child {
   flex: 0 0 57px;
 }
 
-
-.message__data>.header {
+.message__data > .header {
   flex: 0 0 15px;
 }
 
-.header>.author {
+.header > .author {
   font-weight: 600;
 }
 
-.message>.content {
+.message > .content {
   font-size: 12px;
   line-height: 15px;
   color: var(--text-grey);
 }
 
-.message>.count {
+.message > .count {
   flex: 0 0 40px;
   padding-top: 12px;
   padding-left: 20px;
@@ -89,7 +84,7 @@ li.message__item {
   color: var(--main-black);
 }
 
-li.message__item.image__wrapper>.time_label {
+li.message__item.image__wrapper > .time_label {
   background-color: var(--light-grey);
 }
 
@@ -114,11 +109,11 @@ li.message__item.image__wrapper {
   border: var(--divider);
 }
 
-li.message__item.image__wrapper>img {
+li.message__item.image__wrapper > img {
   max-height: 211px;
 }
 
-li.message__item>.time_label {
+li.message__item > .time_label {
   font-size: 9px;
   line-height: 9px;
   height: 9px;
@@ -136,7 +131,7 @@ li.message__item>.time_label {
   line-height: 2;
 }
 
-.time_label>span.status {
+.time_label > span.status {
   letter-spacing: -4px;
   margin-right: 8px;
 }
@@ -152,7 +147,7 @@ input.message:focus-visible {
   border: none;
 }
 
-main>footer {
+main > footer {
   border-top: var(--divider);
   flex: 0 0 54px;
 }

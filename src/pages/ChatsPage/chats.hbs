@@ -1,0 +1,25 @@
+<aside class="flex-column h-100">
+  {{{sidebarHeader}}}
+  {{{chatList}}}
+</aside>
+<main class="flex-column h-100 flex-1">
+  <header>
+    <div>
+      {{> avatar size="large" className="m-10"}}
+    </div>
+    <div>
+      <p>Вадим</p>
+    </div>
+  </header>
+  {{{messages}}}
+  <footer>
+    <form method="post" class="sendMessage">
+      <label class="attach">
+        <img src="../images/attachIcon.png" class="medium" />
+        <input type="file" name="attach" />
+      </label>
+      <input type="text" placeholder="Сообщение" name="message" class="flex-1 grey message" />
+      <input class="circle blue medium" type="submit" value="➜" />
+    </form>
+  </footer>
+</main>

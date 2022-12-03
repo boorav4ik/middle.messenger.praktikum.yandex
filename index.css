@@ -20,6 +20,12 @@ body {
   --divider: 1px solid #eaeaea;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 html * {
   font-family: "Inter";
   font-style: normal;

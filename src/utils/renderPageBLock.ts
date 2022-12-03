@@ -1,7 +1,6 @@
 import MainPage from "../pages/MainPage";
 import ErrorPage from "../pages/ErrorPage";
 import FormPage from "../pages/FormPage";
-import Block from "./Block";
 
 const loginFormPageProps = {
   name: "login",
@@ -31,6 +30,32 @@ const loginFormPageProps = {
   ],
 };
 
+const siginFormPageProps = {
+  name: "sigin",
+  title: "Регистрация",
+  fields: [
+    { name: "email", type: "email", plaseholder: "Почта" },
+    { name: "login", type: "text", plaseholder: "Логин" },
+    { name: "first_name", type: "text", plaseholder: "Имя", required: false },
+    { name: "second_name", type: "text", plaseholder: "Фамилия" },
+    { name: "phone", type: "tel", plaseholder: "Телефон" },
+    { name: "password", type: "password", plaseholder: "Пароль" },
+    {
+      name: "password-again",
+      type: "password",
+      plaseholder: "Пароль (ещё раз)",
+    },
+  ],
+  actions: [
+    {
+      label: "Зарегистрироваться",
+      onClick() {
+        location.replace("/chats");
+      },
+    },
+  ],
+};
+
 const internalServerErrorPageProps = {
   label: "500",
   title: "Мы уже фиксим",
@@ -51,6 +76,8 @@ function routePage(path: string) {
       return new MainPage();
     case "/login":
       return new FormPage(loginFormPageProps);
+    case "/sigin":
+      return new FormPage(siginFormPageProps);
     case "/500":
       return new ErrorPage(internalServerErrorPageProps);
     default:

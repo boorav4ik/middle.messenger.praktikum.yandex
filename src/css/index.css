@@ -14,7 +14,7 @@ main {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  width: 350px;
+  align-items: center;
 }
 
 li {
