@@ -1,5 +1,5 @@
 <aside class="flex-column h-100">
-  <header class="flex-column flex-sb">
+  <header class="flex-column flex-sb b-divider">
     <a href="./profile.hbs" class="profile__link">Профиль ></a>
     <input type="search" name="search" placeholder="🔍 Поиск" />
   </header>
@@ -8,15 +8,15 @@
   </div>
 </aside>
 <main class="flex-column h-100 flex-1">
-  <header>
+  <header class="flex-ow b-divider">
     <div>
-      {{avatar size="large" className="m-10"}}
+      <div class="avatar circle large m-10"></div>
     </div>
     <div>
       <p>Вадим</p>
     </div>
   </header>
-  <ul>{{{messagList}}}</ul>
+  <ul class="flex-column">{{{messagList}}}</ul>
   <footer>
     <form method="post" class="sendMessage">
       <label class="attach">
