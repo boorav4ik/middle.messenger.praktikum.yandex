@@ -13,7 +13,7 @@ interface IErrorPageProps {
 
 export default class ErrorPage extends Block {
   constructor(props: IErrorPageProps) {
-    super("main", props);
+    super("main", { ...props, className: "align-i-center" });
   }
 
   init() {
