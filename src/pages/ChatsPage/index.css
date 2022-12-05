@@ -13,3 +13,8 @@
 .chats_wrapper > main {
   justify-content: space-between;
 }
+
+.chats_sidebar > header {
+  flex: 0 0 102px;
+  padding: 21px 10px 14px;
+}
