@@ -26,6 +26,10 @@ main {
   justify-content: flex-start;
 }
 
+.align-i-center {
+  align-items: center;
+}
+
 html * {
   font-family: "Inter";
   font-style: normal;
