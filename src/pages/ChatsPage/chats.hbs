@@ -1,6 +1,6 @@
 <aside class="flex-column h-100 chats_sidebar">
   <header class="flex-column flex-sb b-divider">
-    <a href="./profile.hbs" class="profile__link right">Профиль ></a>
+    <a href="./profile" class="profile__link right">Профиль ></a>
     <input type="search" name="search" placeholder="🔍 Поиск" />
   </header>
   <div class="list vertical flex-1">
@@ -16,11 +16,11 @@
       <p>Вадим</p>
     </div>
   </header>
-  <ul class="flex-column">{{{messagList}}}</ul>
+  <ul class="flex-column flex-1">{{{messagList}}}</ul>
   <footer>
     <form method="post" class="sendMessage">
       <label class="attach">
-        <img src="../../images/attachIcon.png" class="medium" />
+        <img src="/static/images/attachIcon.png" class="medium" />
         <input type="file" name="attach" />
       </label>
       <input

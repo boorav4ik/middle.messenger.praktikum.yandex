@@ -4,19 +4,23 @@ import Input, { IInputProps } from "../Input";
 import template from "./form.hbs";
 import "./index.css";
 
-interface IFormProps {
-  title: string;
+export interface IFormProps {
+  title?: string;
   fields: IInputProps[];
-  actions: IButtonProps[];
+  actions?: IButtonProps[];
 }
 
 export default class Form extends Block {
   constructor(props: IFormProps) {
+    console.log(props);
+
     super("form", props);
   }
 
   init() {
-    const { fields, actions } = this.props;
+    const { fields = [], actions = [] } = this.props;
+    console.log(fields);
+
     this.children.inputs = fields.map((field: IInputProps) => new Input(field));
     this.children.buttons = actions.map(
       (action: IButtonProps) => new Button(action)

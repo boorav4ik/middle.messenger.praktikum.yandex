@@ -27,7 +27,7 @@ export default class ErrorPage extends Block {
       label: "Назад к чатам",
       className: "text primary",
       onClick() {
-        location.replace("/");
+        location.replace("/chats");
       },
     });
   }

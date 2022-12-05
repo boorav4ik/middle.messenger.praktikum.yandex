@@ -3,6 +3,7 @@ import template from "./input.hbs";
 import "./index.css";
 
 export interface IInputProps {
+  name: string;
   label: string;
   className: string;
   validation: (value: string) => string;

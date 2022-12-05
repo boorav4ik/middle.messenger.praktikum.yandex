@@ -2,6 +2,7 @@ import MainPage from "../pages/MainPage";
 import ErrorPage from "../pages/ErrorPage";
 import FormPage from "../pages/FormPage";
 import ChatsPage from "../pages/ChatsPage";
+import ProfilePage from "../pages/ProfilePage";
 
 const loginFormPageProps = {
   name: "login",
@@ -81,6 +82,8 @@ function routePage(path: string) {
       return new FormPage(siginFormPageProps);
     case "/chats":
       return new ChatsPage();
+    case "/profile":
+      return new ProfilePage();
     case "/500":
       return new ErrorPage(internalServerErrorPageProps);
     default:

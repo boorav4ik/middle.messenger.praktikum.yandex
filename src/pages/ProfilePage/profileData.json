@@ -1,0 +1,53 @@
+{
+  "profileFields": [
+    {
+      "name": "email",
+      "type": "email",
+      "placeholder": "pochta@yandex.ru",
+      "label": "почта"
+    },
+    {
+      "name": "login",
+      "type": "text",
+      "placeholder": "admin",
+      "label": "логин"
+    },
+    {
+      "name": "first_name",
+      "type": "text",
+      "placeholder": "Иван",
+      "label": "имя"
+    },
+    {
+      "name": "second_name",
+      "type": "text",
+      "placeholder": "Иванов",
+      "label": "фамилия"
+    },
+    {
+      "name": "display_name",
+      "type": "text",
+      "placeholder": "Игорь Николаев",
+      "label": "имя в чате"
+    },
+    {
+      "name": "phone",
+      "type": "phone",
+      "placeholder": "+7 (800) 100 50 00",
+      "label": "имя в чате"
+    }
+  ],
+  "passwordChangeFields": [
+    { "name": "oldPassword", "type": "password", "label": "Старый пароль" },
+    {
+      "name": "newPassword",
+      "type": "password",
+      "label": "Новый пароль"
+    },
+    {
+      "name": "newPasswordCheck",
+      "type": "password",
+      "label": "Повторите новый пароль"
+    }
+  ]
+}
