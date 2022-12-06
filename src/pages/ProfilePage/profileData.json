@@ -3,37 +3,37 @@
     {
       "name": "email",
       "type": "email",
-      "placeholder": "pochta@yandex.ru",
+      "value": "pochta@yandex.ru",
       "label": "почта"
     },
     {
       "name": "login",
       "type": "text",
-      "placeholder": "admin",
+      "value": "admin",
       "label": "логин"
     },
     {
       "name": "first_name",
       "type": "text",
-      "placeholder": "Иван",
+      "value": "Иван",
       "label": "имя"
     },
     {
       "name": "second_name",
       "type": "text",
-      "placeholder": "Иванов",
+      "value": "Иванов",
       "label": "фамилия"
     },
     {
       "name": "display_name",
       "type": "text",
-      "placeholder": "Игорь Николаев",
+      "value": "Игорь Николаев",
       "label": "имя в чате"
     },
     {
       "name": "phone",
       "type": "phone",
-      "placeholder": "+7 (800) 100 50 00",
+      "value": "+7 (800) 100 50 00",
       "label": "имя в чате"
     }
   ],

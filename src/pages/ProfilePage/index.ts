@@ -4,31 +4,59 @@ import Form, { IFormProps } from "../../components/Form";
 
 import profileData from "./profileData.json";
 import "./index.css";
-import { IInputProps } from "../../components/Input";
+import Avatar from "../../components/Avatar";
 
 export default class ProfilePage extends Block {
   constructor() {
     super("div", {
       profileData,
-      className: "profile_wrapper",
+      className: "profile_wrapper flex-row h-100",
     });
   }
 
   init() {
     document.title = "Профиль";
-    const { profileFields } = this.props.profileData;
-    console.log(profileFields);
-
-    // console.log(profileFields, passwordChangeFields);
-    this.children.profileSettingsForm = new Form({
-      fields: profileFields,
+    this.children.avatar = new Avatar({
+      size: "xx-large",
+      label: "Поменять аватар",
     });
-    // this.children.profileSettingsForm = new Form({
-    //   fields: this.props.profileFields,
-    // });
-    // this.children.passwordChangeForm = new Form({
-    //   fields: this.props.passwordChangeFields,
-    // });
+    const { profileFields, passwordChangeFields } = this.props.profileData;
+    const children = this.children;
+    if (Array.isArray(profileFields))
+      this.children.profileSettingsForm = new Form({
+        fields: profileFields,
+        actions: [
+          {
+            label: "Изменить данные",
+            type: "button",
+            className: "primary text",
+            onClick: function onChengeDataClick(event: Event) {
+              event.stopPropagation();
+              const { profileSettingsForm } = children;
+              if (profileSettingsForm instanceof Block)
+                profileSettingsForm.setProps({ readonly: false });
+            },
+          },
+          {
+            label: "Изменить пароль",
+            type: "button",
+            className: "primary text",
+            onClick() {
+              console.log("Изменить пароль");
+            },
+          },
+          {
+            label: "Выйти",
+            type: "button",
+            className: "error text",
+            onClick() {
+              location.replace("/chats");
+            },
+          },
+        ],
+        variant: "inline",
+        readonly: true,
+      });
   }
 
   render() {

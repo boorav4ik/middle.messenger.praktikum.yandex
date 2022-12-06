@@ -141,6 +141,10 @@ export default abstract class Block {
     this._element!.innerHTML = "";
 
     this._element!.append(fragment);
+    console.log(this.props.type);
+
+    if (typeof this.props.type === "string")
+      this._element!.setAttribute("type", this.props.type);
     if (typeof this.props.className === "string")
       this._element!.className = this.props.className;
     this._addEvents();
@@ -216,8 +220,8 @@ export default abstract class Block {
 
   _createDocumentElement(tagName: string) {
     const element = document.createElement(tagName);
-    if (this.props.class) {
-      element.setAttribute("class", this.props.class);
+    if (typeof this.props.class === "string") {
+      element.classList.add(this.props.class);
     }
     return document.createElement(tagName);
   }

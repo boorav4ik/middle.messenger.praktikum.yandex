@@ -147,6 +147,20 @@ ul {
   margin-block: 0;
 }
 
+li {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+li a {
+  text-align: center;
+  margin: 14px 16px;
+}
+
 .none-border {
   border: none;
 }

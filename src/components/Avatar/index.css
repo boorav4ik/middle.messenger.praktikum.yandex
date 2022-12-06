@@ -1,0 +1,35 @@
+.avatar_wrapper {
+  background-color: var(--main-grey);
+  position: relative;
+  cursor: pointer;
+}
+
+.avatar_wrapper > img {
+  width: 38%;
+  height: 38%;
+  margin: 31%;
+}
+
+.avatar_wrapper:hover {
+  background-color: var(--black);
+  opacity: 0.5;
+}
+
+.avatar_wrapper:hover > img {
+  filter: invert(1);
+}
+
+.avatar_wrapper > p {
+  position: absolute;
+  top: 26%;
+  left: 26%;
+  width: 64px;
+  font-size: 13px;
+  line-height: 14px;
+  color: var(--white);
+  opacity: 0;
+}
+
+.avatar_wrapper:hover > p {
+  opacity: 1;
+}

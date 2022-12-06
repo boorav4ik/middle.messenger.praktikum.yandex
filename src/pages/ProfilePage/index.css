@@ -1,4 +1,12 @@
-.logo_wrapper {
-  width: 350px;
-  margin-top: 175px;
+.profile_wrapper {
+  /* display: flex;
+  height: 100%; */
+}
+.profile_wrapper > aside {
+  flex: 0 0 64px;
+}
+.profile_wrapper > main {
+  flex: 0 0 510px;
+  margin-left: auto;
+  margin-right: auto;
 }

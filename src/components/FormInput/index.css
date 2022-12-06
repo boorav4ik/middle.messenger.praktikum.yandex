@@ -33,3 +33,14 @@ form .text__field {
   line-height: 9px;
   color: var(--text-grey);
 }
+
+input.inline {
+  text-align: right;
+  flex: 1;
+  border: none;
+  outline: none;
+}
+
+input[readonly] {
+  cursor: default;
+}
