@@ -3,8 +3,9 @@ import template from "./button.hbs";
 
 export interface IButtonProps {
   label: string;
-  className: string;
-  onClick: () => void;
+  type: string;
+  className?: string;
+  onClick: (e: PointerEvent) => void;
 }
 
 export default class Button extends Block {
@@ -14,6 +15,6 @@ export default class Button extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { label: this.props.label });
   }
 }
