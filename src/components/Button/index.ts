@@ -5,7 +5,7 @@ export interface IButtonProps {
   label: string;
   type: string;
   className?: string;
-  onClick: (e: PointerEvent) => void;
+  onClick?: (e: PointerEvent) => void;
 }
 
 export default class Button extends Block {

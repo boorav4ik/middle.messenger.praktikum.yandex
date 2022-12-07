@@ -101,7 +101,7 @@ export default abstract class Block {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -152,7 +152,7 @@ export default abstract class Block {
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
-    const stub = (id: string) => `<div data-id="${id}"></div>`;
+    const stub = (id: string) => `<div data-id="id-${id}"></div>`;
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         component.forEach((item) => {
@@ -172,7 +172,9 @@ export default abstract class Block {
 
     Object.entries(this.children).forEach(([_, component]) => {
       function replaceStub(component: Block) {
-        const stub = temp.content.querySelector(`[data-id='${component.id}']`);
+        const stub = temp.content.querySelector(
+          `[data-id="id-${component.id}"]`
+        );
         if (!stub) return;
         stub.replaceWith(component.getContent()!);
       }

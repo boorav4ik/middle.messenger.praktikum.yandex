@@ -90,10 +90,11 @@ function routePage(path: string) {
       return new ErrorPage(notFoundErrorPageProps);
   }
 }
-export default function Router() {
-  const root = document.querySelector("#root")!;
+export default function Router(rootSelector: string): (path: string) => void {
+  const root = document.querySelector(rootSelector)!;
 
   return function (path: string) {
+    if (!root) throw new Error("Root not found");
     root.innerHTML = "";
     const page = routePage(path);
     root.append(page.getContent() as Node);

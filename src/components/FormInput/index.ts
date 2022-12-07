@@ -26,6 +26,13 @@ export default class FormInput extends Block {
     });
   }
 
+  focus() {
+    const input = this.element?.children[1];
+    if (input instanceof HTMLInputElement) {
+      input.focus();
+      input.select();
+    }
+  }
   render() {
     return this.compile(template, {
       label: this.props.label,
