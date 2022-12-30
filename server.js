@@ -2,13 +2,17 @@ const express = require("express");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const STATIC = "./dist";
+const STATIC = `${__dirname}/dist`;
 
 app.use(express.static(STATIC));
+
+app.get('*', (_, res) => {
+  res.send(`${STATIC}/index.html`);
+});
 
 app.listen(PORT, function () {
   console.log(`
     Example app listening on port ${PORT}!
-    Root dirname ${__dirname}
+    Static dirname ${STATIC}
   `);
 });
