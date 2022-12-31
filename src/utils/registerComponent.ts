@@ -16,7 +16,8 @@ export function registerComponent(Component: typeof Block) {
     }
 
     children[component.id] = component;
-        
-    return  templateComponent(component.id, fn ? fn(this) : "");
+
+    return templateComponent(component.id, fn ? fn(this) : "");
   });
 }
+ 

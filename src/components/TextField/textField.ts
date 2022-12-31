@@ -5,7 +5,11 @@ import styles from "./textField.pcss";
 
 interface ITextFieldProps extends IInputProps {
     label: string;
+    name: string;
     validationType?: ValidationType;
+    type?: string;
+    readonly?: boolean;
+    required?: boolean;
 }
 
 export class TextField extends Block {
@@ -13,6 +17,7 @@ export class TextField extends Block {
         super({
             ...props,
             onBlur: (event: FocusEvent): void => {
+                if (this.props.readonly) return;
                 const input = event.target as HTMLInputElement;
                 const value = input.value;
                 if (validationType) {
@@ -24,14 +29,27 @@ export class TextField extends Block {
     }
 
     render() {
-        return `
-        <div class="${styles['labeled-input']}">
-            <label class="${styles['labeled-input__label']}" for="{{ name }}">
-                {{ label }}
+        return `<div class="${styles['labeled-input']}>
+            <label
+                class="${styles['labeled-input__label']}"
+                for="{{ name }}"
+            >
+                    {{ label }}
             </label>
-            {{{Input type=type name=name placeholder=placeholder onFocus=onFocus onBlur=onBlur onInput=onInput}}}
-            {{{Error text="Невалидное значение" isValid=true ref="error"}}}
-    </div>
-        `
+            {{{Input
+                type=type
+                name=name
+                placeholder=placeholder
+                onFocus=onFocus
+                onBlur=onBlur
+                onInput=onInput
+                readonly=readonly
+            }}}
+            {{{Error
+                text="Невалидное значение"
+                isValid=true
+                ref="error"
+            }}}
+        </div>`
     }
 }

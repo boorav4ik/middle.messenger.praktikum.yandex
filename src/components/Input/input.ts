@@ -5,9 +5,11 @@ export interface IInputProps {
     name: string;
     type?: string;
     placeholder?: string;
+    className?: string;
     onFocus?: () => void;
     onInput?: () => void;
     onBlur?: () => void;
+    readonly?: boolean;
 }
 
 export class Input extends Block {
@@ -25,10 +27,11 @@ export class Input extends Block {
     render() {
         return `
             <input
-                class="${styles.input}"
+                class="${styles.input}{{#if className}} {{ className }}{{/if}}"
                 {{#if type}}type="{{ type }}"{{/if}}
                 name="{{ name }}"
-                placeholder="{{ placeholder }}"
+                {{#if placeholder}}placeholder="{{ placeholder }}"{{/if}}
+                {{#if readonly}}readonly{{/if}}
             />
         `
     }

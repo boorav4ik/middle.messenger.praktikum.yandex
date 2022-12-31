@@ -4,7 +4,7 @@ export default class LoginPage extends Block {
     constructor() {
         super({
             onLogin: () => {
-                console.log("login");
+                location.replace("/chats")
             }
         })
     }
@@ -13,9 +13,28 @@ export default class LoginPage extends Block {
         return `
             {{#Card title="Вход"}}
                 <form>
-                    {{{TextField label="Логин" name="login" validationType="login"}}}
-                    {{{Button label="Авторизоваться" onClick=onLogin}}}
-                    {{{Button label="Нет аккаунта?" onClick=onLogin}}}
+                    {{{TextField
+                        label="Логин"
+                        name="login"
+                        validationType="login"
+                        required=true
+                    }}}
+                    {{{TextField
+                        label="Пароль"
+                        name="password"
+                        type="password"
+                        validationType="password"
+                        required=true
+                    }}}
+                    {{{Button
+                        label="Авторизоваться"
+                        onClick=onLogin
+                    }}}
+                    {{#Link
+                        to="/registration"
+                    }}
+                        Нет аккаунта?
+                    {{/Link}}
                 </form>
             {{/Card}}
         `

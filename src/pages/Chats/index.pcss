@@ -1,0 +1,85 @@
+@import "../../styles/index.pcss";
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block: 0;
+}
+
+body {
+  display: flex;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 310px;
+  background-color: #fbfbfb;
+  height: 100%;
+
+  &__header {
+    flex: 0 0 102px;
+    padding: 21px 10px 14px;
+  }
+}
+
+.profile__link {
+  font-size: 12px;
+  line-height: 12px;
+  text-align: right;
+  color: #999999;
+}
+
+.chat_page_conteiner {
+  display: flex;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+.list__wrapper {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  flex: 1;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  & > ul {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.avatar {
+  margin: 10px;
+  background-color: #efefef;
+  border-radius: 50%;
+}
+
+.large {
+  width: 34px;
+  height: 34px;
+}
+
+.d_flex {
+  display: flex;
+}
+
+.message_input {
+  flex: 1;
+  border: none;
+  margin: 0 16px;
+  padding: 0 20px;
+  height: 32px;
+  border-radius: 30px;
+  &:focus-visible {
+    border: none;
+  }
+}
