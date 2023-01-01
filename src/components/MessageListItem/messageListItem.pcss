@@ -1,6 +1,6 @@
 .message__item {
   list-style-type: none;
-  font-family: Inter;
+  font-family:Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   min-width: 114px;
@@ -12,35 +12,9 @@
   font-size: 12px;
   line-height: 15px;
   align-self: flex-start;
-  &.media {
-    border: 1px solid #eaeaea;
-    & > img {
-      max-height: 211px;
-    }
-    & > .time_label {
-      background-color: #f8f8f8;
-    }
-  }
-  &:not(.media) {
-    background-color: #f8f8f8;
-  }
-  &.outgoing {
-    background-color: #e4edfd;
-    align-self: flex-end;
-    & > .time_label {
-      color: #3369f3;
-      line-height: 2;
-    }
-  }
-  &:not(.outgoing) {
-    & > .time_label {
-      color: #999;
-      line-height: 9px;
-      background-color: #f8f8f8;
-    }
-  }
+
   & > .time_label {
-    font-family: Inter;
+    font-family:Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     height: 9px;
@@ -51,5 +25,39 @@
     margin-right: 0;
     padding: 2px 7px;
     font-size: 9px;
+  }
+
+  &.media {
+    border: 1px solid #eaeaea;
+
+    & > img {
+      max-height: 211px;
+    }
+
+    & > .time_label {
+      background-color: #f8f8f8;
+    }
+  }
+
+  &:not(.media) {
+    background-color: #f8f8f8;
+  }
+
+  &.outgoing {
+    background-color: #e4edfd;
+    align-self: flex-end;
+
+    & > .time_label {
+      color: #3369f3;
+      line-height: 2;
+    }
+  }
+
+  &:not(.outgoing) {
+    & > .time_label {
+      color: #999;
+      line-height: 9px;
+      background-color: #f8f8f8;
+    }
   }
 }
