@@ -1,10 +1,28 @@
-import Block from '../../utils/Block';
+import Block from "../../utils/Block";
+import sendFormData from "../../utils/sendFormData";
+
+const FIELD_LIST = {
+  login: {
+    label: "Логин",
+    validationType: "login",
+    required: true,
+  },
+  password: {
+    label: "Пароль",
+    type: "password",
+    validationType: "password",
+    required: true,
+  },
+};
 
 export default class LoginPage extends Block {
   constructor() {
     super({
+      fields: FIELD_LIST,
       onLogin: () => {
-        location.replace('/chats');
+        if (sendFormData.bind(this)()) {
+          location.replace("/chats");
+        }
       },
     });
   }
@@ -13,28 +31,25 @@ export default class LoginPage extends Block {
     return `
             {{#Card title="Вход"}}
                 <form>
+                  {{#each fields}}
                     {{{TextField
-                        label="Логин"
-                        name="login"
-                        validationType="login"
-                        required=true
+                      label=label
+                      name=@key
+                      type=type
+                      validationType=validationType
+                      required=required
+                      ref=@key
                     }}}
-                    {{{TextField
-                        label="Пароль"
-                        name="password"
-                        type="password"
-                        validationType="password"
-                        required=true
-                    }}}
-                    {{{Button
-                        label="Авторизоваться"
-                        onClick=onLogin
-                    }}}
-                    {{#Link
-                        to="/registration"
-                    }}
-                        Нет аккаунта?
-                    {{/Link}}
+                  {{/each}}
+                  {{{Button
+                      label="Авторизоваться"
+                      onClick=onLogin
+                  }}}
+                  {{#Link
+                      to="/registration"
+                  }}
+                      Нет аккаунта?
+                  {{/Link}}
                 </form>
             {{/Card}}
         `;

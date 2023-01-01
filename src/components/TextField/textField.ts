@@ -28,6 +28,10 @@ export class TextField extends Block {
     });
   }
 
+  getRefs() {
+    return this.refs
+  }
+
   render() {
     return `<div class="${styles['labeled-input']}>
             <label
@@ -44,6 +48,7 @@ export class TextField extends Block {
                 onBlur=onBlur
                 onInput=onInput
                 readonly=readonly
+                ref="input"
             }}}
             {{{Error
                 text="Невалидное значение"

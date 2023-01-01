@@ -1,13 +1,13 @@
-import { v4 as makeId } from 'uuid';
-import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import { v4 as makeId } from "uuid";
+import Handlebars from "handlebars";
+import EventBus from "./EventBus";
 
 class Block {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_RENDER: "flow:render",
   };
 
   public id = makeId();
@@ -43,8 +43,8 @@ class Block {
       if (value instanceof Block) {
         children[key] = value;
       } else if (
-        Array.isArray(value)
-        && value.every((v) => v instanceof Block)
+        Array.isArray(value) &&
+        value.every((v) => v instanceof Block)
       ) {
         children[key] = value;
       } else {
@@ -116,7 +116,7 @@ class Block {
   }
 
   protected render(): string {
-    return '';
+    return "";
   }
 
   getContent(): HTMLElement | null {
@@ -129,7 +129,7 @@ class Block {
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {
         const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
+        return typeof value === "function" ? value.bind(target) : value;
       },
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         const oldProps = { ...target };
@@ -138,7 +138,7 @@ class Block {
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
+        throw new Error("Нет доступа");
       },
     });
   }
@@ -173,7 +173,7 @@ class Block {
 
   compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement(
-      'template',
+      "template"
     ) as HTMLTemplateElement;
     const template = Handlebars.compile(templateString);
     const htmlString = template({
@@ -182,7 +182,7 @@ class Block {
       refs: this.refs,
     });
     fragment.innerHTML = htmlString;
-    Object.entries(this.children).forEach(([key, child]) => {
+    Object.values(this.children).forEach((child) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 
       if (!stub) {
