@@ -18,16 +18,26 @@ body {
   height: 100%;
 
   &__header {
+    display: flex;
     flex: 0 0 102px;
     padding: 21px 10px 14px;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
   }
 }
 
 .profile__link {
+  display: block;
+  text-decoration: none;
   font-size: 12px;
   line-height: 12px;
   text-align: right;
   color: #999999;
+  width: 100%;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
 }
 
 .chat_page_conteiner {
@@ -39,6 +49,14 @@ body {
   flex-direction: column;
   height: 100%;
   flex: 1;
+  & > header {
+    border-bottom: 1px solid #eaeaea;
+    & > .chat_name{
+      font-family: Inter;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
 }
 
 .list__wrapper {

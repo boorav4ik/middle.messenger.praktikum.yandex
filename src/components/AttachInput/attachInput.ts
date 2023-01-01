@@ -1,15 +1,17 @@
 import Block from "../../utils/Block";
-import attachIcon from "../../images/attachIcon.png";
 import styles from "./attachInput.pcss";
 
+// interface IAttachInputProps {
+//     icon?: string;
+//     label?: string;
+// }
 export class AttachInput extends Block {
-    constructor() {
-        super({ icon: attachIcon })
-    }
+
 
     render() {
         return `<label for="attach" class="${styles.label}">
-            <img src={{icon}} class="${styles.medium}" />
+            {{#icon}}<img src={{this}} class="${styles.medium}" />{{/icon}}
+            {{#label}}{{this}}{{/label}}
             <input type="file" name="attach" id="attach" class="${styles.attach}" />
         </label>`
     }

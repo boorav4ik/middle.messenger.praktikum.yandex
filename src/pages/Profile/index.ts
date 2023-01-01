@@ -1,5 +1,6 @@
 import Block from "../../utils/Block";
 import styles from "./index.pcss";
+import defaultImage from "../../images/defaultImage.png";
 
 const PROFILE_FIELD_LIST = {
     email: {
@@ -56,43 +57,94 @@ export default class ProfilePage extends Block {
             profileFields: PROFILE_FIELD_LIST,
             passwordFields: PASSWORD_FIELD_LIST,
             actions: {
-                "editData": {
-                    "label": "Изменить данные",
-                    "onClick": () => {
-                        console.log("onClick", this)
-                        this.setProps({ isReadonly: !this.props.isReadonly })
+                editData: {
+                    label: "Изменить данные",
+                    onClick: () => {
+                        this.setProps({ showProfileEditForm: true })
                     },
-                    "color": "primary"
+                    color: "primary",
                 },
-                "editPassword": {
-                    "label": "Изменить пароль",
-                    "color": "primary"
+                editPassword: {
+                    label: "Изменить пароль",
+                    color: "primary",
+                    onClick: () => {
+                        this.setProps({ showPasswordEditForm: true })
+                    },
                 },
-                "exit": {
-                    "label": "Выйти",
-                    "color": "error"
+                exit: {
+                    label: "Выйти",
+                    color: "error",
+                    onClick: () => {
+                        location.replace("/chats")
+                    }
                 }
             },
-            isReadonly: true,
-
+            saveProfileHandle: () => {
+                this.setProps({ showProfileEditForm: false })
+            },
+            savePasswordHandle: () => {
+                this.setProps({ showPasswordEditForm: false })
+            },
+            showEditAvatarDialog: () => {
+                this.setProps({ openEditAvatarDialog: true })
+            },
+            hideEditAvatarDialog: () => {
+                this.setProps({ openEditAvatarDialog: false })
+            },
+            showProfileEditForm: false,
+            showPasswordEditForm: false,
+            openEditAvatarDialog: false,
+            avatar: defaultImage,
         }
         )
     }
     render() {
-        return `<div class="${styles.chat_page_conteiner}">
+        const { showProfileEditForm, showPasswordEditForm } = this.props;
+        return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
-                {{#Link
-                    to="/chats"
-                    className="${styles.back_button}"
-                }}
-                    ➜
-                {{/Link}}
+                {{#Link to="/chats" class="${styles.prev_arrow}"}}➜{{/Link}}
             </aside>
-            <main>
-                <sections id="avatar">
-                    avatar
-                </sections>
-                <section id="profile">
+            <main class="${styles.main}">
+                {{#unless ${showPasswordEditForm || showProfileEditForm}}}
+                    <section>
+                        {{{ImageButton
+                            label="Поменять аватар"
+                            image=avatar
+                            onClick=showEditAvatarDialog
+                        }}}
+                        <dialog
+                            class="${styles.dialog}"
+                            {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}
+                        >
+                            <h1>Загрузите фаил</h1>
+                            <form method="dialog">
+                                {{{AttachInput label="Выбрать файл на компьютере"}}}
+                                {{{Button
+                                    label="Сохранить"
+                                    onClick=hideEditAvatarDialog
+                                }}}
+                            </form>
+                        </dialog>
+                    </section>
+                {{/unless}}
+                {{#if showPasswordEditForm}}
+                    <section class="${styles.section}">
+                        <ul>
+                            {{#each passwordFields}}
+                                <li>
+                                    {{{TextField
+                                        label=this.label
+                                        type="password"
+                                        name=@key
+                                        validationType="password"
+                                    }}}
+                                </li>
+                            {{/each}}
+                        </ul>
+                        {{{Button label="Сохранить" onClick=savePasswordHandle}}}
+                    </section>
+                {{else}}
+                <section class="${styles.section}">
                     <ul>
                         {{#each profileFields}}
                             <li>
@@ -100,39 +152,28 @@ export default class ProfilePage extends Block {
                                     label=this.label
                                     name=@key
                                     validationType=this.validation
-                                    readonly=../isReadonly
                                     type=this.type
+                                    readonly=${!showProfileEditForm}
+                                    placeholder=this.value
                                 }}}
                             </li>
                         {{/each}}
                     </ul>
+                    {{#if showProfileEditForm}}
+                        {{{Button label="Сохранить" onClick=saveProfileHandle}}}
+                    {{/if}}
                 </section>
-                <section id="password">
-                    <ul>
-                        {{#each passwordFields}}
-                            <li>
-                                {{{TextField
-                                    label=this.label
-                                    type="password"
-                                    name=@key
-                                    validationType="password"
-                                }}}
-                            </li>
+                {{/if}}
+                <footer class="${styles.section}">
+                    {{#unless ${showPasswordEditForm || showProfileEditForm}}}
+                        {{#each actions}}
+                            {{{Button
+                                label=this.label
+                                onClick=this.onClick
+                            }}}
                         {{/each}}
-                    </ul>
-                </section>
-                <section id="saveButton">
-                    {{{Button label="Сохранить"}}}
-                </sections>
-                <section id="actions">
-                    {{#each actions}}
-                        {{log this}}
-                        {{{Button
-                            label=this.label
-                            onClick=this.onClick
-                        }}}
-                    {{/each}}
-                </sections>
+                    {{/unless}}
+                </footer>
             </main>
         </div>`
     }

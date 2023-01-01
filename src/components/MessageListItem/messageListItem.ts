@@ -13,17 +13,20 @@ import styles from "./messageListItem.pcss";
 export class MessageListItem extends Block {
     render() {
         return `<li
-            class="message__item {{#if outgoing}}outgoing{{else}}incoming{{/if}} {{#if image}}image__wrapper{{else}}text__wrapper{{/if}}">
-                {{#if image}}
-            <img src={{image}} />
-            <div class="time_label">{{time}}</div>
-        {{else}}
-            <span>{{ text }}</span>
-            <div class="time_label">
-                {{#delivered}}<span class="status">✓✓</span>{{/delivered}}
-                <span>{{time}}</span>
-            </div>
-        {{/if}}
+            class="${styles.message__item} {{#if outgoing}}${styles.outgoing}{{/if}} {{#if image}}${styles.media}{{/if}}"
+        >
+            {{#if image}}
+                <img src={{image}} />
+                <div class="${styles.time_label}">
+                    {{time}}
+                </div>
+            {{else}}
+                <span>{{ text }}</span>
+                <div class="${styles.time_label}">
+                    {{#delivered}}<span class="status">✓✓</span>{{/delivered}}
+                    <span>{{time}}</span>
+                </div>
+            {{/if}}
     </li>`
     }
 };

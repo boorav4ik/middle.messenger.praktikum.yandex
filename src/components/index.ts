@@ -7,3 +7,4 @@ export { Link } from "./Link";
 export { ChatListItem } from "./ChatListItem";
 export { MessageListItem } from "./MessageListItem";
 export { AttachInput } from "./AttachInput";
+export { ImageButton} from "./ImageButton";
