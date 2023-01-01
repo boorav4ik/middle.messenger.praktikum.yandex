@@ -1,106 +1,106 @@
-import Block from "../../utils/Block";
-import styles from "./index.pcss";
-import defaultImage from "../../images/defaultImage.png";
+import Block from '../../utils/Block';
+import styles from './index.pcss';
+import defaultImage from '../../images/defaultImage.png';
 
 const PROFILE_FIELD_LIST = {
-    email: {
-        type: "email",
-        label: "Почта",
-        value: "pochta@yandex.ru",
-        validation: "email",
-    },
-    login: {
-        type: "text",
-        label: "Логин",
-        value: "admin",
-        validation: "login",
-    },
-    first_name: {
-        type: "text",
-        label: "Имя",
-        value: "Иван",
-        validation: "name",
-    },
-    second_name: {
-        type: "text",
-        label: "Фамилия",
-        value: "Иванов",
-        validation: "name",
-    },
-    display_name: {
-        type: "text",
-        label: "Имя в чате",
-        value: "Игорь Николаев",
-        validation: "name",
-    },
-    phone: {
-        type: "phone",
-        label: "Телефон",
-        value: "+7 (800) 100 50 00",
-        validation: "phone",
-    }
-}
+  email: {
+    type: 'email',
+    label: 'Почта',
+    value: 'pochta@yandex.ru',
+    validation: 'email',
+  },
+  login: {
+    type: 'text',
+    label: 'Логин',
+    value: 'admin',
+    validation: 'login',
+  },
+  first_name: {
+    type: 'text',
+    label: 'Имя',
+    value: 'Иван',
+    validation: 'name',
+  },
+  second_name: {
+    type: 'text',
+    label: 'Фамилия',
+    value: 'Иванов',
+    validation: 'name',
+  },
+  display_name: {
+    type: 'text',
+    label: 'Имя в чате',
+    value: 'Игорь Николаев',
+    validation: 'name',
+  },
+  phone: {
+    type: 'phone',
+    label: 'Телефон',
+    value: '+7 (800) 100 50 00',
+    validation: 'phone',
+  },
+};
 
 const PASSWORD_FIELD_LIST = {
-    oldPassword: {
-        label: "Старый пароль"
-    },
-    newPassword: {
-        label: "Новый пароль"
-    },
-    newPasswordConfirm: { label: "Повторите новый пароль" }
-}
+  oldPassword: {
+    label: 'Старый пароль',
+  },
+  newPassword: {
+    label: 'Новый пароль',
+  },
+  newPasswordConfirm: { label: 'Повторите новый пароль' },
+};
 
 export default class ProfilePage extends Block {
-    constructor() {
-        super({
-            profileFields: PROFILE_FIELD_LIST,
-            passwordFields: PASSWORD_FIELD_LIST,
-            actions: {
-                editData: {
-                    label: "Изменить данные",
-                    onClick: () => {
-                        this.setProps({ showProfileEditForm: true })
-                    },
-                    color: "primary",
-                },
-                editPassword: {
-                    label: "Изменить пароль",
-                    color: "primary",
-                    onClick: () => {
-                        this.setProps({ showPasswordEditForm: true })
-                    },
-                },
-                exit: {
-                    label: "Выйти",
-                    color: "error",
-                    onClick: () => {
-                        location.replace("/chats")
-                    }
-                }
-            },
-            saveProfileHandle: () => {
-                this.setProps({ showProfileEditForm: false })
-            },
-            savePasswordHandle: () => {
-                this.setProps({ showPasswordEditForm: false })
-            },
-            showEditAvatarDialog: () => {
-                this.setProps({ openEditAvatarDialog: true })
-            },
-            hideEditAvatarDialog: () => {
-                this.setProps({ openEditAvatarDialog: false })
-            },
-            showProfileEditForm: false,
-            showPasswordEditForm: false,
-            openEditAvatarDialog: false,
-            avatar: defaultImage,
-        }
-        )
-    }
-    render() {
-        const { showProfileEditForm, showPasswordEditForm } = this.props;
-        return `<div class="${styles.profile_page_conteiner}">
+  constructor() {
+    super({
+      profileFields: PROFILE_FIELD_LIST,
+      passwordFields: PASSWORD_FIELD_LIST,
+      actions: {
+        editData: {
+          label: 'Изменить данные',
+          onClick: () => {
+            this.setProps({ showProfileEditForm: true });
+          },
+          color: 'primary',
+        },
+        editPassword: {
+          label: 'Изменить пароль',
+          color: 'primary',
+          onClick: () => {
+            this.setProps({ showPasswordEditForm: true });
+          },
+        },
+        exit: {
+          label: 'Выйти',
+          color: 'error',
+          onClick: () => {
+            location.replace('/chats');
+          },
+        },
+      },
+      saveProfileHandle: () => {
+        this.setProps({ showProfileEditForm: false });
+      },
+      savePasswordHandle: () => {
+        this.setProps({ showPasswordEditForm: false });
+      },
+      showEditAvatarDialog: () => {
+        this.setProps({ openEditAvatarDialog: true });
+      },
+      hideEditAvatarDialog: () => {
+        this.setProps({ openEditAvatarDialog: false });
+      },
+      showProfileEditForm: false,
+      showPasswordEditForm: false,
+      openEditAvatarDialog: false,
+      avatar: defaultImage,
+    });
+  }
+
+  render() {
+    const { showProfileEditForm, showPasswordEditForm } = this.props;
+    return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
                 {{#Link to="/chats" class="${styles.prev_arrow}"}}➜{{/Link}}
             </aside>
@@ -175,6 +175,6 @@ export default class ProfilePage extends Block {
                     {{/unless}}
                 </footer>
             </main>
-        </div>`
-    }
+        </div>`;
+  }
 }

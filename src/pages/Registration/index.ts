@@ -1,15 +1,16 @@
-import Block from "../../utils/Block"
+import Block from '../../utils/Block';
 
-export default class RegistrationPage extends Block{
-    constructor() {
-        super({
-            onSubmit() {
-                location.replace("./chats");
-            }
-        })
-    }
-    render() {
-        return `{{#Card title="Регистрация"}}
+export default class RegistrationPage extends Block {
+  constructor() {
+    super({
+      onSubmit() {
+        location.replace('./chats');
+      },
+    });
+  }
+
+  render() {
+    return `{{#Card title="Регистрация"}}
             <form>
                 {{{TextField
                     label="Почта"
@@ -67,6 +68,6 @@ export default class RegistrationPage extends Block{
                 }}}
                 {{{Button label="Зарегистрироваться" onClick=onSubmit}}}
             </form>
-        {{/Card}}`
-    }
+        {{/Card}}`;
+  }
 }

@@ -1,6 +1,5 @@
-import Block from "../../utils/Block";
-import styles from "./messageListItem.pcss";
-
+import Block from '../../utils/Block';
+import styles from './messageListItem.pcss';
 
 // interface IMessageListItemProps {
 //     time: string;
@@ -11,8 +10,8 @@ import styles from "./messageListItem.pcss";
 // }
 
 export class MessageListItem extends Block {
-    render() {
-        return `<li
+  render() {
+    return `<li
             class="${styles.message__item} {{#if outgoing}}${styles.outgoing}{{/if}} {{#if image}}${styles.media}{{/if}}"
         >
             {{#if image}}
@@ -27,6 +26,6 @@ export class MessageListItem extends Block {
                     <span>{{time}}</span>
                 </div>
             {{/if}}
-    </li>`
-    }
-};
+    </li>`;
+  }
+}

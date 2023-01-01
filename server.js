@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +10,7 @@ app.get('*', (_, res) => {
   res.send(`${STATIC}/index.html`);
 });
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`
     Example app listening on port ${PORT}!
     Static dirname ${STATIC}

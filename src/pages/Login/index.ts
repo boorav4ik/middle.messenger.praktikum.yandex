@@ -1,16 +1,16 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
 export default class LoginPage extends Block {
-    constructor() {
-        super({
-            onLogin: () => {
-                location.replace("/chats")
-            }
-        })
-    }
+  constructor() {
+    super({
+      onLogin: () => {
+        location.replace('/chats');
+      },
+    });
+  }
 
-    render() {
-        return `
+  render() {
+    return `
             {{#Card title="Вход"}}
                 <form>
                     {{{TextField
@@ -37,6 +37,6 @@ export default class LoginPage extends Block {
                     {{/Link}}
                 </form>
             {{/Card}}
-        `
-    }
+        `;
+  }
 }

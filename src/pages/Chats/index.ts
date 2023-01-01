@@ -1,37 +1,36 @@
-import Block from "../../utils/Block";
-import styles from "./index.pcss";
-import chatList from "../../markup/data/chatList.json";
-import attachIcon from "../../images/attachIcon.png";
-import messageImage from "../../images/messageImage.png"
+import Block from '../../utils/Block';
+import styles from './index.pcss';
+import chatList from '../../markup/data/chatList.json';
+import attachIcon from '../../images/attachIcon.png';
+import messageImage from '../../images/messageImage.png';
 
 const MESSAGE_LIST = [
-    {
-        text: "Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.\n\nХассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.",
-        time: "11:56"
-    },
-    {
-        image: messageImage,
-        time: "11:56"
-    },
-    {
-        text: "Круто!",
-        outgoing: true,
-        delivered: true,
-        time: "12:00"
-    }
-]
+  {
+    text: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.\n\nХассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
+    time: '11:56',
+  },
+  {
+    image: messageImage,
+    time: '11:56',
+  },
+  {
+    text: 'Круто!',
+    outgoing: true,
+    delivered: true,
+    time: '12:00',
+  },
+];
 export default class ChatsPage extends Block {
-    constructor() {
-        super({
-            chatList,
-            messageList: MESSAGE_LIST,
-            attachIcon
-        })
-    }
+  constructor() {
+    super({
+      chatList,
+      messageList: MESSAGE_LIST,
+      attachIcon,
+    });
+  }
 
-
-    render() {
-        return `<div class="${styles.chat_page_conteiner}">
+  render() {
+    return `<div class="${styles.chat_page_conteiner}">
             <aside class="${styles.aside}">
                 <header class="${styles.aside__header}">
                     {{#Link
@@ -91,6 +90,6 @@ export default class ChatsPage extends Block {
                     {{{Button label="➜"}}}
                 </footer>
             </main>
-        </div>`
-    }
+        </div>`;
+  }
 }

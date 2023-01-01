@@ -1,6 +1,6 @@
-import EventBus from './EventBus';
 import { v4 as makeId } from 'uuid';
 import Handlebars from 'handlebars';
+import EventBus from './EventBus';
 
 class Block {
   static EVENTS = {
@@ -14,9 +14,10 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-
   protected props: any;
+
   protected children: Record<string, Block>;
+
   private eventBus: () => EventBus;
 
   protected refs: Record<string, Block> = {};
@@ -41,7 +42,10 @@ class Block {
     Object.entries(propsAndChildren).map(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
-      } else if (Array.isArray(value) && value.every(v => (v instanceof Block))) {
+      } else if (
+        Array.isArray(value)
+        && value.every((v) => v instanceof Block)
+      ) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -51,7 +55,7 @@ class Block {
     return { props, children };
   }
 
-  protected initChildren() { }
+  protected initChildren() {}
 
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -97,10 +101,10 @@ class Block {
   }
 
   _render() {
-    const templateString = this.render();  
+    const templateString = this.render();
     const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
-    
+
     if (this._element) {
       this._removeEvents();
       this._element.replaceWith(newElement);
@@ -140,12 +144,11 @@ class Block {
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
 
     if (!events || !this._element) {
       return;
     }
-
 
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
@@ -153,7 +156,7 @@ class Block {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const { events } = this.props as any;
 
     if (!events) {
       return;
@@ -169,9 +172,15 @@ class Block {
   }
 
   compile(templateString: string, context: any) {
-    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+    const fragment = this._createDocumentElement(
+      'template',
+    ) as HTMLTemplateElement;
     const template = Handlebars.compile(templateString);
-    const htmlString = template({ ...context, children: this.children, refs: this.refs });
+    const htmlString = template({
+      ...context,
+      children: this.children,
+      refs: this.refs,
+    });
     fragment.innerHTML = htmlString;
     Object.entries(this.children).forEach(([key, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);

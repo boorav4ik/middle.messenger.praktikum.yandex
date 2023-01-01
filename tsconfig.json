@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "lib": [
-      "ESNext",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["ESNext", "dom", "dom.iterable"],
     "module": "commonjs",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

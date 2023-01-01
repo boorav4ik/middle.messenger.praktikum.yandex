@@ -1,17 +1,6 @@
----
-title:
-  Welcom
-stylesheets:
-  - ../css/main.css
-  - ../css/index.css
-pages:
-  Авторизация: login
-  Регистрация: sigin
-  Чаты: chats
-  Настройки: profile
-  Страница 404: 404
-  Страница 500: 500
----
+--- title: Welcom stylesheets: - ../css/main.css - ../css/index.css pages:
+Авторизация: login Регистрация: sigin Чаты: chats Настройки: profile Страница
+404: 404 Страница 500: 500 ---
 {{!< base }}
 <header>
   <nav>
@@ -22,10 +11,7 @@ pages:
         >Chokak</a></li>
       {{#each pages}}
         <li class="r-divider">
-          <a
-            class="button text primary"
-            href="./{{this}}.hbs"
-          >
+          <a class="button text primary" href="./{{this}}.hbs">
             {{@key}}
           </a>
         </li>

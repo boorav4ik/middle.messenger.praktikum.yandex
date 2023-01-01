@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import styles from "./button.pcss";
+import Block from '../../utils/Block';
+import styles from './button.pcss';
 
 interface IButtonProps {
   label: string;
@@ -8,7 +8,7 @@ interface IButtonProps {
 }
 
 export class Button extends Block {
-  constructor({ label, onClick, type = "button" }: IButtonProps) {
+  constructor({ label, onClick, type = 'button' }: IButtonProps) {
     super({ label, type, events: { click: onClick } });
   }
 

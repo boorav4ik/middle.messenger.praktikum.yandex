@@ -1,5 +1,5 @@
-import Block from "../../utils/Block";
-import styles from "./chatListItem.pcss";
+import Block from '../../utils/Block';
+import styles from './chatListItem.pcss';
 
 // interface ILastMessage {
 //     isOutgoing: boolean;
@@ -13,9 +13,10 @@ import styles from "./chatListItem.pcss";
 //     messageCount: number;
 //     lastMessage: ILastMessage;
 // }
+
 export class ChatListItem extends Block {
-    render() {
-        return `<li class="${styles.chat_card}">
+  render() {
+    return `<li class="${styles.chat_card}">
             <div style="width: 57px;">
                 <div class="${styles.chat_card_avatar}">{{ avatar }}</div>
             </div>
@@ -42,6 +43,6 @@ export class ChatListItem extends Block {
                     </div> 
                 </div>
             </div>
-        </li>`
-    }
-};
+        </li>`;
+  }
+}

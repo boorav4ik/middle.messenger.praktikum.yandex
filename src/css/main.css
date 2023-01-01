@@ -195,6 +195,6 @@ a {
   height: 0;
 }
 
-.list.vertical>ul {
+.list.vertical > ul {
   margin: 0 10px;
 }
