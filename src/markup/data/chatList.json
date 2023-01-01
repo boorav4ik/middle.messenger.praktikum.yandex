@@ -1,92 +1,92 @@
 [
-    {
-        "author": "Андрей",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "Изображение"
-        },
-        "time": "10:49",
-        "messageCount": 2,
-        "avatar": null
+  {
+    "author": "Андрей",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "Изображение"
     },
-    {
-        "author": "Киноклуб",
-        "lastMessage": {
-            "isOutgoing": true,
-            "content": "стикер"
-        },
-        "time": "12:00",
-        "messageCount": 0,
-        "avatar": null
+    "time": "10:49",
+    "messageCount": 2,
+    "avatar": null
+  },
+  {
+    "author": "Киноклуб",
+    "lastMessage": {
+      "isOutgoing": true,
+      "content": "стикер"
     },
-    {
-        "author": "Илья",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "Друзья, у меня для вас особенный выпуск новостей!..."
-        },
-        "time": "15:12",
-        "messageCount": 4,
-        "avatar": null
+    "time": "12:00",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "Илья",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "Друзья, у меня для вас особенный выпуск новостей!..."
     },
-    {
-        "author": "Вадим",
-        "lastMessage": {
-            "isOutgoing": true,
-            "content": "Круто!"
-        },
-        "time": "Пт",
-        "messageCount": 0,
-        "avatar": null
+    "time": "15:12",
+    "messageCount": 4,
+    "avatar": null
+  },
+  {
+    "author": "Вадим",
+    "lastMessage": {
+      "isOutgoing": true,
+      "content": "Круто!"
     },
-    {
-        "author": "тет-а-тет",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "И Human Interface Guidelines и Material Design рекомендуют..."
-        },
-        "time": "Ср",
-        "messageCount": 0,
-        "avatar": null
+    "time": "Пт",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "тет-а-тет",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "И Human Interface Guidelines и Material Design рекомендуют..."
     },
-    {
-        "author": "1, 2, 3",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "Миллионы россиян ежедневно проводят десятки часов свое..."
-        },
-        "time": "Пн",
-        "messageCount": 0,
-        "avatar": null
+    "time": "Ср",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "1, 2, 3",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "Миллионы россиян ежедневно проводят десятки часов свое..."
     },
-    {
-        "author": "Design Destroyer",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "В 2008 году художник Jon Rafman  начал собирать..."
-        },
-        "time": "Пн",
-        "messageCount": 0,
-        "avatar": null
+    "time": "Пн",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "Design Destroyer",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "В 2008 году художник Jon Rafman  начал собирать..."
     },
-    {
-        "author": "Day.",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "Так увлёкся работой по курсу, что совсем забыл его анонсир..."
-        },
-        "time": "1 Мая 2020",
-        "messageCount": 0,
-        "avatar": null
+    "time": "Пн",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "Day.",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "Так увлёкся работой по курсу, что совсем забыл его анонсир..."
     },
-    {
-        "author": "Стас Рогозин",
-        "lastMessage": {
-            "isOutgoing": false,
-            "content": "Можно или сегодня или завтра вечером."
-        },
-        "time": "12 апреля 2020",
-        "messageCount": 2,
-        "avatar": null
-    }
+    "time": "1 Мая 2020",
+    "messageCount": 0,
+    "avatar": null
+  },
+  {
+    "author": "Стас Рогозин",
+    "lastMessage": {
+      "isOutgoing": false,
+      "content": "Можно или сегодня или завтра вечером."
+    },
+    "time": "12 апреля 2020",
+    "messageCount": 2,
+    "avatar": null
+  }
 ]

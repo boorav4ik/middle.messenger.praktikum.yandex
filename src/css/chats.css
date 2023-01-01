@@ -7,6 +7,10 @@ aside {
   background-color: var(--sidebar-grey);
 }
 
+main {
+  padding: 0 10px;
+}
+
 header {
   display: flex;
   border-bottom: var(--divider);
