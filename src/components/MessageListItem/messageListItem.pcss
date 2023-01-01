@@ -1,6 +1,6 @@
 .message__item {
   list-style-type: none;
-  font-family:Inter, sans-serif;
+  font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: 500;
   min-width: 114px;
@@ -13,18 +13,22 @@
   line-height: 15px;
   align-self: flex-start;
 
-  & > .time_label {
-    font-family:Inter, sans-serif;
+  & > footer {
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 500;
     height: 9px;
-    width: fit-content;
+    width: 24px;
     border-radius: 6px;
     margin-top: -13px;
     margin-left: auto;
     margin-right: 0;
     padding: 2px 7px;
     font-size: 9px;
+    & > .status {
+      letter-spacing: -4px;
+      margin-right: 8px;
+    }
   }
 
   &.media {
@@ -47,14 +51,15 @@
     background-color: #e4edfd;
     align-self: flex-end;
 
-    & > .time_label {
+    & > footer {
       color: #3369f3;
       line-height: 2;
+      width: 40px;
     }
   }
 
   &:not(.outgoing) {
-    & > .time_label {
+    & > footer {
       color: #999;
       line-height: 9px;
       background-color: #f8f8f8;
