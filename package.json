@@ -50,5 +50,12 @@
   },
   "@parcel/transformer-css": {
     "cssModules": true
-  }
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ]
 }
