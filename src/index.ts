@@ -1,31 +1,32 @@
-import { registerComponent } from './utils/registerComponent';
-import * as components from './components';
-import LoginPage from './pages/Login';
-import RegistrationPage from './pages/Registration';
-import Block from './utils/Block';
-import ChatsPage from './pages/Chats';
-import ProfilePage from './pages/Profile';
+import { registerComponent } from "./utils/registerComponent";
+import * as components from "./components";
+import LoginPage from "./pages/Login";
+import RegistrationPage from "./pages/Registration";
+import Block from "./utils/Block";
+import ChatsPage from "./pages/Chats";
+import ProfilePage from "./pages/Profile";
+import "./styles/global.pcss";
 
 function route(path: string): typeof Block {
   switch (path) {
-    case '/':
-    case '/login':
+    case "/":
+    case "/login":
       return LoginPage;
-    case '/registration':
+    case "/registration":
       return RegistrationPage;
-    case '/chats':
+    case "/chats":
       return ChatsPage;
-    case '/profile':
+    case "/profile":
       return ProfilePage;
     default:
       return LoginPage;
   }
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener("DOMContentLoaded", async () => {
   Object.values(components).forEach((component) => registerComponent(component));
 
-  const root = document.querySelector('#root');
+  const root = document.querySelector("#root");
 
   if (!root) return;
   const path = window.location.pathname!;
@@ -34,7 +35,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   const content = page.getContent();
 
   if (content instanceof Node) {
-    root.innerHTML = '';
+    root.innerHTML = "";
     root.appendChild(content);
   }
 });

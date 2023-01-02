@@ -1,11 +1,11 @@
 dialog {
   width: 340px;
   height: 257px;
-  background-color: #fff;
+  background-color: var(--white);
   left: 64px;
   border: none;
   border-radius: 12px;
-  box-shadow: 0 0 6px #00000024;
+  box-shadow: 0 0 6px 24;
 }
 
 .profile_page_conteiner {
@@ -19,6 +19,9 @@ dialog {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--sidebar-grey);
+  width: 64px;
+  border-right: var(--divider);
 }
 
 .main {
@@ -36,8 +39,8 @@ dialog {
 .prev_arrow {
   text-align: center;
   border-radius: 50%;
-  background-color: #3369f3;
-  color: #fff;
+  background-color: var(--btn-bg-blue);
+  color: var(--white);
   border: none;
   width: 34px;
   height: 34px;
@@ -46,6 +49,4 @@ dialog {
   cursor: pointer;
   text-decoration: none;
   font-family: Inter, sans-serif;
-  font-style: normal;
-  font-weight: 500;
 }

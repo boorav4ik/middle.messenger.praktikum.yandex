@@ -34,7 +34,8 @@
         "ts": "never"
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-restricted-globals": "off"
   },
   "settings": {
     "import/resolver": {

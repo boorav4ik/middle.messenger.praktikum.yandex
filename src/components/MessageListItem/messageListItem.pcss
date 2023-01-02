@@ -1,11 +1,9 @@
 .message__item {
   list-style-type: none;
   font-family: Inter, sans-serif;
-  font-style: normal;
-  font-weight: 500;
   min-width: 114px;
   max-width: 402px;
-  color: #1e1e1e;
+  color: var(--main-black);
   border-radius: 12px;
   margin: 10px 0;
   padding: 10px;
@@ -15,8 +13,6 @@
 
   & > footer {
     font-family: Inter, sans-serif;
-    font-style: normal;
-    font-weight: 500;
     height: 9px;
     width: 24px;
     border-radius: 6px;
@@ -32,27 +28,27 @@
   }
 
   &.media {
-    border: 1px solid #eaeaea;
+    border: var(--divider);
 
     & > img {
       max-height: 211px;
     }
 
     & > .time_label {
-      background-color: #f8f8f8;
+      background-color: var(--light-grey);
     }
   }
 
   &:not(.media) {
-    background-color: #f8f8f8;
+    background-color: var(--light-grey);
   }
 
   &.outgoing {
-    background-color: #e4edfd;
+    background-color: var(--light-blue);
     align-self: flex-end;
 
     & > footer {
-      color: #3369f3;
+      color: var(--btn-bg-blue);
       line-height: 2;
       width: 40px;
     }
@@ -60,9 +56,9 @@
 
   &:not(.outgoing) {
     & > footer {
-      color: #999;
+      color: var(--text-grey);
       line-height: 9px;
-      background-color: #f8f8f8;
+      background-color: var(--light-grey);
     }
   }
 }
