@@ -1,40 +1,44 @@
 enum Method {
-  Get = 'GET',
-  Post = 'POST',
-  Put = 'PUT',
-  Delete = 'DELETE',
+  Get = "GET",
+  Post = "POST",
+  Put = "PUT",
+  Delete = "DELETE"
 }
 
 function queryStringify(data: string) {
   return Object.entries(data)
-    .map((s) => s.join('='))
-    .join('&');
+    .map((s) => s.join("="))
+    .join("&");
 }
+
 type Options = {
-  method: Method;
   data?: any;
-  timeout: number;
   headers?: Record<string, string>;
 };
+
+type HTTPMethodOptions = Options & { timeout?: number };
+
+type RequestOptions = Options & { method: Method };
+
+type HTTPMethod = (url: string, options: HTTPMethodOptions) => Promise<unknown>;
 export class HTTPTransport {
-  public get = (url: string, options: Options) => this.request(url, { ...options, method: Method.Get }, options.timeout);
+  public get: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: Method.Get }, options.timeout);
 
-  public put = (url: string, options: Options) => this.request(url, { ...options, method: Method.Put }, options.timeout);
+  public put: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: Method.Put }, options.timeout);
 
-  public post = (url: string, options: Options) => this.request(url, { ...options, method: Method.Post }, options.timeout);
+  public post: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: Method.Post }, options.timeout);
 
-  public delete = (url: string, options: Options) => this.request(url, { ...options, method: Method.Delete }, options.timeout);
+  public delete: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: Method.Delete }, options.timeout);
 
-  request = (url: string, options: Options, timeout = 5000) => {
+  request = (url: string, options: RequestOptions, timeout = 5000) => {
     const { method, data, headers } = options;
     return new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(
-        method,
-        method === Method.Get && data
-          ? [url, queryStringify(data)].join('?')
-          : url,
-      );
+      xhr.open(method, method === Method.Get && data ? [url, queryStringify(data)].join("?") : url);
       if (headers) {
         Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
       }
