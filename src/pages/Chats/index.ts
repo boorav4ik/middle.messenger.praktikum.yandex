@@ -3,10 +3,16 @@ import styles from "./index.pcss";
 import chatList from "../../markup/data/chatList.json";
 import attachIcon from "../../images/attachIcon.png";
 import messageList from "../../mock/messageList";
+import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
+import { IChatListItemProps } from "../../components/ChatListItem/chatListItem";
 
-export default class ChatsPage extends Block {
+interface IChatsPageProps {
+  chatList: IChatListItemProps[];
+  messageList: IMessageListItemProps[];
+}
+export default class ChatsPage extends Block<IChatsPageProps> {
   constructor() {
-    super({ chatList, messageList, attachIcon });
+    super({ chatList, messageList });
   }
 
   render() {
@@ -60,7 +66,7 @@ export default class ChatsPage extends Block {
                     </ul>
                 </div>
                 <footer class="${styles.d_flex}">
-                    {{{AttachInput icon=attachIcon}}}
+                    {{{AttachInput icon=${attachIcon}}}}
                     {{{Input
                         type="text"
                         className="${styles.message_input}"

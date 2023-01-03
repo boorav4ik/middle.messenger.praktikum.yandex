@@ -1,18 +1,21 @@
-import Block from '../../utils/Block';
-import styles from './messageListItem.pcss';
+import Block from "../../utils/Block";
+import styles from "./messageListItem.pcss";
 
-// interface IMessageListItemProps {
-//     time: string;
-//     image?: string;
-//     text?: string;
-//     outgoing?: boolean;
-//     delivered?: boolean;
-// }
+export interface IMessageListItemProps {
+  time: string;
+  image?: string;
+  text?: string;
+  outgoing?: boolean;
+  delivered?: boolean;
+}
 
-export class MessageListItem extends Block {
-    render() {
-        return `<li
-            class="${styles.message__item} {{#if outgoing}}${styles.outgoing}{{/if}} {{#if image}}${styles.media}{{/if}}"
+export class MessageListItem extends Block<IMessageListItemProps> {
+  render() {
+    const className = styles.message__item
+      .concat(this.props.outgoing ? ` ${styles.outgoing}` : "")
+      .concat(this.props.image ? ` ${styles.media}` : "");
+    return `<li
+            class="${className}"
         >
             {{#if image}}
                 <img src={{image}} />
@@ -23,7 +26,7 @@ export class MessageListItem extends Block {
                 {{#delivered}}<span class="${styles.status}">✓✓</span>{{/delivered}}
                 <span class="${styles.time_label}">{{time}}</span>
             </footer>
-           
+
     </li>`;
-    }
+  }
 }

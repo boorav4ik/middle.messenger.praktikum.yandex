@@ -1,28 +1,27 @@
-import Block from '../../utils/Block';
-import styles from './imageButton.pcss';
+import Block from "../../utils/Block";
+import styles from "./imageButton.pcss";
 
+interface IImageComponentButtonProps {
+  image: string;
+  label?: string;
+  onClick: () => void;
+}
 interface IImageButtonProps {
   image: string;
   label?: string;
-  onClick?: () => void;
-  type?: string;
-  color?: string;
-  size?: string;
+  events: {
+    click: () => void;
+  };
 }
-
-export class ImageButton extends Block {
-  constructor({ onClick, type = 'button', ...props }: IImageButtonProps) {
-    super({ ...props, type, events: { click: onClick } });
+export class ImageButton extends Block<IImageButtonProps> {
+  constructor({ onClick, ...props }: IImageComponentButtonProps) {
+    super({ ...props, events: { click: onClick } });
   }
 
   render() {
-    console.log(styles);
-
     return `
         <button
-          class="${styles.image_button}{{#size}} ${
-  styles[this.props.size]
-}{{/size}}{{#color}} ${styles[this.props.color]}{{/color}}"
+          class="${styles.image_button}"
           type="button"
         >
           <img src="{{image}}" title="{{label}}"/>

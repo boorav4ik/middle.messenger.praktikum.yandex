@@ -2,7 +2,11 @@ import Block from "../../utils/Block";
 import sendFormData from "../../utils/sendFormData";
 import fields from "../../mock/registrationFieldList";
 
-export default class RegistrationPage extends Block {
+interface IRegistrationPageProps {
+  fields: Record<string, unknown>;
+  onSubmit: () => void;
+}
+export default class RegistrationPage extends Block<IRegistrationPageProps> {
   constructor() {
     super({
       fields,

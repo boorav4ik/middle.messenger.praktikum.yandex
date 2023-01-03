@@ -1,15 +1,24 @@
-import Block from '../../utils/Block';
-import styles from './button.pcss';
+import Block from "../../utils/Block";
+import styles from "./button.pcss";
 
 interface IButtonProps {
   label: string;
-  onClick?: () => void;
+  events: {
+    click: () => void;
+  };
   type?: string;
 }
 
-export class Button extends Block {
-  constructor({ label, onClick, type = 'button' }: IButtonProps) {
-    super({ label, type, events: { click: onClick } });
+export interface IButtonConstructorProps {
+  label: string;
+  onClick: () => void;
+  type?: string;
+  color?: string;
+}
+
+export class Button extends Block<IButtonProps> {
+  constructor({ onClick, type = "button", ...props }: IButtonConstructorProps) {
+    super({ ...props, type, events: { click: onClick } });
   }
 
   render() {

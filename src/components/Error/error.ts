@@ -1,9 +1,13 @@
-import Block from '../../utils/Block';
-import styles from './error.pcss';
+import Block from "../../utils/Block";
+import styles from "./error.pcss";
 
-export class Error extends Block {
+interface IErrorProps {
+  isValid: boolean;
+  text?: string;
+}
+export class Error extends Block<IErrorProps> {
   render() {
-    if (this.props.isValid) return '<div />';
+    if (this.props.isValid) return "<div />";
     return `
             <div class="${styles.error}">
                 {{ text }}

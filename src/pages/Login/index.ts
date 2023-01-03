@@ -2,7 +2,11 @@ import Block from "../../utils/Block";
 import sendFormData from "../../utils/sendFormData";
 import fields from "../../mock/loginFieldList";
 
-export default class LoginPage extends Block {
+interface ILoginPageProps {
+  fields: Record<string, unknown>;
+  onLogin: () => void;
+}
+export default class LoginPage extends Block<ILoginPageProps> {
   constructor() {
     super({
       fields,

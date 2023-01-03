@@ -2,8 +2,22 @@ import Block from "../../utils/Block";
 import styles from "./index.pcss";
 import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
+import { IButtonConstructorProps } from "../../components/Button";
 
-export default class ProfilePage extends Block {
+interface IProfilePageProps {
+  profileFields: Record<string, unknown>;
+  passwordFields: Record<string, unknown>;
+  actions: Record<string, IButtonConstructorProps>;
+  saveProfileHandle: () => void;
+  savePasswordHandle: () => void;
+  showEditAvatarDialog: () => void;
+  hideEditAvatarDialog: () => void;
+  showProfileEditForm: boolean;
+  showPasswordEditForm: boolean;
+  openEditAvatarDialog: boolean;
+  avatar: string;
+}
+export default class ProfilePage extends Block<IProfilePageProps> {
   constructor() {
     const { avatar, ...profileFields } = profile;
     super({

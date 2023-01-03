@@ -1,18 +1,15 @@
-import Block from '../../utils/Block';
-import Validator, { ValidationType } from '../../utils/Validator';
-import { IInputProps } from '../Input/input';
-import styles from './textField.pcss';
+import Block from "../../utils/Block";
+import Validator, { ValidationType } from "../../utils/Validator";
+import { IInputConstructorProps } from "../Input";
+import styles from "./textField.pcss";
 
-interface ITextFieldProps extends IInputProps {
+export interface ITextFieldProps extends IInputConstructorProps {
   label: string;
-  name: string;
   validationType?: ValidationType;
-  type?: string;
-  readonly?: boolean;
   required?: boolean;
 }
 
-export class TextField extends Block {
+export class TextField extends Block<ITextFieldProps> {
   constructor({ validationType, ...props }: ITextFieldProps) {
     super({
       ...props,
@@ -24,18 +21,18 @@ export class TextField extends Block {
           const [isValid, text] = Validator.validate(validationType, value);
           this.refs.error.setProps({ isValid, text });
         }
-      },
+      }
     });
   }
 
   getRefs() {
-    return this.refs
+    return this.refs;
   }
 
   render() {
-    return `<div class="${styles['labeled-input']}>
+    return `<div class="${styles["labeled-input"]}>
             <label
-                class="${styles['labeled-input__label']}"
+                class="${styles["labeled-input__label"]}"
                 for="{{ name }}"
             >
                     {{ label }}

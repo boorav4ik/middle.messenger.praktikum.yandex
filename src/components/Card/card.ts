@@ -1,7 +1,10 @@
-import Block from '../../utils/Block';
-import styles from './card.pcss';
+import Block from "../../utils/Block";
+import styles from "./card.pcss";
 
-export class Card extends Block {
+interface ICardProps {
+  title: string;
+}
+export class Card extends Block<ICardProps> {
   render() {
     return `
             <div class="${styles.card}">

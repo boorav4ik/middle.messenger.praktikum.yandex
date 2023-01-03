@@ -1,23 +1,23 @@
 type Callback = (...args: unknown[]) => void;
 
-export default class EventBus {
-  private readonly listeners: Record<string, Callback[]> = {};
+export default class EventBus<Props extends Record<string, Callback[]>> {
+  private readonly listeners: {
+    [K in keyof Props]?: Callback[];
+  } = {};
 
-  on(event: string, callback: Callback) {
+  on<K extends keyof Props>(event: K, callback: Callback) {
     this.listeners[event] ??= [];
-    this.listeners[event].push(callback);
+    this.listeners[event]!.push(callback);
   }
 
-  off(event: string, callback: Callback) {
+  off<K extends keyof Props>(event: K, callback: Callback) {
     if (!this.listeners[event]) return;
-    this.listeners[event] = this.listeners[event].filter(
-      (cb) => cb !== callback,
-    );
+    this.listeners[event] = this.listeners[event]!.filter((cb) => cb !== callback);
   }
 
-  emit(event: string, ...args: unknown[]) {
+  emit<K extends keyof Props>(event: K, ...args: unknown[]) {
     if (!this.listeners[event]) return;
-    this.listeners[event].forEach((callback) => {
+    this.listeners[event]!.forEach((callback) => {
       callback(...args);
     });
   }
