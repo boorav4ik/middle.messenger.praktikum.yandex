@@ -12,7 +12,7 @@ function queryStringify(data: string) {
 }
 
 type Options = {
-  data?: any;
+  data?: string | Record<string, unknown>;
   headers?: Record<string, string>;
 };
 
@@ -34,16 +34,20 @@ export class HTTPTransport {
   public delete: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: Method.Delete }, options.timeout);
 
-  request = (url: string, options: RequestOptions, timeout = 5000) => {
+  // eslint-disable-next-line class-methods-use-this
+  private request = (url: string, options: RequestOptions, timeout = 5000) => {
     const { method, data, headers } = options;
     return new Promise((res, rej) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, method === Method.Get && data ? [url, queryStringify(data)].join("?") : url);
+      xhr.open(
+        method,
+        method === Method.Get && data ? [url, queryStringify(data as string)].join("?") : url
+      );
       if (headers) {
         Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
       }
 
-      xhr.onload = function () {
+      xhr.onload = function onload() {
         res(xhr);
       };
       xhr.onabort = rej;
