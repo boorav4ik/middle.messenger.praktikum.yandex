@@ -1,6 +1,6 @@
 import Block from "../../utils/Block";
 import styles from "./index.pcss";
-import chatList from "../../markup/data/chatList.json";
+import chatList from "../../mock/chatList.json";
 import attachIcon from "../../images/attachIcon.png";
 import messageList from "../../mock/messageList";
 import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
@@ -66,7 +66,7 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                     </ul>
                 </div>
                 <footer class="${styles.d_flex}">
-                    {{{AttachInput icon=${attachIcon}}}}
+                    {{{AttachInput icon="${attachIcon}"}}}
                     {{{Input
                         type="text"
                         className="${styles.message_input}"

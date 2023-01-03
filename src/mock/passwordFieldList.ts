@@ -1,11 +1,17 @@
 export default {
   oldPassword: {
-    label: "Старый пароль"
+    label: "Старый пароль",
+    validationType: "password",
+    type: "password"
   },
   newPassword: {
-    label: "Новый пароль"
+    label: "Новый пароль",
+    validationType: "password",
+    type: "password"
   },
   newPasswordConfirm: {
-    label: "Повторите новый пароль"
+    label: "Повторите новый пароль",
+    validationType: "password",
+    type: "password"
   }
 };

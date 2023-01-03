@@ -94,43 +94,27 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                         </dialog>
                     </section>
                 {{/unless}}
-                {{#if showPasswordEditForm}}
-                    <section class="${styles.section}">
-                        <ul>
-                            {{#each passwordFields}}
-                                <li>
-                                    {{{TextField
-                                        label=this.label
-                                        type="password"
-                                        name=@key
-                                        validationType="password"
-                                    }}}
-                                </li>
-                            {{/each}}
-                        </ul>
-                        {{{Button label="Сохранить" onClick=savePasswordHandle}}}
-                    </section>
-                {{else}}
-                <section class="${styles.section}">
-                    <ul>
-                        {{#each profileFields}}
-                            <li>
-                                {{{TextField
-                                    label=this.label
-                                    name=@key
-                                    validationType=this.validation
-                                    type=this.type
-                                    readonly=${!showProfileEditForm}
-                                    placeholder=this.value
-                                }}}
-                            </li>
-                        {{/each}}
-                    </ul>
-                    {{#if showProfileEditForm}}
-                        {{{Button label="Сохранить" onClick=saveProfileHandle}}}
-                    {{/if}}
+                <section {{#unless showPasswordEditForm}}hidden{{/unless}}>
+                  {{#Form
+                    fields=passwordFields
+                    onSubmit=savePasswordHandle
+                    className="${styles.section}"
+                  }}
+                    {{{Button label="Сохранить" type="submit"}}}
+                  {{/Form}}
                 </section>
-                {{/if}}
+                <section {{#if showPasswordEditForm}}hidden{{/if}}>
+                  {{#Form
+                    fields=profileFields
+                    onSubmit=saveProfileHandle
+                    readonly=${!showProfileEditForm}
+                    className="${styles.section}"
+                  }}
+                    {{#if showProfileEditForm}}
+                      {{{Button label="Сохранить" type="submit"}}}
+                    {{/if}}
+                  {{/Form}}
+                </section>
                 <footer class="${styles.section}">
                     {{#unless ${showPasswordEditForm || showProfileEditForm}}}
                         {{#each actions}}

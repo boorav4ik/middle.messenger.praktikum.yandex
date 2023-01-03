@@ -6,8 +6,7 @@
       "content": "Изображение"
     },
     "time": "10:49",
-    "messageCount": 2,
-    "avatar": null
+    "messageCount": 2
   },
   {
     "author": "Киноклуб",
@@ -16,8 +15,7 @@
       "content": "стикер"
     },
     "time": "12:00",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "Илья",
@@ -26,8 +24,7 @@
       "content": "Друзья, у меня для вас особенный выпуск новостей!..."
     },
     "time": "15:12",
-    "messageCount": 4,
-    "avatar": null
+    "messageCount": 4
   },
   {
     "author": "Вадим",
@@ -36,8 +33,7 @@
       "content": "Круто!"
     },
     "time": "Пт",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "тет-а-тет",
@@ -46,8 +42,7 @@
       "content": "И Human Interface Guidelines и Material Design рекомендуют..."
     },
     "time": "Ср",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "1, 2, 3",
@@ -56,8 +51,7 @@
       "content": "Миллионы россиян ежедневно проводят десятки часов свое..."
     },
     "time": "Пн",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "Design Destroyer",
@@ -66,8 +60,7 @@
       "content": "В 2008 году художник Jon Rafman  начал собирать..."
     },
     "time": "Пн",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "Day.",
@@ -76,8 +69,7 @@
       "content": "Так увлёкся работой по курсу, что совсем забыл его анонсир..."
     },
     "time": "1 Мая 2020",
-    "messageCount": 0,
-    "avatar": null
+    "messageCount": 0
   },
   {
     "author": "Стас Рогозин",
@@ -86,7 +78,6 @@
       "content": "Можно или сегодня или завтра вечером."
     },
     "time": "12 апреля 2020",
-    "messageCount": 2,
-    "avatar": null
+    "messageCount": 2
   }
 ]

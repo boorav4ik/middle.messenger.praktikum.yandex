@@ -11,19 +11,19 @@ interface IButtonProps {
 
 export interface IButtonConstructorProps {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   type?: string;
   color?: string;
 }
 
 export class Button extends Block<IButtonProps> {
-  constructor({ onClick, type = "button", ...props }: IButtonConstructorProps) {
+  constructor({ onClick = () => undefined, type = "button", ...props }: IButtonConstructorProps) {
     super({ ...props, type, events: { click: onClick } });
   }
 
   render() {
     return `
-        <button class="${styles.button}" type="button">
+        <button class="${styles.button}" type=type>
             {{ label }}
         </button>
     `;

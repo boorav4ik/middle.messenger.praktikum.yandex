@@ -5,37 +5,37 @@ export default {
     type: "email",
     label: "Почта",
     value: "pochta@yandex.ru",
-    validation: "email"
+    validationType: "email"
   },
   login: {
     type: "text",
     label: "Логин",
     value: "admin",
-    validation: "login"
+    validationType: "login"
   },
   first_name: {
     type: "text",
     label: "Имя",
     value: "Иван",
-    validation: "name"
+    validationType: "name"
   },
   second_name: {
     type: "text",
     label: "Фамилия",
     value: "Иванов",
-    validation: "name"
+    validationType: "name"
   },
   display_name: {
     type: "text",
     label: "Имя в чате",
     value: "Игорь Николаев",
-    validation: "name"
+    validationType: "name"
   },
   phone: {
     type: "phone",
     label: "Телефон",
     value: "+7 (800) 100 50 00",
-    validation: "phone"
+    validationType: "phone"
   },
   avatar
 };
