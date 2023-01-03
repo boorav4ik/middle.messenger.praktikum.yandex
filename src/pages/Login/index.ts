@@ -1,29 +1,16 @@
 import Block from "../../utils/Block";
 import sendFormData from "../../utils/sendFormData";
-
-const FIELD_LIST = {
-  login: {
-    label: "Логин",
-    validationType: "login",
-    required: true,
-  },
-  password: {
-    label: "Пароль",
-    type: "password",
-    validationType: "password",
-    required: true,
-  },
-};
+import fields from "../../mock/loginFieldList";
 
 export default class LoginPage extends Block {
   constructor() {
     super({
-      fields: FIELD_LIST,
+      fields,
       onLogin: () => {
         if (sendFormData.bind(this)()) {
           location.replace("/chats");
         }
-      },
+      }
     });
   }
 
