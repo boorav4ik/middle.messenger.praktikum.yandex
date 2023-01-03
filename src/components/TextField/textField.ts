@@ -30,28 +30,25 @@ export class TextField extends Block<ITextFieldProps> {
   }
 
   render() {
-    return `<div class="${styles["labeled-input"]}>
-            <label
-                class="${styles["labeled-input__label"]}"
-                for="{{ name }}"
-            >
-                    {{ label }}
-            </label>
-            {{{Input
-                type=type
-                name=name
-                placeholder=placeholder
-                onFocus=onFocus
-                onBlur=onBlur
-                onInput=onInput
-                readonly=readonly
-                ref="input"
-            }}}
-            {{{Error
-                text="Невалидное значение"
-                isValid=true
-                ref="error"
-            }}}
-        </div>`;
+    return `<div class="${styles["labeled-input"]}">
+      <label class="${styles["labeled-input__label"]}" for="{{ name }}">
+        {{ label }}
+      </label>
+      {{{Input
+        type=type
+        name=name
+        placeholder=placeholder
+        onFocus=onFocus
+        onBlur=onBlur
+        onInput=onInput
+        readonly=readonly
+        ref="input"
+      }}}
+      {{{Error
+        text="Невалидное значение"
+        isValid=true
+        ref="error"
+      }}}
+    </div>`;
   }
 }
