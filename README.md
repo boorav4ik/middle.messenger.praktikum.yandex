@@ -32,7 +32,10 @@
 - сверстаны страницы при помощи шаблонизатора Handlebars
 - добавлен запуск сервера для раздачи статики на 3000 порту
 
-# Спринт 2 [Pull requests !2](https://github.com/yandex-praktikum/middle.messenger.praktikum.yandex/pull/8)
+# Спринт 2 [Pull requests !2](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/2)
 
-- добавил ESLint, Prettier и TypeScript
+- добавил TypeScript, а также ESLint, Stylelint, Prettier
 - описал сервис событий EventBus
+- добавил компонентный подход в проект: Block и EventBus
+- cсбор данных из форм и их валидация
+- генерация страницы на стороне клиента
