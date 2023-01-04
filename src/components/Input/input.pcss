@@ -1,0 +1,27 @@
+.input {
+  width: 100%;
+  padding: 7px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--btn-bg-blue);
+  font-size: 13px;
+  line-height: 13px;
+  color: var(--main-black);
+
+  &::placeholder {
+    color: var(--text-grey);
+  }
+
+  &[type="search"] {
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 32px;
+    text-align: center;
+    background-color: var(--main-grey);
+    border-bottom: none;
+  }
+  &[readonly] {
+    cursor: default;
+  }
+}
