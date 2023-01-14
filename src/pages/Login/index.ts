@@ -5,10 +5,9 @@ import { IButtonConstructorProps } from "../../components/Button";
 interface ILoginPageProps {
   fields: Record<string, unknown>;
   onLogin: () => void;
+  actions: IButtonConstructorProps[];
 }
-export default class LoginPage extends Block<
-  ILoginPageProps & { actions: IButtonConstructorProps[] }
-> {
+export default class LoginPage extends Block<ILoginPageProps> {
   constructor() {
     super({
       fields,
@@ -19,7 +18,7 @@ export default class LoginPage extends Block<
         }
       ],
       onLogin() {
-        location.replace("/chats");
+        location.replace("/messenger");
       }
     });
   }
@@ -28,7 +27,7 @@ export default class LoginPage extends Block<
     return `{{#Card title="Вход"}}
       {{#Form fields=fields actions=actions onSubmit=onLogin}}
         {{#Link
-            to="/registration"
+            to="/sign-up"
         }}
             Нет аккаунта?
         {{/Link}}

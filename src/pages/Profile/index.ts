@@ -42,7 +42,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
           label: "Выйти",
           color: "error",
           onClick: () => {
-            location.replace("/chats");
+            location.replace("/messenger");
           }
         }
       },
@@ -69,7 +69,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
     const { showProfileEditForm, showPasswordEditForm } = this.props;
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
-                {{#Link to="/chats" class="${styles.prev_arrow}"}}➜{{/Link}}
+                {{#Link to="/messenger" class="${styles.prev_arrow}"}}➜{{/Link}}
             </aside>
             <main class="${styles.main}">
                 {{#unless ${showPasswordEditForm || showProfileEditForm}}}

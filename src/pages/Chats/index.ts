@@ -21,7 +21,7 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                 <header class="${styles.aside__header}">
                     {{#Link
                         class="${styles.profile__link}"
-                        to="/profile"
+                        to="/settings"
                     }}
                         Профиль >
                     {{/Link}}

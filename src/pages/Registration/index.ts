@@ -10,7 +10,7 @@ export default class RegistrationPage extends Block<IRegistrationPageProps> {
     super({
       fields,
       onSubmit() {
-        location.replace("./chats");
+        location.replace("./messenger");
       }
     });
   }
