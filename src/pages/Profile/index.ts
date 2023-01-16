@@ -3,6 +3,7 @@ import styles from "./index.pcss";
 import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
+import AuthController from "../../controllers/AuthController";
 
 interface IProfilePageProps {
   profileFields: Record<string, unknown>;
@@ -19,6 +20,7 @@ interface IProfilePageProps {
 }
 export default class ProfilePage extends Block<IProfilePageProps> {
   constructor() {
+    document.title = "Chokak - Settings";
     const { avatar, ...profileFields } = profile;
     super({
       profileFields,
@@ -42,7 +44,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
           label: "Выйти",
           color: "error",
           onClick: () => {
-            location.replace("/messenger");
+            AuthController.logout();
           }
         }
       },
@@ -119,8 +121,9 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                     {{#unless ${showPasswordEditForm || showProfileEditForm}}}
                         {{#each actions}}
                             {{{Button
-                                label=this.label
-                                onClick=this.onClick
+                                label=label
+                                onClick=onClick
+                                color=color
                             }}}
                         {{/each}}
                     {{/unless}}

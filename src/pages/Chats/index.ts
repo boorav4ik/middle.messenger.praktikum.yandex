@@ -12,6 +12,7 @@ interface IChatsPageProps {
 }
 export default class ChatsPage extends Block<IChatsPageProps> {
   constructor() {
+    document.title = "Chokak - Chats";
     super({ chatList, messageList });
   }
 

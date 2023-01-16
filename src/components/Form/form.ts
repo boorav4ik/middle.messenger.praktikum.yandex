@@ -11,19 +11,23 @@ export interface IFormProps {
 }
 
 export class Form extends Block<IFormProps & { events: { submit: (event: SubmitEvent) => void } }> {
-  constructor({ onSubmit, ...props }: IFormProps & { onSubmit: () => void }) {
+  constructor({
+    onSubmit,
+    ...props
+  }: IFormProps & { onSubmit: (data: Record<string, string>) => void }) {
     super({
       ...props,
       events: {
         submit: (event) => {
           event.preventDefault();
-          if (this.sendFormData()) onSubmit();
+          const data = this.verifyFormData();
+          if (data) onSubmit(data);
         }
       }
     });
   }
 
-  sendFormData() {
+  verifyFormData() {
     let error = false;
     const data: Record<string, string> = {};
     Object.entries(this.refs).forEach(([key, field]: [string, Block]): void => {
@@ -41,8 +45,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
     if (error) {
       return false;
     }
-    console.log(data);
-    return true;
+    return data;
   }
 
   render() {

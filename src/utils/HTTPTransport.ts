@@ -42,7 +42,6 @@ export class HTTPTransport {
   public delete: HTTPMethod = (url, options = {}) =>
     this.request(url, { ...options, method: Method.Delete }, options.timeout);
 
-  // eslint-disable-next-line class-methods-use-this
   private request = (
     url: string,
     options: RequestOptions = { method: Method.Get },

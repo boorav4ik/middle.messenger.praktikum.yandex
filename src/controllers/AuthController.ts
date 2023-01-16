@@ -1,9 +1,22 @@
 import AuthAPI from "../api/AuthApi";
 import { SignUpData, SingInData } from "../api/interfaces";
 import Router from "../utils/Router";
+import store from "../utils/Store";
 import Routes from "../utils/types/Routes";
 
-export class AuthController {
+async function request(req: () => Promise<void>): Promise<void> {
+  store.set("user.isLoading", true);
+  try {
+    await req();
+    store.set("user.error", undefined);
+  } catch (error) {
+    store.set("user.error", error);
+  } finally {
+    store.set("user.isLoading", false);
+  }
+}
+
+class AuthController {
   private readonly api: AuthAPI;
 
   constructor() {
@@ -11,12 +24,10 @@ export class AuthController {
   }
 
   async signin(data: SingInData) {
-    try {
+    await request(async () => {
       await this.api.signin(data);
       Router.go(Routes.Settings);
-    } catch (error) {
-      alert("SignIn Error");
-    }
+    });
   }
 
   async signup(data: SignUpData) {
@@ -39,11 +50,11 @@ export class AuthController {
   }
 
   async logout() {
-    try {
+    await request(async () => {
       await this.api.logout();
       Router.go(Routes.Index);
-    } catch (error) {
-      alert("Logout Error");
-    }
+    });
   }
 }
+
+export default new AuthController();

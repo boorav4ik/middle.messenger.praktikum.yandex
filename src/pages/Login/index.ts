@@ -1,14 +1,17 @@
 import Block from "../../utils/Block";
 import fields from "../../mock/loginFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
+import AuthController from "../../controllers/AuthController";
+import { SingInData } from "../../api/interfaces";
 
 interface ILoginPageProps {
   fields: Record<string, unknown>;
-  onLogin: () => void;
+  onLogin: (data: SingInData) => void;
   actions: IButtonConstructorProps[];
 }
 export default class LoginPage extends Block<ILoginPageProps> {
   constructor() {
+    document.title = "Chokak - Login";
     super({
       fields,
       actions: [
@@ -17,8 +20,10 @@ export default class LoginPage extends Block<ILoginPageProps> {
           type: "submit"
         }
       ],
-      onLogin() {
-        location.replace("/messenger");
+      onLogin(data: SingInData) {
+        // location.replace("/messenger");
+        console.log("!!!", data);
+        AuthController.signin(data as SingInData).then(console.log);
       }
     });
   }
