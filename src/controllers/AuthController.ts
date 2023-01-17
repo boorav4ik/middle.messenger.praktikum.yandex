@@ -1,56 +1,54 @@
 import AuthAPI from "../api/AuthApi";
-import { SignUpData, SingInData } from "../api/interfaces";
+import { SignUpData, SignInDat } from "../api/interfaces";
 import Router from "../utils/Router";
 import store from "../utils/Store";
 import Routes from "../utils/types/Routes";
 
-async function request(req: () => Promise<void>): Promise<void> {
-  store.set("user.isLoading", true);
-  try {
-    await req();
-    store.set("user.error", undefined);
-  } catch (error) {
-    store.set("user.error", error);
-  } finally {
-    store.set("user.isLoading", false);
-  }
-}
-
 class AuthController {
   private readonly api: AuthAPI;
+
+  private readonly storeKey = "user";
+
+  async request(req: () => Promise<void>): Promise<void> {
+    store.set(`${this.storeKey}.isLoading`, true);
+    try {
+      await req();
+      store.set(`${this.storeKey}.error`, undefined);
+    } catch (error) {
+      store.set(`${this.storeKey}.error`, error);
+    } finally {
+      store.set(`${this.storeKey}.isLoading`, false);
+    }
+  }
 
   constructor() {
     this.api = new AuthAPI();
   }
 
-  async signin(data: SingInData) {
-    await request(async () => {
+  async signin(data: SignInDat) {
+    await this.request(async () => {
       await this.api.signin(data);
-      Router.go(Routes.Settings);
+      Router.go(Routes.Messenger);
     });
   }
 
   async signup(data: SignUpData) {
-    try {
+    await this.request(async () => {
       await this.api.signup(data);
       await this.getUser();
       Router.go(Routes.Settings);
-    } catch (error) {
-      alert("SignUp Error");
-    }
+    });
   }
 
   async getUser() {
-    try {
-      const response = this.api.user();
-      console.log("user:", await response);
-    } catch (error) {
-      alert("Get User Error");
-    }
+    await this.request(async () => {
+      const user = this.api.user();
+      store.set(this.storeKey, user);
+    });
   }
 
   async logout() {
-    await request(async () => {
+    await this.request(async () => {
       await this.api.logout();
       Router.go(Routes.Index);
     });

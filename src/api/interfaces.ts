@@ -1,9 +1,9 @@
-export interface SingInData {
+export interface SignInDat {
   login: string;
   password: string;
 }
 
-export interface SignUpData extends SingInData {
+export interface SignUpData extends SignInDat {
   first_name: string;
   second_name: string;
   email: string;
