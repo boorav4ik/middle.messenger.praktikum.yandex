@@ -22,6 +22,22 @@ export default class ProfilePage extends Block<IProfilePageProps> {
   constructor() {
     document.title = "Chokak - Settings";
     const { avatar, ...profileFields } = profile;
+    const user = {
+      id: 142665,
+      first_name: "First",
+      second_name: "Second",
+      display_name: null,
+      login: "olololo",
+      avatar: null,
+      email: "olololo@kachalova.ru",
+      phone: "89008007060"
+    };
+
+    Object.keys(user).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(profileFields, key))
+        profileFields[key].value = user[key];
+    });
+
     super({
       profileFields,
       passwordFields,
@@ -30,6 +46,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
           label: "Изменить данные",
           onClick: () => {
             this.setProps({ showProfileEditForm: true });
+            // console.log();
           },
           color: "primary"
         },
@@ -66,6 +83,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
       avatar
     });
   }
+
 
   render() {
     const { showProfileEditForm, showPasswordEditForm } = this.props;
