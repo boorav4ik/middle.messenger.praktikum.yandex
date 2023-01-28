@@ -23,3 +23,15 @@ export interface ChatCreateData {
 export interface ChatDeleteData {
   chatId: number;
 }
+
+export interface IChat {
+  id: number;
+  title: string;
+  avatat: string;
+  unread_count: number;
+  last_message: {
+    user: User;
+    time: string;
+    content: string;
+  };
+}

@@ -1,10 +1,12 @@
 import CrudApi from "./CrudApi";
 
-interface GetChatData {
-  offset: number;
-  limit: number;
-  title: string;
-}
+import { IChat, User } from "./interfaces";
+
+// interface GetChatData {
+//   offset: number;
+//   limit: number;
+//   title: string;
+// }
 
 export default class ChatsApi extends CrudApi {
   constructor() {
@@ -15,17 +17,17 @@ export default class ChatsApi extends CrudApi {
 
   // Create chat
   public create(title: string): Promise<unknown> {
-    return this.http.post("", { data: { title } });
+    return this.http.post("/", { data: { title } });
   }
 
   // Delete chat
   public delete(chatId: number): Promise<unknown> {
-    return this.http.delete("", { data: { chatId } });
+    return this.http.delete("/", { data: { chatId } });
   }
 
   // Get chats
-  public read(data: Record<string, unknown>): Promise<unknown> {
-    return this.http.get("", { data });
+  public read(): Promise<IChat> {
+    return this.http.get("/");
   }
 
   // Get new messages count
@@ -34,8 +36,11 @@ export default class ChatsApi extends CrudApi {
   }
 
   // Get chat users
-  public getUsers(id: number, offset: number, limit: number, name: string, email: string) {
-    return this.http.get(`/${id}/users`, { data: { offset, limit, name, email } });
+  public getUsers(id: number): Promise<Array<User & { role: string }>> {
+    return this.http.get(`/${id}/users`);
   }
-  
+
+  public setAvatar(id: number, avatar: File) {
+    return this.http.put(`/avatar`, { data: { chatId: id, avatar } });
+  }
 }

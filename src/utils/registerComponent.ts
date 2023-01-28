@@ -3,7 +3,8 @@ import Block from "./Block";
 import templateComponent from "./templateComponent";
 
 export function registerComponent(Component: typeof Block) {
-  Handlebars.registerHelper(Component.name, function ({ hash, data, fn }: HelperOptions) {
+  const name = Component.componentName ?? Component.name;
+  Handlebars.registerHelper(name, function ({ hash, data, fn }: HelperOptions) {
     data.root.children ??= {};
     data.root.refs ??= {};
 

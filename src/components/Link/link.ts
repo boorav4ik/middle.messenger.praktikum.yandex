@@ -1,16 +1,28 @@
+import { withRouter, PropsWithRouter } from "../../hocs/whitRouter";
 import Block from "../../utils/Block";
 import styles from "./link.pcss";
 
-interface ILinkProps {
+interface ILinkProps extends PropsWithRouter {
   to: string;
   class?: string;
 }
-export class Link extends Block<ILinkProps> {
+
+class Link extends Block<ILinkProps & { events: Record<string, () => void> }> {
+  constructor(props: ILinkProps) {
+    super({
+      ...props,
+      events: {
+        click: () => this.props.router.go(this.props.to)
+      }
+    });
+  }
+
   render() {
-    return `<a
+    return `<span
             class="{{#if class}}{{class}}{{else}}{{${styles.link}}}{{/if}}"
-            href="{{ to }}"
         >
-        </a>`;
+        </span>`;
   }
 }
+
+export const LinkWithRouter = withRouter(Link);

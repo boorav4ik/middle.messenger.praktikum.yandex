@@ -21,9 +21,7 @@ export default class LoginPage extends Block<ILoginPageProps> {
         }
       ],
       onLogin(data: SingInData) {
-        // location.replace("/messenger");
-        console.log("!!!", data);
-        AuthController.signin(data as SingInData).then(console.log);
+        AuthController.signin(data as SingInData);
       }
     });
   }

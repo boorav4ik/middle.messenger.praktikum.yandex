@@ -5,6 +5,7 @@ import attachIcon from "../../images/attachIcon.png";
 import messageList from "../../mock/messageList";
 import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
 import { IChatListItemProps } from "../../components/ChatListItem/chatListItem";
+import Routes from "../../utils/types/Routes";
 
 interface IChatsPageProps {
   chatList: IChatListItemProps[];
@@ -22,7 +23,7 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                 <header class="${styles.aside__header}">
                     {{#Link
                         class="${styles.profile__link}"
-                        to="/settings"
+                        to="${Routes.Settings}"
                     }}
                         Профиль >
                     {{/Link}}

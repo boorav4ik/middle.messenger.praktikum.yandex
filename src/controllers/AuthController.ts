@@ -28,6 +28,7 @@ class AuthController {
   async signin(data: SignInDat) {
     await this.request(async () => {
       await this.api.signin(data);
+      await this.getUser();
       Router.go(Routes.Messenger);
     });
   }
@@ -42,7 +43,9 @@ class AuthController {
 
   async getUser() {
     await this.request(async () => {
-      const user = this.api.user();
+      const user = await this.api.user();
+      console.log(user);
+      
       store.set(this.storeKey, user);
     });
   }

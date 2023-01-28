@@ -9,11 +9,12 @@ export function whitStore(mapStateToProps: (state: any) => any) {
     let oldProps: PlainObject;
     return class WhitSrore extends Component {
       constructor(props) {
-        oldProps = store.getState(mapStateToProps);
+        oldProps = mapStateToProps(store.getState());
+        console.log(oldProps);
 
         super({ ...props, ...oldProps });
         store.on(StoreEvents.Updated, () => {
-          const newProps = store.getState(mapStateToProps);
+          const newProps = mapStateToProps(store.getState());
           if (isEqual(oldProps, newProps)) return;
           oldProps = newProps;
           this.setProps({ ...newProps });

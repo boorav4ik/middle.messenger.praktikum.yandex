@@ -4,8 +4,12 @@ import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
 import AuthController from "../../controllers/AuthController";
+import withUser from "../../hocs/withUser";
+import { User } from "../../api/interfaces";
+import store from "../../utils/Store";
 
 interface IProfilePageProps {
+  user: User;
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
@@ -18,25 +22,20 @@ interface IProfilePageProps {
   openEditAvatarDialog: boolean;
   avatar: string;
 }
-export default class ProfilePage extends Block<IProfilePageProps> {
+class ProfilePage extends Block<IProfilePageProps> {
   constructor() {
     document.title = "Chokak - Settings";
     const { avatar, ...profileFields } = profile;
-    const user = {
-      id: 142665,
-      first_name: "First",
-      second_name: "Second",
-      display_name: null,
-      login: "olololo",
-      avatar: null,
-      email: "olololo@kachalova.ru",
-      phone: "89008007060"
-    };
-
-    Object.keys(user).forEach((key) => {
-      if (Object.prototype.hasOwnProperty.call(profileFields, key))
-        profileFields[key].value = user[key];
-    });
+    // const user = {
+    //   id: 142665,
+    //   first_name: "First",
+    //   second_name: "Second",
+    //   display_name: null,
+    //   login: "olololo",
+    //   avatar: null,
+    //   email: "olololo@kachalova.ru",
+    //   phone: "89008007060"
+    // };
 
     super({
       profileFields,
@@ -46,7 +45,6 @@ export default class ProfilePage extends Block<IProfilePageProps> {
           label: "Изменить данные",
           onClick: () => {
             this.setProps({ showProfileEditForm: true });
-            // console.log();
           },
           color: "primary"
         },
@@ -80,13 +78,20 @@ export default class ProfilePage extends Block<IProfilePageProps> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
-      avatar
+      avatar,
+      user: {}
     });
   }
 
-
   render() {
-    const { showProfileEditForm, showPasswordEditForm } = this.props;
+    const { showProfileEditForm, showPasswordEditForm, user, profileFields } = this.props;
+    console.log(user);
+
+    Object.keys(user).forEach((key) => {
+      if (Object.prototype.hasOwnProperty.call(profileFields, key))
+        profileFields[key].value = user[key as keyof User];
+    });
+
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
                 {{#Link to="/messenger" class="${styles.prev_arrow}"}}➜{{/Link}}
@@ -150,3 +155,5 @@ export default class ProfilePage extends Block<IProfilePageProps> {
         </div>`;
   }
 }
+
+export default withUser(ProfilePage);
