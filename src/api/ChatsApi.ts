@@ -8,7 +8,7 @@ import { IChat, User } from "./interfaces";
 //   title: string;
 // }
 
-export default class ChatsApi extends CrudApi {
+export class ChatsApi extends CrudApi {
   constructor() {
     super("/chats");
   }
@@ -40,7 +40,15 @@ export default class ChatsApi extends CrudApi {
     return this.http.get(`/${id}/users`);
   }
 
+  public addUsers(chatId: number, users: number[]): Promise<unknown> {
+    return this.http.put("/users", { data: { chatId, users } });
+  }
+
   public setAvatar(id: number, avatar: File) {
     return this.http.put(`/avatar`, { data: { chatId: id, avatar } });
   }
 }
+
+window.ChatsAPI = new ChatsApi();
+
+export default window.ChatsAPI;

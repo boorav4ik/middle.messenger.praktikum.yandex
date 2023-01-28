@@ -47,7 +47,7 @@ class MessagesController {
     await socket.connect();
 
     this.subscribe(socket, id);
-    this.getOldMessages(id);
+    this.getOldMessages(id, 0);
   }
 
   getSocket(chatId: number) {
@@ -55,9 +55,9 @@ class MessagesController {
     return this.sockets.get(chatId);
   }
 
-  getOldMessages(chatId: number) {
+  getOldMessages(chatId: number, content: number) {
     const socket = this.getSocket(chatId);
-    if (socket) socket.send({ type: WSType.GetOld, content: 0 });
+    if (socket) socket.send({ type: WSType.GetOld, content });
   }
 
   sendMessage(chatId: number, content: string) {
@@ -85,4 +85,6 @@ class MessagesController {
   }
 }
 
-export default new MessagesController();
+window.messagesController = new MessagesController();
+
+export default window.messagesController;

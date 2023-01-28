@@ -9,3 +9,4 @@ export { MessageListItem } from "./MessageListItem";
 export { AttachInput } from "./AttachInput";
 export { ImageButton } from "./ImageButton";
 export { Form } from "./Form";
+export { Messenger } from "./Messenger";

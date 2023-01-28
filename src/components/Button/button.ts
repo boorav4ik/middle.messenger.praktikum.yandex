@@ -8,6 +8,7 @@ interface IButtonProps {
   };
   type?: string;
   color: string;
+  className?: string;
 }
 
 export interface IButtonConstructorProps {
@@ -28,8 +29,12 @@ export class Button extends Block<IButtonProps> {
   }
 
   render() {
+    const className = `${styles.button} ${styles[this.props.color]}`.concat(
+      ` ${this.props.className ?? ""}`
+    );
+
     return `
-        <button class="${styles.button} ${styles[this.props.color]}" type=type>
+        <button class="${className}" type={{type}}>
             {{ label }}
         </button>
     `;

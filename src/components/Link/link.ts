@@ -18,10 +18,7 @@ class Link extends Block<ILinkProps & { events: Record<string, () => void> }> {
   }
 
   render() {
-    return `<span
-            class="{{#if class}}{{class}}{{else}}{{${styles.link}}}{{/if}}"
-        >
-        </span>`;
+    return `<span class="${this.props.class ?? styles.link}"></span>`;
   }
 }
 

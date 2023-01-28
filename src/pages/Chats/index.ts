@@ -68,14 +68,7 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                     </ul>
                 </div>
                 <footer class="${styles.d_flex}">
-                    {{{AttachInput icon="${attachIcon}"}}}
-                    {{{Input
-                        type="text"
-                        className="${styles.message_input}"
-                        placeholder="Сообщение"
-                        name="message"
-                    }}}
-                    {{{Button label="➜"}}}
+                    {{{Messenger}}}
                 </footer>
             </main>
         </div>`;
