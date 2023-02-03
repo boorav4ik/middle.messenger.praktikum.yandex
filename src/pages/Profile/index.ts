@@ -3,7 +3,6 @@ import styles from "./index.pcss";
 import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
-import AuthController from "../../controllers/AuthController";
 import withUser from "../../hocs/withUser";
 import { User } from "../../api/interfaces";
 import store from "../../utils/Store";
@@ -26,16 +25,7 @@ class ProfilePage extends Block<IProfilePageProps> {
   constructor() {
     document.title = "Chokak - Settings";
     const { avatar, ...profileFields } = profile;
-    // const user = {
-    //   id: 142665,
-    //   first_name: "First",
-    //   second_name: "Second",
-    //   display_name: null,
-    //   login: "olololo",
-    //   avatar: null,
-    //   email: "olololo@kachalova.ru",
-    //   phone: "89008007060"
-    // };
+    console.log("!!user!!", store.getState().user);
 
     super({
       profileFields,
@@ -85,8 +75,8 @@ class ProfilePage extends Block<IProfilePageProps> {
 
   render() {
     const { showProfileEditForm, showPasswordEditForm, user, profileFields } = this.props;
-    console.log(user);
-
+    console.log("!!!", user);
+    console.log("!!user!!", store.getState().user);
     Object.keys(user).forEach((key) => {
       if (Object.prototype.hasOwnProperty.call(profileFields, key))
         profileFields[key].value = user[key as keyof User];

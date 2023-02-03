@@ -6,19 +6,24 @@ import PlainObject from "../utils/types/PlainObject";
 
 export function whitStore(mapStateToProps: (state: any) => any) {
   return (Component: typeof Block) => {
-    let oldProps: PlainObject;
     return class WhitSrore extends Component {
       constructor(props) {
-        oldProps = mapStateToProps(store.getState());
-        console.log(oldProps);
-
+        const state = store.getState();
+        console.log("constructor:", { state });
+        let oldProps = mapStateToProps(state);
         super({ ...props, ...oldProps });
         store.on(StoreEvents.Updated, () => {
-          const newProps = mapStateToProps(store.getState());
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          const state = store.getState();
+          console.log("store.on", { state });
+          const newProps = mapStateToProps(state);
           if (isEqual(oldProps, newProps)) return;
           oldProps = newProps;
+          console.log({ newProps });
+
           this.setProps({ ...newProps });
         });
+        console.log("!!!!", store);
       }
     };
   };

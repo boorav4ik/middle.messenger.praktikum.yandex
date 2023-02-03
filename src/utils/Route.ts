@@ -1,23 +1,10 @@
 import Block from "./Block";
-import PlainObject from "./types/PlainObject";
 
 class Route {
-  private pathname: string;
-
-  private view: typeof Block;
-
   private block: Block | null;
 
-  private props: PlainObject;
-
-  private rootQuery: string;
-
-  constructor(pathname: string, view: typeof Block, rootQuery: string, props: PlainObject) {
-    this.pathname = pathname;
-    this.view = view;
+  constructor(private pathname: string, private view: typeof Block, private rootQuery: string) {
     this.block = null;
-    this.props = props;
-    this.rootQuery = rootQuery;
   }
 
   navigate(pathname: string): void {
@@ -32,8 +19,7 @@ class Route {
   }
 
   render() {
-    // eslint-disable-next-line new-cap
-    if (!this.block) this.block = new this.view(this.props);
+    if (!this.block) this.block = new this.view();
 
     const root = document.querySelector(this.rootQuery);
 

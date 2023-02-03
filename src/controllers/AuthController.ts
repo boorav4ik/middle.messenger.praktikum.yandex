@@ -44,8 +44,6 @@ class AuthController {
   async getUser() {
     await this.request(async () => {
       const user = await this.api.user();
-      console.log(user);
-      
       store.set(this.storeKey, user);
     });
   }
