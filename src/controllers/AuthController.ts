@@ -3,6 +3,7 @@ import { SignUpData, SignInDat } from "../api/interfaces";
 import Router from "../utils/Router";
 import store from "../utils/Store";
 import Routes from "../utils/types/Routes";
+import MessagesController from "./MessagesController";
 
 class AuthController {
   private readonly api: AuthAPI;
@@ -42,17 +43,18 @@ class AuthController {
   }
 
   async getUser() {
-    await this.request(async () => {
-      const user = await this.api.user();
-      store.set(this.storeKey, user);
-    });
+    store.set(this.storeKey, await this.api.user());
   }
 
   async logout() {
-    await this.request(async () => {
+    MessagesController.closeAll();
+    try {
       await this.api.logout();
+    } catch (error) {
+      console.error(error.toSting());
+    } finally {
       Router.go(Routes.Index);
-    });
+    }
   }
 }
 

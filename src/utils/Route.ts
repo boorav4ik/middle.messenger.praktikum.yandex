@@ -19,7 +19,7 @@ class Route {
   }
 
   render() {
-    if (!this.block) this.block = new this.view();
+    if (!this.block) this.block = new this.view({});
 
     const root = document.querySelector(this.rootQuery);
 
@@ -28,7 +28,8 @@ class Route {
     }
     root.innerHTML = "";
 
-    root.appendChild(this.block.getContent() as Node);
+    root.append(this.block.getContent() as Node);
+    return root;
   }
 
   leave() {

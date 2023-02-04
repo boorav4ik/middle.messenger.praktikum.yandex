@@ -4,7 +4,7 @@ import EventBus from "./EventBus";
 import set from "./functions/set";
 import StoreEvents from "./types/StoreEvents";
 
-interface IState {
+export interface IState {
   user: User;
   chats: IChat[];
   messages: Record<number, IMessage[]>;
@@ -12,17 +12,14 @@ interface IState {
 }
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
-  private state = {};
+  private state = { user: {} };
 
-  public set(key: string, value: any) {
+  public set(key: string, value: unknown) {
     set(this.state, key, value);
-    console.log("setState");
-
     this.emit(StoreEvents.Updated, this.getState());
   }
 
   public getState() {
-    console.log("getState", this.state);
     return this.state;
   }
 }

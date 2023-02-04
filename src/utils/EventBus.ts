@@ -8,7 +8,6 @@ export default class EventBus<Props extends Record<string, Callback[]>> {
   on<K extends keyof Props>(event: K, callback: Callback) {
     this.listeners[event] ??= [];
     this.listeners[event]!.push(callback);
-    // console.log(this.listeners[event]);
   }
 
   off<K extends keyof Props>(event: K, callback: Callback) {

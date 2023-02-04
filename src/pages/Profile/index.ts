@@ -6,9 +6,10 @@ import { IButtonConstructorProps } from "../../components/Button";
 import withUser from "../../hocs/withUser";
 import { User } from "../../api/interfaces";
 import store from "../../utils/Store";
+import AuthController from "../../controllers/AuthController";
 
 interface IProfilePageProps {
-  user: User;
+  // user: User;
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
@@ -22,10 +23,9 @@ interface IProfilePageProps {
   avatar: string;
 }
 class ProfilePage extends Block<IProfilePageProps> {
-  constructor() {
+  constructor(user) {
     document.title = "Chokak - Settings";
     const { avatar, ...profileFields } = profile;
-    console.log("!!user!!", store.getState().user);
 
     super({
       profileFields,
@@ -68,19 +68,13 @@ class ProfilePage extends Block<IProfilePageProps> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
-      avatar,
-      user: {}
+      avatar: user.avatar,
+      user
     });
   }
 
   render() {
-    const { showProfileEditForm, showPasswordEditForm, user, profileFields } = this.props;
-    console.log("!!!", user);
-    console.log("!!user!!", store.getState().user);
-    Object.keys(user).forEach((key) => {
-      if (Object.prototype.hasOwnProperty.call(profileFields, key))
-        profileFields[key].value = user[key as keyof User];
-    });
+    const { showProfileEditForm, showPasswordEditForm } = this.props;
 
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
@@ -121,6 +115,7 @@ class ProfilePage extends Block<IProfilePageProps> {
                 <section {{#if showPasswordEditForm}}hidden{{/if}}>
                   {{#Form
                     fields=profileFields
+                    values=user
                     onSubmit=saveProfileHandle
                     readonly=${!showProfileEditForm}
                     className="${styles.section}"

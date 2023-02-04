@@ -5,7 +5,6 @@ import messageList from "../../mock/messageList";
 import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
 import { IChatListItemProps } from "../../components/ChatListItem/chatListItem";
 import Routes from "../../utils/types/Routes";
-import store from "../../utils/Store";
 
 interface IChatsPageProps {
   chatList: IChatListItemProps[];
@@ -13,13 +12,11 @@ interface IChatsPageProps {
 }
 export default class ChatsPage extends Block<IChatsPageProps> {
   constructor() {
-    console.log("!!constructor_user!!", store.getState().user);
     document.title = "Chokak - Chats";
     super({ chatList, messageList });
   }
 
   render() {
-    console.log("!!user!!", store.getState().user);
     return `<div class="${styles.chat_page_conteiner}">
             <aside class="${styles.aside}">
                 <header class="${styles.aside__header}">

@@ -3,7 +3,7 @@ import Router from "../utils/Router";
 
 export function withRouter(Component: typeof Block<any>) {
   return class WithRouter extends Component {
-    public static componentName = Component.name;
+    public static componentName = Component.componentName || Component.name;
 
     constructor(props: any) {
       super({ ...props, router: Router });
