@@ -3,9 +3,11 @@ import styles from "./index.pcss";
 import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
+import withUser from "../../hocs/withUser";
 import AuthController from "../../controllers/AuthController";
 
 interface IProfilePageProps {
+  // user: User;
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
@@ -18,12 +20,12 @@ interface IProfilePageProps {
   openEditAvatarDialog: boolean;
   avatar: string;
 }
-export default class ProfilePage extends Block<IProfilePageProps> {
-  constructor() {
+class ProfilePage extends Block<IProfilePageProps> {
+  constructor(user) {
     document.title = "Chokak - Settings";
-    const { avatar, ...profileFields } = profile;
+
     super({
-      profileFields,
+      profileFields: profile,
       passwordFields,
       actions: {
         editData: {
@@ -63,12 +65,14 @@ export default class ProfilePage extends Block<IProfilePageProps> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
-      avatar
+      avatar: user.avatar,
+      user
     });
   }
 
   render() {
     const { showProfileEditForm, showPasswordEditForm } = this.props;
+
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
                 {{#Link to="/messenger" class="${styles.prev_arrow}"}}➜{{/Link}}
@@ -108,6 +112,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                 <section {{#if showPasswordEditForm}}hidden{{/if}}>
                   {{#Form
                     fields=profileFields
+                    values=user
                     onSubmit=saveProfileHandle
                     readonly=${!showProfileEditForm}
                     className="${styles.section}"
@@ -132,3 +137,5 @@ export default class ProfilePage extends Block<IProfilePageProps> {
         </div>`;
   }
 }
+
+export default withUser(ProfilePage);

@@ -5,6 +5,7 @@ import Validator from "../../utils/Validator";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;
+  values?: Record<string, string>;
   actions?: Record<string, IButtonConstructorProps>;
   readonly?: boolean;
   className?: string;
@@ -12,11 +13,23 @@ export interface IFormProps {
 
 export class Form extends Block<IFormProps & { events: { submit: (event: SubmitEvent) => void } }> {
   constructor({
+    fields,
+    values,
     onSubmit,
     ...props
   }: IFormProps & { onSubmit: (data: Record<string, string>) => void }) {
+    const fieldsWithValue = values
+      ? Object.keys(fields).reduce(
+          (acc, key) => ({
+            ...acc,
+            [key]: { ...fields[key], value: values[key] ?? fields[key].value }
+          }),
+          {}
+        )
+      : fields;
     super({
       ...props,
+      fields: fieldsWithValue,
       events: {
         submit: (event) => {
           event.preventDefault();

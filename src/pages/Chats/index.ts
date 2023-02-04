@@ -1,17 +1,20 @@
 import Block from "../../utils/Block";
 import styles from "./index.pcss";
 import chatList from "../../mock/chatList.json";
-import attachIcon from "../../images/attachIcon.png";
 import messageList from "../../mock/messageList";
 import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
 import { IChatListItemProps } from "../../components/ChatListItem/chatListItem";
+import Routes from "../../utils/types/Routes";
+import withChats from "../../hocs/withChats";
 
 interface IChatsPageProps {
   chatList: IChatListItemProps[];
   messageList: IMessageListItemProps[];
 }
-export default class ChatsPage extends Block<IChatsPageProps> {
-  constructor() {
+class ChatsPage extends Block<IChatsPageProps> {
+  constructor(props) {
+    console.log(props);
+
     document.title = "Chokak - Chats";
     super({ chatList, messageList });
   }
@@ -22,7 +25,7 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                 <header class="${styles.aside__header}">
                     {{#Link
                         class="${styles.profile__link}"
-                        to="/settings"
+                        to="${Routes.Settings}"
                     }}
                         Профиль >
                     {{/Link}}
@@ -67,16 +70,11 @@ export default class ChatsPage extends Block<IChatsPageProps> {
                     </ul>
                 </div>
                 <footer class="${styles.d_flex}">
-                    {{{AttachInput icon="${attachIcon}"}}}
-                    {{{Input
-                        type="text"
-                        className="${styles.message_input}"
-                        placeholder="Сообщение"
-                        name="message"
-                    }}}
-                    {{{Button label="➜"}}}
+                    {{{Messenger}}}
                 </footer>
             </main>
         </div>`;
   }
 }
+
+export default withChats(ChatsPage);

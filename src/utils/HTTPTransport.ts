@@ -49,23 +49,32 @@ export class HTTPTransport {
   ): Promise<Response> => {
     const { method, data, headers } = options;
 
-    return new Promise((res, rej) => {
+    return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(
         method,
         this.endpoint +
           (method === Method.Get && data ? [url, queryStringify(data as string)].join("?") : url)
       );
+
       if (headers) {
         Object.keys(headers).forEach((key) => xhr.setRequestHeader(key, headers[key]));
       }
 
       xhr.onload = function onload() {
-        res(xhr.response);
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
+
+        //   resolve(xhr.response);
       };
-      xhr.onabort = rej;
-      xhr.onerror = rej;
-      xhr.ontimeout = rej;
+      xhr.onabort = reject;
+      xhr.onerror = reject;
+      xhr.ontimeout = reject;
 
       if (!(data instanceof FormData)) {
         xhr.setRequestHeader("Content-Type", "application/json");

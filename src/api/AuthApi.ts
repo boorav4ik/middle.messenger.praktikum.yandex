@@ -1,5 +1,5 @@
 import BaseApi from "./BaseApi";
-import { SingInData, SignUpData, User } from "./interfaces";
+import { SignInData, SignUpData, User } from "./interfaces";
 
 enum AuthApiPaths {
   signin = "/signin",
@@ -13,7 +13,7 @@ export default class AuthAPI extends BaseApi {
     super("/auth");
   }
 
-  signin(data: SingInData) {
+  signin(data: SignInData) {
     return this.http.post(AuthApiPaths.signin, { data });
   }
 

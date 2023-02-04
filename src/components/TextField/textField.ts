@@ -5,6 +5,7 @@ import styles from "./textField.pcss";
 
 export interface ITextFieldProps extends IInputConstructorProps {
   label: string;
+  value?: string;
   validationType?: ValidationType;
   required?: boolean;
 }

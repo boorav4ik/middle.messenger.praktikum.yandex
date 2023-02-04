@@ -1,19 +1,19 @@
 import Block from "../utils/Block";
-import store from "../utils/Store";
+import store, { IState } from "../utils/Store";
 import StoreEvents from "../utils/types/StoreEvents";
 import isEqual from "../utils/functions/isEqual";
-import PlainObject from "../utils/types/PlainObject";
 
-export function whitStore(mapStateToProps: (state: any) => any) {
-  return (Component: typeof Block) => {
-    let oldProps: PlainObject;
+export function whitStore<SP>(mapStateToProps: (state: IState) => SP) {
+  return <P>(Component: typeof Block<SP & P>) => {
     return class WhitSrore extends Component {
-      constructor(props) {
-        oldProps = store.getState(mapStateToProps);
+      constructor(props: Omit<P, keyof SP>) {
+        let oldProps = mapStateToProps(store.getState());
 
         super({ ...props, ...oldProps });
         store.on(StoreEvents.Updated, () => {
-          const newProps = store.getState(mapStateToProps);
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          const state = store.getState();
+          const newProps = mapStateToProps(state);
           if (isEqual(oldProps, newProps)) return;
           oldProps = newProps;
           this.setProps({ ...newProps });

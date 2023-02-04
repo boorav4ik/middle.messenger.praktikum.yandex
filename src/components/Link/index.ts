@@ -1,1 +1,1 @@
-export { Link } from "./link";
+export { LinkWithRouter as Link } from "./link";
