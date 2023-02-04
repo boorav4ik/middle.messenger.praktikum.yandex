@@ -8,11 +8,11 @@ export interface IState {
   user: User;
   chats: IChat[];
   messages: Record<number, IMessage[]>;
-  currentChat?: number;
+  selectedChatId?: number;
 }
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
-  private state = { user: {} };
+  private state = { user: {}, chats: [], messages: {} };
 
   public set(key: string, value: unknown) {
     set(this.state, key, value);
@@ -25,6 +25,7 @@ class Store extends EventBus<Record<string, (() => void)[]>> {
 }
 
 const store = new Store();
+
 window.store = store;
 
 export default store;

@@ -4,8 +4,6 @@ import profile from "../../mock/profileFieldList";
 import passwordFields from "../../mock/passwordFieldList";
 import { IButtonConstructorProps } from "../../components/Button";
 import withUser from "../../hocs/withUser";
-import { User } from "../../api/interfaces";
-import store from "../../utils/Store";
 import AuthController from "../../controllers/AuthController";
 
 interface IProfilePageProps {
@@ -25,10 +23,9 @@ interface IProfilePageProps {
 class ProfilePage extends Block<IProfilePageProps> {
   constructor(user) {
     document.title = "Chokak - Settings";
-    const { avatar, ...profileFields } = profile;
 
     super({
-      profileFields,
+      profileFields: profile,
       passwordFields,
       actions: {
         editData: {

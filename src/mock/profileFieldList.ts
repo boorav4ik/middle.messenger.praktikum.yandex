@@ -1,5 +1,3 @@
-import avatar from "../images/defaultImage.png";
-
 export default {
   email: {
     type: "email",
@@ -36,6 +34,5 @@ export default {
     label: "Телефон",
     value: "+7 (800) 100 50 00",
     validationType: "phone"
-  },
-  avatar
+  }
 };

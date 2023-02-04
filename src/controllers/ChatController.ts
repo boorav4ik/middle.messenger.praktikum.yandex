@@ -30,5 +30,21 @@ class ChatsController {
     this.api.addUsers(chatId, Array.isArray(users) ? users : [users]);
   }
 
-  
+  async delete(id: number) {
+    await this.api.delete(id);
+
+    this.getChats();
+  }
+
+  getToken(id: number) {
+    return this.api.getToken(id);
+  }
+
+  static selectChat(id: number) {
+    store.set("selectedChatId", id);
+  }
 }
+
+const controller = new ChatsController();
+
+export default controller;
