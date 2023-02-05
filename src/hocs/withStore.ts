@@ -3,9 +3,11 @@ import store, { IState } from "../utils/Store";
 import StoreEvents from "../utils/types/StoreEvents";
 import isEqual from "../utils/functions/isEqual";
 
-export function whitStore<SP>(mapStateToProps: (state: IState) => SP) {
+export function withStore<SP>(mapStateToProps: (state: IState) => SP) {
   return <P>(Component: typeof Block<SP & P>) => {
     return class WhitSrore extends Component {
+      public static componentName = Component.componentName || Component.name;
+
       constructor(props: Omit<P, keyof SP>) {
         let oldProps = mapStateToProps(store.getState());
 

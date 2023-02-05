@@ -1,8 +1,8 @@
 import { IChat } from "../api/interfaces";
 import { IMessage } from "../controllers/MessagesController";
-import { whitStore } from "./whitStore";
+import { withStore } from "./withStore";
 
-const withChats = whitStore(({ chats, messages, selectedChatId, user: { id: currentUserId } }) => {
+const withChats = withStore(({ chats, messages, selectedChatId, user: { id: currentUserId } }) => {
   return {
     chats: [...chats],
     messages: selectedChatId ? messages[selectedChatId] : undefined,

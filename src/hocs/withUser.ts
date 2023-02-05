@@ -1,6 +1,6 @@
-import { whitStore } from "./whitStore";
+import { withStore } from "./withStore";
 
-const withUser = whitStore((state) => {
+const withUser = withStore((state) => {
   const output = { ...state.user };
   return output;
 });

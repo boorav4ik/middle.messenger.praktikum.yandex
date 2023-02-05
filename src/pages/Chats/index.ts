@@ -41,7 +41,6 @@ class ChatsPage extends Block<
 
   render() {
     const { chats = [], selectedChatId } = this.props;
-    console.log({ chats, selectedChatId });
     const selectedChat = chats.find(({ id }) => id === selectedChatId) ?? {
       title: "TOP SICRET"
     };
@@ -61,32 +60,19 @@ class ChatsPage extends Block<
                         placeholder="🔍 Поиск"
                     }}}
                 </header>
-                <div class="${styles.list__wrapper}">
-                    <ul>
-                        {{#each chats}}
-                            {{{ChatListItem
-                              chat=.
-                              currentUserId=../currentUserId
-                              onClick=../onChatClick
-                            }}}
-                        {{/each}}
-                        <li>
-                        {{{Button label="+" circle=true onClick=showAddChatDialog}}}
-                        <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
-                        <h1>Твой чат - твои правила</h1>
-                        <form method="dialog"  >
-                          {{{Input
-                            type="text"
-                            name="title"
-                            placeholder="О дивный новый чат"
-                            ref="newChatTitle"
-                          }}}
-                          {{{Button label="Создать" onClick=addChatHandle}}}
-                        </dialog>
-                        </li>
-                    </ul>
-                </div>
-
+                {{{ChatList}}}
+                {{{Button label="+" circle=true onClick=showAddChatDialog}}}
+                <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
+                <h1>Твой чат - твои правила</h1>
+                <form method="dialog"  >
+                  {{{Input
+                    type="text"
+                    name="title"
+                    placeholder="О дивный новый чат"
+                    ref="newChatTitle"
+                  }}}
+                  {{{Button label="Создать" onClick=addChatHandle}}}
+                </dialog>
             </aside>
             <main class="${styles.main}">
               {{#if selectedChatId}}
@@ -98,18 +84,7 @@ class ChatsPage extends Block<
                       ${selectedChat.title}
                     </p>
                 </header>
-                <div class="${styles.list__wrapper}">
-                  {{#if messages}}
-                    {{log messages}}
-                    <ul>
-                        {{#each messages}}
-                            {{{MessageListItem message=. currentUserId=../currentUserId}}}
-                        {{/each}}
-                    </ul>
-                  {{else}}
-                  <div> Здесь ещё никто ничего не написал</div>
-                  {{/if}}
-                </div>
+                {{{MessageList}}}
                 <footer class="${styles.d_flex}">
                     {{{Messenger}}}
                 </footer>
