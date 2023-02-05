@@ -16,6 +16,7 @@ export interface IButtonConstructorProps {
   onClick?: () => void;
   type?: string;
   color?: string;
+  circle?: boolean;
 }
 
 export class Button extends Block<IButtonProps> {
@@ -34,7 +35,7 @@ export class Button extends Block<IButtonProps> {
     );
 
     return `
-        <button class="${className}" type={{type}}>
+        <button class="${className}{{#circle}} ${styles.circle}{{/circle}}" type={{type}}>
             {{ label }}
         </button>
     `;

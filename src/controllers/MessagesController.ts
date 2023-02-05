@@ -60,7 +60,9 @@ class MessagesController {
     if (socket) socket.send({ type: WSType.GetOld, content });
   }
 
-  sendMessage(chatId: number, content: string) {
+  sendMessage(content: string) {
+    const chatId = store.getState().selectedChatId;
+    if (!chatId) return;
     const socket = this.getSocket(chatId);
     if (socket) socket.send({ type: WSType.Message, content });
   }

@@ -1,6 +1,5 @@
 import MessagesController from "../../controllers/MessagesController";
 import Block from "../../utils/Block";
-import store from "../../utils/Store";
 import styles from "./messenger.pcss";
 
 export class Messenger extends Block {
@@ -9,8 +8,7 @@ export class Messenger extends Block {
       onSendMessageClick: () => {
         const input = this.refs.input.getContent() as HTMLInputElement;
         const content = input.value;
-        const chatId = store.getState().currentChat;
-        if (content.length) MessagesController.sendMessage(chatId, content);
+        if (content.length) MessagesController.sendMessage(content);
         input.value = "";
       }
     });
@@ -29,11 +27,10 @@ export class Messenger extends Block {
           type="button"
           label="➜"
           onClick=onSendMessageClick
-          className="${styles.button}"
+          circle=true
         }}}
       </div>
       `;
   }
 }
 
-// export Messenger;

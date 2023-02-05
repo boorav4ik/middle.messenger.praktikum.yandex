@@ -1,25 +1,51 @@
 import Block from "../../utils/Block";
 import styles from "./index.pcss";
-import chatList from "../../mock/chatList.json";
-import messageList from "../../mock/messageList";
-import { IMessageListItemProps } from "../../components/MessageListItem/messageListItem";
-import { IChatListItemProps } from "../../components/ChatListItem/chatListItem";
 import Routes from "../../utils/types/Routes";
-import withChats from "../../hocs/withChats";
+import withChats, { WithChats } from "../../hocs/withChats";
+
+import { IChat } from "../../api/interfaces";
+import { IMessage } from "../../controllers/MessagesController";
+import ChatsController from "../../controllers/ChatController";
 
 interface IChatsPageProps {
-  chatList: IChatListItemProps[];
-  messageList: IMessageListItemProps[];
+  chats: IChat[];
+  messages: IMessage[];
+  currentUserId: number;
 }
-class ChatsPage extends Block<IChatsPageProps> {
-  constructor(props) {
-    console.log(props);
-
+class ChatsPage extends Block<
+  IChatsPageProps & {
+    showAddChatDialog: () => void;
+    addChatHandle: () => void;
+    onChatClick: (id: number) => void;
+  }
+> {
+  constructor(props: WithChats) {
     document.title = "Chokak - Chats";
-    super({ chatList, messageList });
+    ChatsController.getChats();
+
+    super({
+      showAddChatDialog: () => {
+        this.setProps({ openAddChatDialog: true });
+      },
+      addChatHandle: () => {
+        const { value } = this.refs.newChatTitle.getContent() as HTMLInputElement;
+        if (value) ChatsController.create(value);
+        this.setProps({ openAddChatDialog: false });
+      },
+      onChatClick: (id) => {
+        ChatsController.selectChat(id);
+      },
+      ...props
+    });
   }
 
   render() {
+    const { chats = [], selectedChatId } = this.props;
+    console.log({ chats, selectedChatId });
+    const selectedChat = chats.find(({ id }) => id === selectedChatId) ?? {
+      title: "TOP SICRET"
+    };
+
     return `<div class="${styles.chat_page_conteiner}">
             <aside class="${styles.aside}">
                 <header class="${styles.aside__header}">
@@ -37,41 +63,60 @@ class ChatsPage extends Block<IChatsPageProps> {
                 </header>
                 <div class="${styles.list__wrapper}">
                     <ul>
-                        {{#each chatList as |chat|}}
+                        {{#each chats}}
                             {{{ChatListItem
-                                avatar=chat.avatar
-                                author=chat.author
-                                time=chat.time
-                                messageCount=chat.messageCount
-                                lastMessage=chat.lastMessage
+                              chat=.
+                              currentUserId=../currentUserId
+                              onClick=../onChatClick
                             }}}
                         {{/each}}
+                        <li>
+                        {{{Button label="+" circle=true onClick=showAddChatDialog}}}
+                        <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
+                        <h1>Твой чат - твои правила</h1>
+                        <form method="dialog"  >
+                          {{{Input
+                            type="text"
+                            name="title"
+                            placeholder="О дивный новый чат"
+                            ref="newChatTitle"
+                          }}}
+                          {{{Button label="Создать" onClick=addChatHandle}}}
+                        </dialog>
+                        </li>
                     </ul>
                 </div>
+
             </aside>
             <main class="${styles.main}">
+              {{#if selectedChatId}}
                 <header class="${styles.d_flex}">
                     <div>
                         <div class="${styles.avatar} ${styles.large}"></div>
                     </div>
-                    <p class="${styles.chat_name}">Вадим</p>
+                    <p class="${styles.chat_name}">
+                      ${selectedChat.title}
+                    </p>
                 </header>
                 <div class="${styles.list__wrapper}">
+                  {{#if messages}}
+                    {{log messages}}
                     <ul>
-                        {{#each messageList as |message|}}
-                            {{{MessageListItem
-                                time=message.time
-                                image=message.image
-                                text=message.text
-                                outgoing=message.outgoing
-                                delivered=message.delivered
-                            }}}
+                        {{#each messages}}
+                            {{{MessageListItem message=. currentUserId=../currentUserId}}}
                         {{/each}}
                     </ul>
+                  {{else}}
+                  <div> Здесь ещё никто ничего не написал</div>
+                  {{/if}}
                 </div>
                 <footer class="${styles.d_flex}">
                     {{{Messenger}}}
                 </footer>
+              {{else}}
+              <div> Нужно выбрать чат</div>
+              {{/if}}
+
             </main>
         </div>`;
   }

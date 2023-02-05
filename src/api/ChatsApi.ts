@@ -47,6 +47,10 @@ export class ChatsApi extends CrudApi {
   public setAvatar(id: number, avatar: File) {
     return this.http.put(`/avatar`, { data: { chatId: id, avatar } });
   }
+
+  async getToken(id: number): Promise<string> {
+    return (await this.http.post(`/token/${id}`)).token;
+  }
 }
 
 window.ChatsAPI = new ChatsApi();

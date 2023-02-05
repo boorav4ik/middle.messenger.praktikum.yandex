@@ -40,7 +40,7 @@ class ChatsController {
     return this.api.getToken(id);
   }
 
-  static selectChat(id: number) {
+  selectChat(id: number) {
     store.set("selectedChatId", id);
   }
 }
