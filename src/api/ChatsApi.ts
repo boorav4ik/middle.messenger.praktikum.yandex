@@ -53,6 +53,6 @@ export class ChatsApi extends CrudApi {
   }
 }
 
-window.ChatsAPI = new ChatsApi();
+const api = new ChatsApi();
 
-export default window.ChatsAPI;
+export default api;

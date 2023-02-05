@@ -87,6 +87,6 @@ class MessagesController {
   }
 }
 
-window.messagesController = new MessagesController();
+const messagesController = new MessagesController();
 
-export default window.messagesController;
+export default messagesController;
