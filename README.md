@@ -12,6 +12,7 @@
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ce4e61c-536a-41cf-8279-7aa6d4181323/deploy-status)](https://app.netlify.com/sites/magnificent-stroopwafel-546831/deploys)
 
 # Установка
 
@@ -39,3 +40,11 @@
 - добавил компонентный подход в проект: Block и EventBus
 - cсбор данных из форм и их валидация
 - генерация страницы на стороне клиента
+
+#Спринт 3 [Pull requests !2](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/4)
+
+- Добавил роутинг и переделал на SPA
+- Досбавил Store
+- Внедрите [HTTP API](https://ya-praktikum.tech/api/v2/swagger/#/) чатов, авторизации и пользователей
+- Подключите [WebSocket](https://ya-praktikum.tech/api/v2/openapi/ws)
+- refactor
