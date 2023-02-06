@@ -41,7 +41,7 @@
 - cсбор данных из форм и их валидация
 - генерация страницы на стороне клиента
 
-#Спринт 3 [Pull requests !2](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/4)
+# Спринт 3 [Pull requests !2](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/4)
 
 - Добавил роутинг и переделал на SPA
 - Досбавил Store
