@@ -1,4 +1,4 @@
-import MessagesController from "../../controllers/MessagesController";
+import { controller } from "../../controllers/MessagesController";
 import { Block } from "../../utils/Block";
 import styles from "./messenger.pcss";
 
@@ -8,7 +8,7 @@ export class Messenger extends Block {
       onSendMessageClick: () => {
         const input = this.refs.input.getContent() as HTMLInputElement;
         const content = input.value;
-        if (content.length) MessagesController.sendMessage(content);
+        if (content.length) controller.sendMessage(content);
         input.value = "";
       }
     });

@@ -8,21 +8,21 @@ function isArrayOrObject(value: unknown): value is [] | PlainObject {
   return isPlainObject(value) || isArray(value);
 }
 
-export default function isEqual(lhs: [] | PlainObject, rhs: [] | PlainObject) {
-  if (Object.keys(lhs).length !== Object.keys(rhs).length) {
-    return false;
-  }
+export default function isEqual(lhs: any, rhs: any) {
+  if (typeof lhs !== typeof rhs) return false;
+  if (!isArrayOrObject(lhs)) return lhs === rhs;
+  if (Object.keys(lhs).length !== Object.keys(rhs).length) return false;
 
   // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of Object.entries(lhs)) {
-    const rightValue = rhs[key];
-    if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
+  for (const [key, lValue] of Object.keys(lhs)) {
+    const rValue = rhs[key];
+    if (isArrayOrObject(lValue) && isArrayOrObject(rValue)) {
       // eslint-disable-next-line no-continue
-      if (isEqual(value, rightValue)) continue;
+      if (isEqual(lValue, rValue)) continue;
       return false;
     }
 
-    if (value !== rightValue) {
+    if (lValue !== rValue) {
       return false;
     }
   }

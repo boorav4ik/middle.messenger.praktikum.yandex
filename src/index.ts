@@ -18,8 +18,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   router
     .use(Routes.Index, LoginPage as typeof Block)
     .use(Routes.SingUp, RegistrationPage as typeof Block)
-    .use(Routes.Messenger, ChatsPage)
-    .use(Routes.Settings, ProfilePage);
+    .use(Routes.Messenger, ChatsPage as typeof Block)
+    .use(Routes.Settings, ProfilePage as typeof Block);
 
   switch (window.location.pathname) {
     case Routes.Index:

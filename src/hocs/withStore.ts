@@ -2,9 +2,10 @@ import { Block } from "../utils/Block";
 import { store, IState } from "../utils/Store";
 import { StoreEvents } from "../utils/types/StoreEvents";
 import isEqual from "../utils/functions/isEqual";
+import { PlainObject } from "../utils/types/PlainObject";
 
 export function withStore<SP>(mapStateToProps: (state: IState) => SP) {
-  return <P>(Component: typeof Block<SP & P>) => {
+  return <P extends Record<string, any>>(Component: typeof Block<P & SP>) => {
     return class WhitSrore extends Component {
       public static componentName = Component.componentName || Component.name;
 
@@ -16,7 +17,7 @@ export function withStore<SP>(mapStateToProps: (state: IState) => SP) {
           // eslint-disable-next-line @typescript-eslint/no-shadow
           const state = store.getState();
           const newProps = mapStateToProps(state);
-          if (isEqual(oldProps, newProps)) return;
+          if (isEqual(oldProps as PlainObject, newProps as PlainObject)) return;
           oldProps = newProps;
           this.setProps({ ...newProps });
         });
