@@ -1,5 +1,6 @@
-import WSTransport, { WSEvent } from "../utils/WSTransport";
-import store from "../utils/Store";
+import { WSTransport, WSEvent } from "../utils/WSTransport";
+import { store } from "../utils/Store";
+import { User } from "../api/interfaces";
 
 enum WSType {
   Message = "message",
@@ -38,7 +39,7 @@ class MessagesController {
   async connect(id: number, token: string) {
     if (this.sockets.has(id)) return;
 
-    const userId = store.getState().user.id;
+    const { id: userId } = store.getState().user as User;
 
     const socket = new WSTransport([userId, id, token].join("/"));
 
@@ -67,6 +68,7 @@ class MessagesController {
     if (socket) socket.send({ type: WSType.Message, content });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private onMessage(id: number, messages: IMessage | IMessage[]) {
     const newMessages: IMessage[] = store.getState().messages?.[id] ?? [];
     if (Array.isArray(messages)) {
@@ -87,6 +89,4 @@ class MessagesController {
   }
 }
 
-const messagesController = new MessagesController();
-
-export default messagesController;
+export const controller = new MessagesController();

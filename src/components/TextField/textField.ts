@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import Validator, { ValidationType } from "../../utils/Validator";
 import { IInputConstructorProps } from "../Input";
 import styles from "./textField.pcss";

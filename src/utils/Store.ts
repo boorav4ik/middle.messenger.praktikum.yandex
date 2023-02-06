@@ -1,8 +1,8 @@
 import { IChat, User } from "../api/interfaces";
 import { IMessage } from "../controllers/MessagesController";
-import EventBus from "./EventBus";
-import set from "./functions/set";
-import StoreEvents from "./types/StoreEvents";
+import { EventBus } from "./EventBus";
+import { set } from "./functions/set";
+import { StoreEvents } from "./types/StoreEvents";
 
 export interface IState {
   user: User;
@@ -12,7 +12,12 @@ export interface IState {
 }
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
-  private state = { user: {}, chats: [], messages: {}, selectedChatId: undefined };
+  private state: IState = {
+    user: {},
+    chats: [],
+    messages: {},
+    selectedChatId: undefined
+  };
 
   public set(key: string, value: unknown) {
     set(this.state, key, value);
@@ -24,6 +29,4 @@ class Store extends EventBus<Record<string, (() => void)[]>> {
   }
 }
 
-const store = new Store();
-
-export default store;
+export const store = new Store();

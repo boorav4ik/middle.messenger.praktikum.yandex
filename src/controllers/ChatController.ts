@@ -1,13 +1,9 @@
-import ChatsApi from "../api/ChatsApi";
-import store from "../utils/Store";
-import MessagesController from "./MessagesController";
+import { api } from "../api/ChatsApi";
+import { store } from "../utils/Store";
+import { controller as MessagesController } from "./MessagesController";
 
 class ChatsController {
-  private readonly api: typeof ChatsApi;
-
-  constructor() {
-    this.api = ChatsApi;
-  }
+  private readonly api = api;
 
   async create(title: string) {
     await this.api.create(title);
@@ -40,11 +36,10 @@ class ChatsController {
     return this.api.getToken(id);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   selectChat(id: number) {
     store.set("selectedChatId", id);
   }
 }
 
-const controller = new ChatsController();
-
-export default controller;
+export const controller = new ChatsController();

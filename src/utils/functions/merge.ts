@@ -1,6 +1,7 @@
-import PlainObject, { isPlainObject } from "../types/PlainObject";
+/* eslint-disable no-param-reassign */
+import { PlainObject, isPlainObject } from "../types/PlainObject";
 
-export default function merge(target: PlainObject, source: PlainObject): PlainObject {
+export function merge(target: PlainObject, source: PlainObject): PlainObject {
   if (!isPlainObject(target)) throw new Error("target must be plain object");
   if (!isPlainObject(source)) throw new Error("source must be plain object");
   Object.keys(source).forEach((key) => {

@@ -1,6 +1,6 @@
 import { v4 as makeId } from "uuid";
 import Handlebars from "handlebars";
-import EventBus from "./EventBus";
+import { EventBus } from "./EventBus";
 
 enum BlockEvent {
   INIT = "init",
@@ -9,7 +9,7 @@ enum BlockEvent {
   FLOW_RENDER = "flow:render"
 }
 
-class Block<Props extends Record<string, any> = any> {
+export class Block<Props extends Record<string, any> = any> {
   public id = makeId();
 
   private _element: HTMLElement | null = null;
@@ -212,5 +212,3 @@ class Block<Props extends Record<string, any> = any> {
     return fragment.content;
   }
 }
-
-export default Block;

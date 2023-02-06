@@ -1,4 +1,4 @@
-export default {
+export const registrationFieldList = {
   email: {
     label: "Почта",
     type: "email",

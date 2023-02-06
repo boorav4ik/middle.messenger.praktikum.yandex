@@ -1,4 +1,4 @@
-type PlainObject<T = unknown> = {
+export type PlainObject<T = unknown> = {
   [k in string]: T;
 };
 
@@ -10,5 +10,3 @@ export function isPlainObject(value: unknown): value is PlainObject {
     Object.prototype.toString.call(value) === "[object Object]"
   );
 }
-
-export default PlainObject;

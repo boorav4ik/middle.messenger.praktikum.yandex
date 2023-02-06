@@ -1,6 +1,6 @@
 export type Callback = (...args: unknown[]) => void;
 
-export default class EventBus<Props extends Record<string, Callback[]>> {
+export class EventBus<Props extends Record<string, Callback[]>> {
   private readonly listeners: {
     [K in keyof Props]?: Callback[];
   } = {};

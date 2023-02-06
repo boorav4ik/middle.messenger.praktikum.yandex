@@ -1,6 +1,6 @@
-import Block from "../utils/Block";
-import store, { IState } from "../utils/Store";
-import StoreEvents from "../utils/types/StoreEvents";
+import { Block } from "../utils/Block";
+import { store, IState } from "../utils/Store";
+import { StoreEvents } from "../utils/types/StoreEvents";
 import isEqual from "../utils/functions/isEqual";
 
 export function withStore<SP>(mapStateToProps: (state: IState) => SP) {

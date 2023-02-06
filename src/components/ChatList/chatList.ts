@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import { withStore } from "../../hocs/withStore";
 
 class ChatList extends Block {

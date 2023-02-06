@@ -1,4 +1,4 @@
-export default {
+export const passwordFieldList = {
   oldPassword: {
     label: "Старый пароль",
     validationType: "password",

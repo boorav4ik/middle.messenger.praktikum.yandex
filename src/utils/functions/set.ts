@@ -1,7 +1,7 @@
-import marge from "./merge";
-import PlainObject, { isPlainObject } from "../types/PlainObject";
+import { merge } from "./merge";
+import { PlainObject, isPlainObject } from "../types/PlainObject";
 
-export default function set(target: PlainObject, path: string, value: any): PlainObject {
+export function set(target: PlainObject, path: string, value: any): PlainObject {
   if (!isPlainObject(target)) throw new Error("target must be plain object");
   if (typeof path !== "string") throw new Error("path must be string");
   const output = path.split(".").reduceRight<PlainObject>(
@@ -10,5 +10,5 @@ export default function set(target: PlainObject, path: string, value: any): Plai
     }),
     value
   );
-  return marge(target, output);
+  return merge(target, output);
 }

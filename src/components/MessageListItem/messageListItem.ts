@@ -1,5 +1,6 @@
-import Block from "../../utils/Block";
-import formatMessageTime from "../../utils/functions/formatMessageTime";
+import { IMessage } from "../../controllers/MessagesController";
+import { Block } from "../../utils/Block";
+import { formatMessageTime } from "../../utils/functions/formatMessageTime";
 import styles from "./messageListItem.pcss";
 
 export interface IMessageListItemProps {
@@ -8,6 +9,8 @@ export interface IMessageListItemProps {
   text?: string;
   outgoing?: boolean;
   delivered?: boolean;
+  message: IMessage;
+  currentUserId: number;
 }
 
 export class MessageListItem extends Block<IMessageListItemProps> {

@@ -1,13 +1,13 @@
-import Block from "../../utils/Block";
-import styles from "./index.pcss";
-import profile from "../../mock/profileFieldList";
-import passwordFields from "../../mock/passwordFieldList";
+import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
-import withUser from "../../hocs/withUser";
-import AuthController from "../../controllers/AuthController";
+import { withUser } from "../../hocs/withUser";
+import { controller } from "../../controllers/AuthController";
+import { User } from "../../api/interfaces";
+import { profileFieldList } from "../../mock/profileFieldList";
+import { passwordFieldList } from "../../mock/passwordFieldList";
+import styles from "./index.pcss";
 
 interface IProfilePageProps {
-  // user: User;
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
@@ -18,15 +18,14 @@ interface IProfilePageProps {
   showProfileEditForm: boolean;
   showPasswordEditForm: boolean;
   openEditAvatarDialog: boolean;
-  avatar: string;
 }
-class ProfilePage extends Block<IProfilePageProps> {
-  constructor(user) {
+class ProfilePage extends Block<IProfilePageProps & { user: User }> {
+  constructor(user: User) {
     document.title = "Chokak - Settings";
 
     super({
-      profileFields: profile,
-      passwordFields,
+      profileFields: profileFieldList,
+      passwordFields: passwordFieldList,
       actions: {
         editData: {
           label: "Изменить данные",
@@ -46,7 +45,7 @@ class ProfilePage extends Block<IProfilePageProps> {
           label: "Выйти",
           color: "error",
           onClick: () => {
-            AuthController.logout();
+            controller.logout();
           }
         }
       },
@@ -65,7 +64,6 @@ class ProfilePage extends Block<IProfilePageProps> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
-      avatar: user.avatar,
       user
     });
   }
@@ -138,4 +136,6 @@ class ProfilePage extends Block<IProfilePageProps> {
   }
 }
 
-export default withUser(ProfilePage);
+const ProfilePageWithUser = withUser(ProfilePage as typeof Block);
+
+export { ProfilePageWithUser as ProfilePage };

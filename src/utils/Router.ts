@@ -1,6 +1,6 @@
-import Block from "./Block";
-import Route from "./Route";
-import PlainObject from "./types/PlainObject";
+import { Block } from "./Block";
+import { Route } from "./Route";
+import { PlainObject } from "./types/PlainObject";
 
 class Router {
   private static instance: Router;
@@ -57,6 +57,4 @@ class Router {
   }
 }
 
-const router = new Router("#root");
-
-export default router;
+export const router = new Router("#root");

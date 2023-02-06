@@ -1,4 +1,4 @@
-export default {
+export const profileFieldList = {
   email: {
     type: "email",
     label: "Почта",

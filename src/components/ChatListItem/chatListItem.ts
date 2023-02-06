@@ -1,7 +1,7 @@
 import { IChat } from "../../api/interfaces";
-import Block from "../../utils/Block";
-import formatMessageTime from "../../utils/functions/formatMessageTime";
-import store from "../../utils/Store";
+import { Block } from "../../utils/Block";
+import { formatMessageTime } from "../../utils/functions/formatMessageTime";
+import { store } from "../../utils/Store";
 import styles from "./chatListItem.pcss";
 
 export class ChatListItem extends Block<{
@@ -24,12 +24,12 @@ export class ChatListItem extends Block<{
 
   render() {
     const {
-      chat: { last_message },
+      chat: { last_message: lastMessage },
       currentUserId
     } = this.props;
 
-    const isOutgoing = currentUserId === last_message?.user.id;
-    const time = last_message ? formatMessageTime(last_message.time) : "";
+    const isOutgoing = currentUserId === lastMessage?.user.id;
+    const time = lastMessage ? formatMessageTime(lastMessage.time) : "";
 
     return `<li class="${styles.chat_card}">
         <div style="width: 57px;">

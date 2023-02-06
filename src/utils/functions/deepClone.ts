@@ -1,4 +1,4 @@
-import PlainObject, { isPlainObject } from "../types/PlainObject";
+import { PlainObject, isPlainObject } from "../types/PlainObject";
 
 function isArray(value: unknown): value is [] {
   return Array.isArray(value);
@@ -21,7 +21,7 @@ function clone(value: any): any {
   return value;
 }
 
-export default function cloneDeep(obj: PlainObject): PlainObject {
+export function cloneDeep(obj: PlainObject): PlainObject {
   if (!isPlainObject(obj)) throw new Error("Аргумент может быть только объектом");
 
   return clone(obj);

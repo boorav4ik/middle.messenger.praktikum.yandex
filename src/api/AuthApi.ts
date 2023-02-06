@@ -1,4 +1,4 @@
-import BaseApi from "./BaseApi";
+import { BaseApi } from "./BaseApi";
 import { SignInData, SignUpData, User } from "./interfaces";
 
 enum AuthApiPaths {
@@ -8,7 +8,7 @@ enum AuthApiPaths {
   user = "/user"
 }
 
-export default class AuthAPI extends BaseApi {
+class AuthAPI extends BaseApi {
   constructor() {
     super("/auth");
   }
@@ -29,3 +29,5 @@ export default class AuthAPI extends BaseApi {
     return this.http.get(AuthApiPaths.user);
   }
 }
+
+export const api = new AuthAPI();

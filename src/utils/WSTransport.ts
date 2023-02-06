@@ -1,4 +1,4 @@
-import EventBus, { Callback } from "./EventBus";
+import { EventBus, Callback } from "./EventBus";
 
 export enum WSEvent {
   Connected = "connected",
@@ -7,7 +7,7 @@ export enum WSEvent {
   Message = "message"
 }
 
-class WSTransport extends EventBus<Record<string, Callback[]>> {
+export class WSTransport extends EventBus<Record<string, Callback[]>> {
   private socket: WebSocket | null = null;
 
   private pingInterval = 0;
@@ -77,5 +77,3 @@ class WSTransport extends EventBus<Record<string, Callback[]>> {
     this.socket?.close();
   }
 }
-
-export default WSTransport;

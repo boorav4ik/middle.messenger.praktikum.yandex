@@ -1,7 +1,6 @@
-import BaseApi from "./BaseApi";
+import { BaseApi } from "./BaseApi";
 
-// type APIMethod = (identifier?: string, data?: unknown) => Promise<unknown>;
-export default abstract class extends BaseApi {
+export abstract class CrudApi extends BaseApi {
   public abstract create(data: unknown): Promise<unknown>;
 
   public abstract read(data: Record<string, unknown>): Promise<unknown>;

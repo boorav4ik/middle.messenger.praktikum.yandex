@@ -1,12 +1,12 @@
-import AuthAPI from "../api/AuthApi";
-import { SignUpData, SignInDat } from "../api/interfaces";
-import Router from "../utils/Router";
-import store from "../utils/Store";
-import Routes from "../utils/types/Routes";
-import MessagesController from "./MessagesController";
+import { api } from "../api/AuthApi";
+import { SignUpData, SignInData } from "../api/interfaces";
+import { router } from "../utils/Router";
+import { store } from "../utils/Store";
+import { Routes } from "../utils/types/Routes";
+import { controller as MessagesController } from "./MessagesController";
 
 class AuthController {
-  private readonly api: AuthAPI;
+  private readonly api = api;
 
   private readonly storeKey = "user";
 
@@ -22,15 +22,11 @@ class AuthController {
     }
   }
 
-  constructor() {
-    this.api = new AuthAPI();
-  }
-
-  async signin(data: SignInDat) {
+  async signin(data: SignInData) {
     await this.request(async () => {
       await this.api.signin(data);
       await this.getUser();
-      Router.go(Routes.Messenger);
+      router.go(Routes.Messenger);
     });
   }
 
@@ -38,7 +34,7 @@ class AuthController {
     await this.request(async () => {
       await this.api.signup(data);
       await this.getUser();
-      Router.go(Routes.Settings);
+      router.go(Routes.Settings);
     });
   }
 
@@ -51,11 +47,11 @@ class AuthController {
     try {
       await this.api.logout();
     } catch (error) {
-      console.error(error.toSting());
+      console.error(error);
     } finally {
-      Router.go(Routes.Index);
+      router.go(Routes.Index);
     }
   }
 }
 
-export default new AuthController();
+export const controller = new AuthController();

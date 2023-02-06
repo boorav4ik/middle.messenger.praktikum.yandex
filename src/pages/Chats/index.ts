@@ -1,27 +1,18 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./index.pcss";
-import Routes from "../../utils/types/Routes";
-import withChats, { WithChats } from "../../hocs/withChats";
+import { Routes } from "../../utils/types/Routes";
+import { withChats, WithChats } from "../../hocs/withChats";
+import { controller } from "../../controllers/ChatController";
 
-import { IChat } from "../../api/interfaces";
-import { IMessage } from "../../controllers/MessagesController";
-import ChatsController from "../../controllers/ChatController";
-
-interface IChatsPageProps {
-  chats: IChat[];
-  messages: IMessage[];
-  currentUserId: number;
-}
 class ChatsPage extends Block<
-  IChatsPageProps & {
+  WithChats & {
     showAddChatDialog: () => void;
     addChatHandle: () => void;
-    onChatClick: (id: number) => void;
   }
 > {
   constructor(props: WithChats) {
     document.title = "Chokak - Chats";
-    ChatsController.getChats();
+    controller.getChats();
 
     super({
       showAddChatDialog: () => {
@@ -29,11 +20,8 @@ class ChatsPage extends Block<
       },
       addChatHandle: () => {
         const { value } = this.refs.newChatTitle.getContent() as HTMLInputElement;
-        if (value) ChatsController.create(value);
+        if (value) controller.create(value);
         this.setProps({ openAddChatDialog: false });
-      },
-      onChatClick: (id) => {
-        ChatsController.selectChat(id);
       },
       ...props
     });
@@ -96,5 +84,6 @@ class ChatsPage extends Block<
         </div>`;
   }
 }
+const chatPageWithStore = withChats(ChatsPage as typeof Block);
 
-export default withChats(ChatsPage);
+export { chatPageWithStore as ChatsPage };

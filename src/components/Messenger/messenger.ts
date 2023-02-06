@@ -1,5 +1,5 @@
 import MessagesController from "../../controllers/MessagesController";
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./messenger.pcss";
 
 export class Messenger extends Block {
@@ -33,4 +33,3 @@ export class Messenger extends Block {
       `;
   }
 }
-

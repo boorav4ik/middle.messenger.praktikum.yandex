@@ -1,6 +1,6 @@
 import { HTTPTransport } from "../utils/HTTPTransport";
 
-export default abstract class BaseApi {
+export abstract class BaseApi {
   protected http: HTTPTransport;
 
   protected constructor(endpoint: string) {

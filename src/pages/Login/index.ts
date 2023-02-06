@@ -1,27 +1,27 @@
-import Block from "../../utils/Block";
-import fields from "../../mock/loginFieldList";
+import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
-import AuthController from "../../controllers/AuthController";
-import { SingInData } from "../../api/interfaces";
+import { controller } from "../../controllers/AuthController";
+import { SignInData } from "../../api/interfaces";
+import { loginFieldList } from "../../mock/loginFieldList";
 
 interface ILoginPageProps {
   fields: Record<string, unknown>;
-  onLogin: (data: SingInData) => void;
+  onLogin: (data: SignInData) => void;
   actions: IButtonConstructorProps[];
 }
-export default class LoginPage extends Block<ILoginPageProps> {
+export class LoginPage extends Block<ILoginPageProps> {
   constructor() {
     document.title = "Chokak - Login";
     super({
-      fields,
+      fields: loginFieldList,
       actions: [
         {
           label: "Авторизоваться",
           type: "submit"
         }
       ],
-      onLogin(data: SingInData) {
-        AuthController.signin(data as SingInData);
+      onLogin(data: SignInData) {
+        controller.signin(data as SignInData);
       }
     });
   }

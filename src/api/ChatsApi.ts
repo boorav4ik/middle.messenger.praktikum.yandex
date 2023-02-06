@@ -1,12 +1,5 @@
-import CrudApi from "./CrudApi";
-
+import { CrudApi } from "./CrudApi";
 import { IChat, User } from "./interfaces";
-
-// interface GetChatData {
-//   offset: number;
-//   limit: number;
-//   title: string;
-// }
 
 export class ChatsApi extends CrudApi {
   constructor() {
@@ -26,7 +19,7 @@ export class ChatsApi extends CrudApi {
   }
 
   // Get chats
-  public read(): Promise<IChat> {
+  public read(): Promise<IChat[]> {
     return this.http.get("/");
   }
 
@@ -53,6 +46,4 @@ export class ChatsApi extends CrudApi {
   }
 }
 
-const api = new ChatsApi();
-
-export default api;
+export const api = new ChatsApi();

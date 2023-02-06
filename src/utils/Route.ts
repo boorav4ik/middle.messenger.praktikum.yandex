@@ -1,6 +1,6 @@
-import Block from "./Block";
+import { Block } from "./Block";
 
-class Route {
+export class Route {
   private block: Block | null;
 
   constructor(private pathname: string, private view: typeof Block, private rootQuery: string) {
@@ -36,5 +36,3 @@ class Route {
     this.block?.getContent()?.remove();
   }
 }
-
-export default Route;

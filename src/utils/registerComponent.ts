@@ -1,6 +1,7 @@
+/* eslint-disable no-param-reassign */
 import Handlebars, { HelperOptions } from "handlebars";
-import Block from "./Block";
-import templateComponent from "./templateComponent";
+import { Block } from "./Block";
+import { templateComponent } from "./templateComponent";
 
 export function registerComponent(Component: typeof Block) {
   const name = Component.componentName ?? Component.name;

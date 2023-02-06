@@ -1,18 +1,19 @@
-import Block from "../../utils/Block";
-import fields from "../../mock/registrationFieldList";
-import AuthController from "../../controllers/AuthController";
+import { Block } from "../../utils/Block";
+import { controller } from "../../controllers/AuthController";
+import { SignUpData } from "../../api/interfaces";
+import { registrationFieldList } from "../../mock/registrationFieldList";
 
 interface IRegistrationPageProps {
   fields: Record<string, unknown>;
-  onSubmit: (data: Record<string, string>) => void;
+  onSubmit: (data: SignUpData) => void;
 }
-export default class RegistrationPage extends Block<IRegistrationPageProps> {
+export class RegistrationPage extends Block<IRegistrationPageProps> {
   constructor() {
     document.title = "Chokak - SingUp";
     super({
-      fields,
-      onSubmit(data: Record<string, string>) {
-        AuthController.signup(data);
+      fields: registrationFieldList,
+      onSubmit(data: SignUpData) {
+        controller.signup(data);
       }
     });
   }
