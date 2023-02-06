@@ -92,17 +92,3 @@ export class HTTPTransport {
     });
   };
 }
-
-// function fetchWithRetry(url, { retries, ...options }) {
-//     function onError(error) {
-//         if (retries) {
-//             return fetchWithRetry(url, { ...options, retries: retries - 1 })
-//         } else {
-//             throw error;
-//         }
-//     };
-//     return new HTTPTransport()
-//         .request(url, options)
-//         .catch(onError)
-//         .finally(() => { console.log(retries) });
-// }

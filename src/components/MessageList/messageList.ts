@@ -4,7 +4,6 @@ import { withStore } from "../../hocs/withStore";
 class MessageList extends Block {
   protected render(): string {
     return `{{#ListWithScroll}}
-      {{log this}}
       {{#if messages}}
         <ul>
           {{#each messages}}

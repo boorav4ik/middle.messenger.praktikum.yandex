@@ -21,8 +21,8 @@ export class MessageListItem extends Block<IMessageListItemProps> {
     const className = styles.message__item
       .concat(message.user_id === currentUserId ? ` ${styles.outgoing}` : "")
       .concat(message.type === "message" ? "" : ` ${styles.media}`);
+
     return `<li class="${className}">
-        {{log this}}
         {{#with message}}
         <span>{{content}}
         <footer>
