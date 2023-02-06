@@ -69,8 +69,6 @@ export class HTTPTransport {
             reject(xhr.response);
           }
         }
-
-        //   resolve(xhr.response);
       };
       xhr.onabort = reject;
       xhr.onerror = reject;
