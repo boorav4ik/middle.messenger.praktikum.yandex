@@ -16,12 +16,13 @@ export class Messenger extends Block {
 
   render() {
     return `
-      <div class=${styles.container}>
+      <div class="${styles.container}">
       {{{Input
         type="text"
         placeholder="Сообщение"
         name="message"
         ref="input"
+        className="${styles.container__input}"
         }}}
         {{{Button
           type="button"

@@ -36,8 +36,8 @@ export class ChatListItem extends Block<{
             <div class="${styles.chat_card_avatar}">{{ chat.avatar }}</div>
         </div>
         <div class="${styles.chat_card_content}">
-            <header>
-                <span class="${styles.author}">{{chat.title}}</span>
+            <header class="${styles.chat_card_content__header}">
+                <span class="${styles.chat_card_content__header__title}">{{chat.title}}</span>
                 <span class="${styles.time}">${time}</span>
             </header>
             <div class="${styles.content}">

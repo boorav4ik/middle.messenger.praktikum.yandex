@@ -25,7 +25,7 @@ export class MessageListItem extends Block<IMessageListItemProps> {
     return `<li class="${className}">
         {{#with message}}
         <span>{{content}}
-        <footer>
+        <footer class="${styles.message__item__footer}">
           {{#is_read}}<span class="${styles.status}">✓✓</span>{{/is_read}}
           <span class="${styles.time_label}">${time}</span>
         </footer>

@@ -83,10 +83,7 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                             image=avatar
                             onClick=showEditAvatarDialog
                         }}}
-                        <dialog
-                            class="${styles.dialog}"
-                            {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}
-                        >
+                        <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>
                             <h1>Загрузите фаил</h1>
                             <form method="dialog">
                                 {{{AttachInput label="Выбрать файл на компьютере"}}}
