@@ -1,4 +1,4 @@
-export default {
+export const loginFieldList = {
   login: {
     label: "Логин",
     validationType: "login",

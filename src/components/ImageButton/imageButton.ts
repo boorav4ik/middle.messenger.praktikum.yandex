@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./imageButton.pcss";
 
 interface IImageComponentButtonProps {
@@ -24,8 +24,8 @@ export class ImageButton extends Block<IImageButtonProps> {
           class="${styles.image_button}"
           type="button"
         >
-          <img src="{{image}}" title="{{label}}"/>
-          <p>{{ label }}</p>
+          <img src="{{image}}" class="${styles.image_button__image}" title="{{label}}"/>
+          <p class="${styles.image_button__label}">{{ label }}</p>
         </button>
     `;
   }

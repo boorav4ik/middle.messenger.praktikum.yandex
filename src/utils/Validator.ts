@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 export enum ValidationType {
   Email = "email",
   Name = "name",
@@ -9,6 +10,7 @@ export enum ValidationType {
 type ValidatorMethod = (value: string) => [boolean, string];
 class Validator {
   email: ValidatorMethod = (value) => [
+    // eslint-disable-next-line max-len
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z](?:[a-z-]*[a-z])?\.)+[a-z](?:[a-z-]*[a-z])?$/i.test(
       value
     ),
@@ -53,4 +55,4 @@ class Validator {
   }
 }
 
-export default new Validator();
+export const validtor = new Validator();

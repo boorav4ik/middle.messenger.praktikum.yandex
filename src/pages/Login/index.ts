@@ -1,25 +1,27 @@
-import Block from "../../utils/Block";
-import fields from "../../mock/loginFieldList";
+import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
+import { controller } from "../../controllers/AuthController";
+import { SignInData } from "../../api/interfaces";
+import { loginFieldList } from "../../mock/loginFieldList";
 
 interface ILoginPageProps {
   fields: Record<string, unknown>;
-  onLogin: () => void;
+  onLogin: (data: SignInData) => void;
+  actions: IButtonConstructorProps[];
 }
-export default class LoginPage extends Block<
-  ILoginPageProps & { actions: IButtonConstructorProps[] }
-> {
+export class LoginPage extends Block<ILoginPageProps> {
   constructor() {
+    document.title = "Chokak - Login";
     super({
-      fields,
+      fields: loginFieldList,
       actions: [
         {
           label: "Авторизоваться",
           type: "submit"
         }
       ],
-      onLogin() {
-        location.replace("/chats");
+      onLogin(data: SignInData) {
+        controller.signin(data as SignInData);
       }
     });
   }
@@ -28,7 +30,7 @@ export default class LoginPage extends Block<
     return `{{#Card title="Вход"}}
       {{#Form fields=fields actions=actions onSubmit=onLogin}}
         {{#Link
-            to="/registration"
+            to="/sign-up"
         }}
             Нет аккаунта?
         {{/Link}}

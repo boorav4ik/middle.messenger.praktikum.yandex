@@ -1,41 +1,45 @@
 import { registerComponent } from "./utils/registerComponent";
 import * as components from "./components";
-import LoginPage from "./pages/Login";
-import RegistrationPage from "./pages/Registration";
-import Block from "./utils/Block";
-import ChatsPage from "./pages/Chats";
-import ProfilePage from "./pages/Profile";
+import { LoginPage } from "./pages/Login";
+import { RegistrationPage } from "./pages/Registration";
+import { ChatsPage } from "./pages/Chats";
+import { ProfilePage } from "./pages/Profile";
+import { router } from "./utils/Router";
+import { Routes } from "./utils/types/Routes";
+import { controller } from "./controllers/AuthController";
+import { Block } from "./utils/Block";
 import "./styles/global.pcss";
 
-function route(path: string): typeof Block {
-  switch (path) {
-    case "/":
-    case "/login":
-      return LoginPage;
-    case "/registration":
-      return RegistrationPage;
-    case "/chats":
-      return ChatsPage;
-    case "/profile":
-      return ProfilePage;
-    default:
-      return LoginPage;
-  }
-}
-
 window.addEventListener("DOMContentLoaded", async () => {
-  Object.values(components).forEach((component) => registerComponent(component));
+  Object.values(components).forEach((component) => registerComponent(component as typeof Block));
 
-  const root = document.querySelector("#root");
+  let isProtected = true;
 
-  if (!root) return;
-  const path = window.location.pathname!;
-  const PageClass = route(path);
-  const page = new PageClass();
-  const content = page.getContent();
+  router
+    .use(Routes.Index, LoginPage as typeof Block)
+    .use(Routes.SingUp, RegistrationPage as typeof Block)
+    .use(Routes.Messenger, ChatsPage as typeof Block)
+    .use(Routes.Settings, ProfilePage as typeof Block);
 
-  if (content instanceof Node) {
-    root.innerHTML = "";
-    root.appendChild(content);
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.SingUp:
+      isProtected = false;
+      break;
+    default:
+      break;
+  }
+
+  try {
+    await controller.getUser();
+    router.start();
+    if (!isProtected) {
+      router.go(Routes.Messenger);
+    }
+  } catch (error) {
+    router.start();
+    if (isProtected) {
+      router.go(Routes.Index);
+    }
   }
 });

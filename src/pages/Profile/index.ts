@@ -1,8 +1,11 @@
-import Block from "../../utils/Block";
-import styles from "./index.pcss";
-import profile from "../../mock/profileFieldList";
-import passwordFields from "../../mock/passwordFieldList";
+import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
+import { withUser } from "../../hocs/withUser";
+import { controller } from "../../controllers/AuthController";
+import { User } from "../../api/interfaces";
+import { profileFieldList } from "../../mock/profileFieldList";
+import { passwordFieldList } from "../../mock/passwordFieldList";
+import styles from "./index.pcss";
 
 interface IProfilePageProps {
   profileFields: Record<string, unknown>;
@@ -15,14 +18,14 @@ interface IProfilePageProps {
   showProfileEditForm: boolean;
   showPasswordEditForm: boolean;
   openEditAvatarDialog: boolean;
-  avatar: string;
 }
-export default class ProfilePage extends Block<IProfilePageProps> {
-  constructor() {
-    const { avatar, ...profileFields } = profile;
+class ProfilePage extends Block<IProfilePageProps & { user: User }> {
+  constructor(user: User) {
+    document.title = "Chokak - Settings";
+
     super({
-      profileFields,
-      passwordFields,
+      profileFields: profileFieldList,
+      passwordFields: passwordFieldList,
       actions: {
         editData: {
           label: "Изменить данные",
@@ -42,7 +45,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
           label: "Выйти",
           color: "error",
           onClick: () => {
-            location.replace("/chats");
+            controller.logout();
           }
         }
       },
@@ -61,15 +64,16 @@ export default class ProfilePage extends Block<IProfilePageProps> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
-      avatar
+      user
     });
   }
 
   render() {
     const { showProfileEditForm, showPasswordEditForm } = this.props;
+
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
-                {{#Link to="/chats" class="${styles.prev_arrow}"}}➜{{/Link}}
+                {{#Link to="/messenger" class="${styles.prev_arrow}"}}➜{{/Link}}
             </aside>
             <main class="${styles.main}">
                 {{#unless ${showPasswordEditForm || showProfileEditForm}}}
@@ -79,10 +83,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                             image=avatar
                             onClick=showEditAvatarDialog
                         }}}
-                        <dialog
-                            class="${styles.dialog}"
-                            {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}
-                        >
+                        <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>
                             <h1>Загрузите фаил</h1>
                             <form method="dialog">
                                 {{{AttachInput label="Выбрать файл на компьютере"}}}
@@ -106,6 +107,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                 <section {{#if showPasswordEditForm}}hidden{{/if}}>
                   {{#Form
                     fields=profileFields
+                    values=user
                     onSubmit=saveProfileHandle
                     readonly=${!showProfileEditForm}
                     className="${styles.section}"
@@ -119,8 +121,9 @@ export default class ProfilePage extends Block<IProfilePageProps> {
                     {{#unless ${showPasswordEditForm || showProfileEditForm}}}
                         {{#each actions}}
                             {{{Button
-                                label=this.label
-                                onClick=this.onClick
+                                label=label
+                                onClick=onClick
+                                color=color
                             }}}
                         {{/each}}
                     {{/unless}}
@@ -129,3 +132,7 @@ export default class ProfilePage extends Block<IProfilePageProps> {
         </div>`;
   }
 }
+
+const ProfilePageWithUser = withUser(ProfilePage as typeof Block);
+
+export { ProfilePageWithUser as ProfilePage };

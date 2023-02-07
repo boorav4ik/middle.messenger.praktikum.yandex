@@ -1,14 +1,12 @@
 const express = require("express");
+const history = require("express-history-api-fallback");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const STATIC = `${__dirname}/dist`;
 
 app.use(express.static(STATIC));
-
-app.get("*", (_, res) => {
-  res.send(`${STATIC}/index.html`);
-});
+app.use(history("index.html", { root: STATIC }));
 
 app.listen(PORT, () => {
   console.log(`

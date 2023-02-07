@@ -1,10 +1,11 @@
-import Block from "../../utils/Block";
-import Validator, { ValidationType } from "../../utils/Validator";
+import { Block } from "../../utils/Block";
+import { validtor, ValidationType } from "../../utils/Validator";
 import { IInputConstructorProps } from "../Input";
 import styles from "./textField.pcss";
 
 export interface ITextFieldProps extends IInputConstructorProps {
   label: string;
+  value?: string;
   validationType?: ValidationType;
   required?: boolean;
 }
@@ -18,7 +19,7 @@ export class TextField extends Block<ITextFieldProps> {
         const input = event.target as HTMLInputElement;
         const { value } = input;
         if (validationType) {
-          const [isValid, text] = Validator.validate(validationType, value);
+          const [isValid, text] = validtor.validate(validationType, value);
           this.refs.error.setProps({ isValid, text });
         }
       }

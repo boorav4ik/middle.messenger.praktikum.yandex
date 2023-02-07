@@ -1,9 +1,11 @@
+/* eslint-disable no-param-reassign */
 import Handlebars, { HelperOptions } from "handlebars";
-import Block from "./Block";
-import templateComponent from "./templateComponent";
+import { Block } from "./Block";
+import { templateComponent } from "./templateComponent";
 
 export function registerComponent(Component: typeof Block) {
-  Handlebars.registerHelper(Component.name, function ({ hash, data, fn }: HelperOptions) {
+  const name = Component.componentName ?? Component.name;
+  Handlebars.registerHelper(name, function helperDelegate({ hash, data, fn }: HelperOptions) {
     data.root.children ??= {};
     data.root.refs ??= {};
 

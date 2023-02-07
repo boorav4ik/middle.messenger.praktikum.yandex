@@ -1,6 +1,5 @@
 .button {
   width: 100%;
-  background: var(--btn-bg-blue);
   border-radius: 8px;
   margin: 10px 0;
   padding: 12px 0;
@@ -11,4 +10,17 @@
   border: none;
   outline: none;
   cursor: pointer;
+
+  &.error {
+    background-color: red;
+  }
+
+  &.primary {
+    background: var(--btn-bg-blue);
+  }
+
+  &.circle {
+    width: 40px;
+    border-radius: 50%
+  }
 }

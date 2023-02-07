@@ -1,6 +1,4 @@
-import avatar from "../images/defaultImage.png";
-
-export default {
+export const profileFieldList = {
   email: {
     type: "email",
     label: "Почта",
@@ -36,6 +34,5 @@ export default {
     label: "Телефон",
     value: "+7 (800) 100 50 00",
     validationType: "phone"
-  },
-  avatar
+  }
 };

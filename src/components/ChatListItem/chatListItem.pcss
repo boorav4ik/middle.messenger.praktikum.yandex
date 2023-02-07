@@ -5,6 +5,8 @@
   box-sizing: border-box;
   padding: 12px 0;
   justify-content: space-between;
+  user-select: none;
+  cursor: pointer;
 
   &:not(:last-child) {
     border-bottom: var(--divider);
@@ -24,15 +26,20 @@
   flex-direction: column;
   flex: 1;
 
-  & > header {
+  &__header {
     display: flex;
     flex: 0 0 15px;
     justify-content: space-between;
 
-    & > .author {
+    &__title {
       list-style-type: none;
       font-family: Inter, sans-serif;
       font-weight: 600;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 150px;
+      text-align-last: left;
     }
 
     & > .time {
@@ -53,6 +60,7 @@
       color: var(--text-grey);
       font-size: 12px;
       line-height: 15px;
+      text-align-last: left;
     }
   }
 }
