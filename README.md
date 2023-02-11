@@ -23,6 +23,7 @@
 - `npm run build` — собирает проект в статику в папку `./dist`,
 - `npm run start` — сначала выполняет команду `npm run build`, а затем поднимает сервер раздающий статику на `localhost:3000`,
 - `npm run dev` —  позволяет запустить сервер разработки на `localhost:3000`.
+- `npm run test` — запуск тестов
 
 [Демо приложения](https://magnificent-stroopwafel-546831.netlify.app)
 
@@ -48,3 +49,6 @@
 - Внедрите [HTTP API](https://ya-praktikum.tech/api/v2/swagger/#/) чатов, авторизации и пользователей
 - Подключите [WebSocket](https://ya-praktikum.tech/api/v2/openapi/ws)
 - refactor
+
+# Спринт 4
+  - Добавил тесты для роутера, блока и http транспорта
