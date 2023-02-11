@@ -85,7 +85,7 @@ export class Block<Props extends Record<string, any> = any> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+  componentDidUpdate(_oldProps: Props, _newProps: Props): boolean {
     return true;
   }
 

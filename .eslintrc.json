@@ -20,7 +20,11 @@
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "error",
-    "no-use-before-define": ["error", { "functions": false, "classes": false }]
+    "no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.ts", "./*.config.js"] }
+    ]
   },
   "settings": { "import/resolver": { "node": { "extensions": [".js", ".ts"] } } }
 }
