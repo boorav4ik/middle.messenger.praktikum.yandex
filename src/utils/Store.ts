@@ -13,7 +13,7 @@ export interface IState {
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
   private state: IState = {
-    user: {},
+    user: {} as User,
     chats: [],
     messages: {},
     selectedChatId: undefined

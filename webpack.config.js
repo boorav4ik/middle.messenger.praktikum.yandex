@@ -1,10 +1,8 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 const stylesHandler = MiniCssExtractPlugin.loader;
 
@@ -15,40 +13,51 @@ const config = {
   },
   devServer: {
     open: true,
-    host: "localhost"
+    host: "127.0.0.1",
+    port: 3000,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html"
+      template: "./index.html"
     }),
-
     new MiniCssExtractPlugin()
-
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
   module: {
     rules: [
       {
-        test: /\.(ts)$/i,
+        test: /\.ts$/i,
         loader: "ts-loader",
+        options: {
+          transpileOnly: true
+        },
         exclude: ["/node_modules/"]
       },
       {
-        test: /\.pcss$/i,
-        use: [stylesHandler, "css-loader", "postcss-loader"]
+        test: /\.()css$/,
+        exclude: /node_modules/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          "postcss-loader"
+        ]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset"
       }
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", "..."]
+    extensions: [".ts", ".js", "..."],
+    alias: {
+      handlebars: "handlebars/dist/handlebars.js"
+    }
   }
 };
 
