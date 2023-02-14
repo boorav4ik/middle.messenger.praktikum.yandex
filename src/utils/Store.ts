@@ -1,5 +1,5 @@
-import { IChat, User } from "../api/interfaces";
-import { IMessage } from "../controllers/MessagesController";
+import { IChat, User } from "api/interfaces";
+import { IMessage } from "controllers/MessagesController";
 import { EventBus } from "./EventBus";
 import { set } from "./functions/set";
 import { StoreEvents } from "./types/StoreEvents";
@@ -13,7 +13,7 @@ export interface IState {
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
   private state: IState = {
-    user: {},
+    user: {} as User,
     chats: [],
     messages: {},
     selectedChatId: undefined

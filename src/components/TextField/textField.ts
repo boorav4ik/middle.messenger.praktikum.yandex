@@ -1,6 +1,6 @@
-import { Block } from "../../utils/Block";
-import { validtor, ValidationType } from "../../utils/Validator";
-import { IInputConstructorProps } from "../Input";
+import { Block } from "utils/Block";
+import { validtor, ValidationType } from "utils/Validator";
+import { IInputConstructorProps } from "Input";
 import styles from "./textField.pcss";
 
 export interface ITextFieldProps extends IInputConstructorProps {
@@ -31,8 +31,8 @@ export class TextField extends Block<ITextFieldProps> {
   }
 
   render() {
-    return `<div class="${styles["labeled-input"]}">
-      <label class="${styles["labeled-input__label"]}" for="{{ name }}">
+    return `<div class="${styles.labeled__input}">
+      <label class="${styles.labeled__inpu__label}" for="{{ name }}">
         {{ label }}
       </label>
       {{{Input

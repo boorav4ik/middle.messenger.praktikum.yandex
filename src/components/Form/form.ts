@@ -1,7 +1,7 @@
-import { Block } from "../../utils/Block";
-import { IButtonConstructorProps } from "../Button";
-import { TextField, ITextFieldProps } from "../TextField/textField";
-import { validtor } from "../../utils/Validator";
+import { Block } from "utils/Block";
+import { IButtonConstructorProps } from "Button";
+import { TextField, ITextFieldProps } from "components/TextField/textField";
+import { validtor } from "utils/Validator";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;
@@ -62,7 +62,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
   }
 
   render() {
-    return `<form class={{className}}>
+    return `<form{{#className}} class="{{this}}"{{/className}}>
       {{#each fields}}
         {{{TextField
           label=label

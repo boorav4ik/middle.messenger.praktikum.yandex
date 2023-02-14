@@ -1,4 +1,4 @@
-import { PlainObject, isPlainObject } from "../types/PlainObject";
+import { PlainObject, isPlainObject } from "utils/types/PlainObject";
 
 function isArray(value: unknown): value is [] {
   return Array.isArray(value);

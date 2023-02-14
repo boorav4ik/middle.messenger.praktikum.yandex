@@ -1,8 +1,8 @@
-import { Block } from "../../utils/Block";
+import { Block } from "utils/Block";
 import styles from "./index.pcss";
-import { Routes } from "../../utils/types/Routes";
-import { withChats, WithChats } from "../../hocs/withChats";
-import { controller } from "../../controllers/ChatController";
+import { Routes } from "utils/types/Routes";
+import { withChats, WithChats } from "hocs/withChats";
+import { controller } from "controllers/ChatController";
 
 class ChatsPage extends Block<
   WithChats & {

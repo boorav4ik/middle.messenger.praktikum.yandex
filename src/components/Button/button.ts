@@ -1,4 +1,4 @@
-import { Block } from "../../utils/Block";
+import { Block } from "utils/Block";
 import styles from "./button.pcss";
 
 interface IButtonProps {

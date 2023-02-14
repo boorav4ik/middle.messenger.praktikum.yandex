@@ -1,5 +1,5 @@
-import { withRouter, PropsWithRouter } from "../../hocs/whitRouter";
-import { Block } from "../../utils/Block";
+import { withRouter, PropsWithRouter } from "hocs/whitRouter";
+import { Block } from "utils/Block";
 import styles from "./link.pcss";
 
 interface ILinkProps extends PropsWithRouter {

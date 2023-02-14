@@ -1,5 +1,5 @@
-import { api } from "../api/ChatsApi";
-import { store } from "../utils/Store";
+import { api } from "api/ChatsApi";
+import { store } from "utils/Store";
 import { controller as MessagesController } from "./MessagesController";
 
 class ChatsController {

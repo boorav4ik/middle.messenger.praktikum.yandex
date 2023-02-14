@@ -8,7 +8,7 @@ import { router } from "utils/Router";
 import { Routes } from "utils/types/Routes";
 import { controller } from "controllers/AuthController";
 import { Block } from "utils/Block";
-import "styles/global.pcss";
+import "./styles/global.pcss";
 
 window.addEventListener("DOMContentLoaded", async () => {
   Object.values(components).forEach((component) => registerComponent(component as typeof Block));

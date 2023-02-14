@@ -1,5 +1,5 @@
-import { Block } from "../../utils/Block";
-import { withStore } from "../../hocs/withStore";
+import { Block } from "utils/Block";
+import { withStore } from "hocs/withStore";
 
 class MessageList extends Block {
   protected render(): string {

@@ -1,15 +1,15 @@
-import { Block } from "../utils/Block";
-import { store, IState } from "../utils/Store";
-import { StoreEvents } from "../utils/types/StoreEvents";
-import isEqual from "../utils/functions/isEqual";
-import { PlainObject } from "../utils/types/PlainObject";
+import { Block } from "utils/Block";
+import { store, IState } from "utils/Store";
+import { StoreEvents } from "utils/types/StoreEvents";
+import isEqual from "utils/functions/isEqual";
+import { PlainObject } from "utils/types/PlainObject";
 
 export function withStore<SP>(mapStateToProps: (state: IState) => SP) {
   return <P extends Record<string, any>>(Component: typeof Block<P & SP>) => {
     return class WhitSrore extends Component {
       public static componentName = Component.componentName || Component.name;
 
-      constructor(props: Omit<P, keyof SP>) {
+      constructor(props: P) {
         let oldProps = mapStateToProps(store.getState());
 
         super({ ...props, ...oldProps });
