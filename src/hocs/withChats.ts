@@ -1,5 +1,5 @@
-import { IChat } from "../api/interfaces";
-import { IMessage } from "../controllers/MessagesController";
+import { IChat } from "api/interfaces";
+import { IMessage } from "controllers/MessagesController";
 import { withStore } from "./withStore";
 
 export const withChats = withStore(

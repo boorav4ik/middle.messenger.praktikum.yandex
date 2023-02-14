@@ -1,7 +1,7 @@
-import { Block } from "../../utils/Block";
-import { controller } from "../../controllers/AuthController";
-import { SignUpData } from "../../api/interfaces";
-import { registrationFieldList } from "../../mock/registrationFieldList";
+import { Block } from "utils/Block";
+import { controller } from "controllers/AuthController";
+import { SignUpData } from "api/interfaces";
+import { registrationFieldList } from "mock/registrationFieldList";
 
 interface IRegistrationPageProps {
   fields: Record<string, unknown>;

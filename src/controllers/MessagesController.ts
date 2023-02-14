@@ -1,6 +1,6 @@
-import { WSTransport, WSEvent } from "../utils/WSTransport";
-import { store } from "../utils/Store";
-import { User } from "../api/interfaces";
+import { WSTransport, WSEvent } from "utils/WSTransport";
+import { store } from "utils/Store";
+import { User } from "api/interfaces";
 
 enum WSType {
   Message = "message",

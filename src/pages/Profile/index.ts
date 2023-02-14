@@ -1,10 +1,10 @@
-import { Block } from "../../utils/Block";
-import { IButtonConstructorProps } from "../../components/Button";
-import { withUser } from "../../hocs/withUser";
-import { controller } from "../../controllers/AuthController";
-import { User } from "../../api/interfaces";
-import { profileFieldList } from "../../mock/profileFieldList";
-import { passwordFieldList } from "../../mock/passwordFieldList";
+import { Block } from "utils/Block";
+import { IButtonConstructorProps } from "components/Button";
+import { withUser } from "hocs/withUser";
+import { controller } from "controllers/AuthController";
+import { User } from "api/interfaces";
+import { profileFieldList } from "mock/profileFieldList";
+import { passwordFieldList } from "mock/passwordFieldList";
 import styles from "./index.pcss";
 
 interface IProfilePageProps {

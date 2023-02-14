@@ -1,8 +1,8 @@
-import { Block } from "../../utils/Block";
-import { IButtonConstructorProps } from "../../components/Button";
-import { controller } from "../../controllers/AuthController";
-import { SignInData } from "../../api/interfaces";
-import { loginFieldList } from "../../mock/loginFieldList";
+import { Block } from "utils/Block";
+import { IButtonConstructorProps } from "components/Button";
+import { controller } from "controllers/AuthController";
+import { SignInData } from "api/interfaces";
+import { loginFieldList } from "mock/loginFieldList";
 
 interface ILoginPageProps {
   fields: Record<string, unknown>;

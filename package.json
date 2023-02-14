@@ -1,11 +1,10 @@
 {
-  "name": "my-webpack-project",
+  "name": "chekak",
   "version": "1.0.0",
-  "description": "My webpack projectMy webpack project",
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "start": "npm run build && node server.js",
-    "dev": "",
+    "dev": "webpack serve --stats-error-details --open --config --watch webpack/dev.config.js",
     "test": "mocha --require ts-node/register --require ./mocha.config.js './src/**/*.test.ts'",
     "eslint": "eslint",
     "prettier": "prettier",
@@ -70,11 +69,5 @@
   "browserslist": [
     "last 2 versions",
     "not dead"
-  ],
-  "alias": {
-    "utils": "./src/utils",
-    "components": "./src/components",
-    "pages": "./src/pages",
-    "controllers": "./src/controllers"
-  }
+  ]
 }

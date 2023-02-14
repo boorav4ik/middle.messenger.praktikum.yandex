@@ -1,6 +1,6 @@
-import { Block } from "../../utils/Block";
-import { validtor, ValidationType } from "../../utils/Validator";
-import { IInputConstructorProps } from "../Input";
+import { Block } from "utils/Block";
+import { validtor, ValidationType } from "utils/Validator";
+import { IInputConstructorProps } from "Input";
 import styles from "./textField.pcss";
 
 export interface ITextFieldProps extends IInputConstructorProps {

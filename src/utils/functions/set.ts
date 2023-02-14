@@ -1,5 +1,5 @@
 import { merge } from "./merge";
-import { PlainObject, isPlainObject } from "../types/PlainObject";
+import { PlainObject, isPlainObject } from "utils/types/PlainObject";
 
 export function set(target: PlainObject | unknown, path: string, value: any): PlainObject {
   if (!isPlainObject(target)) throw new Error("target must be plain object");
