@@ -1,4 +1,4 @@
-import { Block } from "utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./input.pcss";
 
 export interface IInputConstructorProps {
@@ -25,6 +25,7 @@ export interface IInputProps {
 
   readonly?: boolean;
 }
+
 export class Input extends Block<IInputProps> {
   constructor({ onFocus, onInput, onBlur, ...props }: IInputConstructorProps) {
     super({

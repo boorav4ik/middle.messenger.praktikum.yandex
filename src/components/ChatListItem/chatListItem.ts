@@ -1,7 +1,7 @@
-import { IChat } from "api/interfaces";
-import { Block } from "utils/Block";
-import { formatMessageTime } from "utils/functions/formatMessageTime";
-import { store } from "utils/Store";
+import { IChat } from "../../api/interfaces";
+import { Block } from "../../utils/Block";
+import { formatMessageTime } from "../../utils/functions/formatMessageTime";
+import { store } from "../../utils/Store";
 import styles from "./chatListItem.pcss";
 
 export class ChatListItem extends Block<{

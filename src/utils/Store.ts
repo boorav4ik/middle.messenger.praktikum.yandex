@@ -1,5 +1,4 @@
-import { IChat, User } from "api/interfaces";
-import { IMessage } from "controllers/MessagesController";
+import { IChat, User, IMessage } from "../api/interfaces";
 import { EventBus } from "./EventBus";
 import { set } from "./functions/set";
 import { StoreEvents } from "./types/StoreEvents";

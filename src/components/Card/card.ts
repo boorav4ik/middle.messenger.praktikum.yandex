@@ -1,9 +1,10 @@
-import { Block } from "utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./card.pcss";
 
 interface ICardProps {
   title: string;
 }
+
 export class Card extends Block<ICardProps> {
   render() {
     return `

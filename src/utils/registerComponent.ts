@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Handlebars, { HelperOptions } from "handlebars";
 import { Block } from "./Block";
 import { templateComponent } from "./templateComponent";

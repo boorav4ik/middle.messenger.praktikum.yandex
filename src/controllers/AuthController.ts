@@ -1,8 +1,8 @@
-import { api } from "api/AuthApi";
-import { SignUpData, SignInData } from "api/interfaces";
-import { router } from "utils/Router";
-import { store } from "utils/Store";
-import { Routes } from "utils/types/Routes";
+import { api } from "../api/AuthApi";
+import { SignUpData, SignInData } from "../api/interfaces";
+import { router } from "../utils/Router";
+import { store } from "../utils/Store";
+import { Routes } from "../utils/types/Routes";
 import { controller as MessagesController } from "./MessagesController";
 
 class AuthController {

@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { PlainObject, isPlainObject } from "utils/types/PlainObject";
+import { PlainObject, isPlainObject } from "../types/PlainObject";
 
 export function merge(target: PlainObject, source: PlainObject): PlainObject {
   if (!isPlainObject(target)) throw new Error("target must be plain object");

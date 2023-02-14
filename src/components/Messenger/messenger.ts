@@ -1,5 +1,5 @@
-import { controller } from "controllers/MessagesController";
-import { Block } from "utils/Block";
+import { controller } from "../../controllers/MessagesController";
+import { Block } from "../../utils/Block";
 import styles from "./messenger.pcss";
 
 export class Messenger extends Block {

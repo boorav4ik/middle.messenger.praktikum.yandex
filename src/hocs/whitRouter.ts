@@ -1,7 +1,7 @@
-import { Block } from "utils/Block";
-import { router } from "utils/Router";
+import { Block } from "../utils/Block";
+import { router } from "../utils/Router";
 
-export function withRouter(Component: typeof Block<any>) {
+export function withRouter(Component: typeof Block) {
   return class WithRouter extends Component {
     public static componentName = Component.componentName || Component.name;
 

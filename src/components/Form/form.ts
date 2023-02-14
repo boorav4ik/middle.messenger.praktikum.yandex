@@ -1,7 +1,7 @@
-import { Block } from "utils/Block";
-import { IButtonConstructorProps } from "Button";
-import { TextField, ITextFieldProps } from "components/TextField/textField";
-import { validtor } from "utils/Validator";
+import { Block } from "../../utils/Block";
+import { IButtonConstructorProps } from "../Button";
+import { TextField, ITextFieldProps } from "../TextField/textField";
+import { validtor } from "../../utils/Validator";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;

@@ -72,7 +72,6 @@ const config = {
     ]
   },
   resolve: {
-    modules: [path.resolve("./src"), path.resolve("./node_modules")],
     extensions: [".ts", ".js", "..."],
     alias: {
       handlebars: "handlebars/dist/handlebars.js"

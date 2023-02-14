@@ -1,4 +1,4 @@
-import { Block } from "utils/Block";
+import { Block } from "../../utils/Block";
 import styles from "./imageButton.pcss";
 
 interface IImageComponentButtonProps {
@@ -6,6 +6,7 @@ interface IImageComponentButtonProps {
   label?: string;
   onClick: () => void;
 }
+
 interface IImageButtonProps {
   image: string;
   label?: string;
@@ -13,6 +14,7 @@ interface IImageButtonProps {
     click: () => void;
   };
 }
+
 export class ImageButton extends Block<IImageButtonProps> {
   constructor({ onClick, ...props }: IImageComponentButtonProps) {
     super({ ...props, events: { click: onClick } });

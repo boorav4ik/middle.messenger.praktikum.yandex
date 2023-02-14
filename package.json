@@ -34,6 +34,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "handlebars": "4.7.7",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.3",
     "jsdom": "21.1.0",
     "mocha": "10.2.0",
     "postcss": "8.4.21",
@@ -69,5 +70,10 @@
   "browserslist": [
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && npm run stylelint '**/*.pcss' && npm run eslint src/"
+    }
+  }
 }
