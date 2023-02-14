@@ -184,10 +184,8 @@ export class Block<Props extends Record<string, any> = any> {
 
   compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement("template") as HTMLTemplateElement;
-    console.log({ templateString });
 
     const template = Handlebars.compile(templateString);
-    console.log(template);
 
     const htmlString = template({
       ...context,

@@ -62,7 +62,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
   }
 
   render() {
-    return `<form class={{className}}>
+    return `<form{{#className}} class="{{this}}"{{/className}}>
       {{#each fields}}
         {{{TextField
           label=label

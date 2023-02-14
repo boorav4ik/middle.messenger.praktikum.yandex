@@ -29,7 +29,6 @@ export class Route {
     root.innerHTML = "";
 
     const content = this.block.getContent();
-    console.log({ content });
 
     root.append(content as Node);
     return root;

@@ -1,10 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
-
-const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
   entry: "./src/index.ts",
@@ -20,8 +17,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./index.html"
-    }),
-    new MiniCssExtractPlugin()
+    })
   ],
   module: {
     rules: [
@@ -34,17 +30,39 @@ const config = {
         exclude: ["/node_modules/"]
       },
       {
-        test: /\.()css$/,
+        test: /\.pcss$/,
         exclude: /node_modules/,
         use: [
-          "style-loader",
+          {
+            loader: "style-loader",
+            options: {
+              esModule: false
+            }
+          },
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1
+              modules: {
+                exportLocalsConvention(name) {
+                  return name;
+                }
+              }
             }
           },
-          "postcss-loader"
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-import",
+                  "postcss-url",
+                  "autoprefixer",
+                  "postcss-nested",
+                  "postcss-custom-properties"
+                ]
+              }
+            }
+          }
         ]
       },
       {
