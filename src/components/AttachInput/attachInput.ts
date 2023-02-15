@@ -1,16 +1,9 @@
 import { Block } from "../../utils/Block";
 import styles from "./attachInput.pcss";
+import template from "./attachInput.hbs";
 
-interface IAttachInputProps {
-  icon?: string;
-  label?: string;
-}
-export class AttachInput extends Block<IAttachInputProps> {
+export class AttachInput extends Block {
   render() {
-    return `<label for="attach" class="${styles.label}">
-            {{#icon}}<img src={{this}} class="${styles.medium}" />{{/icon}}
-            {{#label}}{{this}}{{/label}}
-            <input type="file" name="attach" id="attach" class="${styles.attach}" />
-        </label>`;
+    return this.compile(template, { ...this.props, styles });
   }
 }

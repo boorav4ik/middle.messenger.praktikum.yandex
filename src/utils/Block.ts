@@ -1,5 +1,5 @@
 import { v4 as makeId } from "uuid";
-import Handlebars from "handlebars";
+import { TemplateDelegate } from "handlebars";
 import { EventBus } from "./EventBus";
 
 enum BlockEvent {
@@ -101,23 +101,39 @@ export class Block<Props extends Record<string, any> = any> {
     return this._element;
   }
 
-  _render() {
-    const templateString = this.render();
-    const fragment = this.compile(templateString, { ...this.props });
+  // _render() {
+  //   const templateString = this.render();
+  //   const fragment = this.compile(templateString, { ...this.props });
+  //   const newElement = fragment.firstElementChild as HTMLElement;
+
+  //   if (this._element) {
+  //     this._removeEvents();
+  //     this._element.replaceWith(newElement);
+  //   }
+
+  //   this._element = newElement;
+
+  //   this._addEvents();
+  // }
+
+  private _render() {
+    const fragment = this.render();
+
     const newElement = fragment.firstElementChild as HTMLElement;
 
-    if (this._element) {
-      this._removeEvents();
-      this._element.replaceWith(newElement);
-    }
+    this._element?.replaceWith(newElement);
 
     this._element = newElement;
 
     this._addEvents();
   }
 
-  protected render(): string {
-    return "";
+  // protected render(): string {
+  //   return "";
+  // }
+
+  protected render(): DocumentFragment {
+    return new DocumentFragment();
   }
 
   getContent(): HTMLElement | null {
@@ -182,35 +198,58 @@ export class Block<Props extends Record<string, any> = any> {
     return document.createElement(tagName);
   }
 
-  compile(templateString: string, context: any) {
-    const fragment = this._createDocumentElement("template") as HTMLTemplateElement;
+  // compile(templateString: string, context: any) {
+  //   const fragment = this._createDocumentElement("template") as HTMLTemplateElement;
 
-    const template = Handlebars.compile(templateString);
+  //   const template = Handlebars.compile(templateString);
 
-    const htmlString = template({
-      ...context,
-      children: this.children,
-      refs: this.refs
-    });
-    fragment.innerHTML = htmlString;
+  //   const htmlString = template({
+  //     ...context,
+  //     children: this.children,
+  //     refs: this.refs
+  //   });
 
-    const getStub = (id: string): Element | null =>
-      fragment.content.querySelector(`[data-id="id-${id}"]`);
+  //   fragment.innerHTML = htmlString;
+  //   console.log({ htmlString, fragment });
+  //   const getStub = (id: string): Element | null =>
+  //     fragment.content.querySelector(`[data-id="id-${id}"]`);
 
-    function stubReplace(child: Block) {
-      const stub = getStub(child.id);
-      if (!stub) return;
-      const content = child.getContent()!;
-      stub.replaceWith(content);
-      if (stub.childNodes.length) {
-        content.append(...stub.childNodes);
+  //   function stubReplace(child: Block) {
+  //     const stub = getStub(child.id);
+  //     if (!stub) return;
+  //     const content = child.getContent()!;
+  //     stub.replaceWith(content);
+  //     if (stub.childNodes.length) {
+  //       content.append(...stub.childNodes);
+  //     }
+  //   }
+
+  //   Object.values(this.children).forEach((child) =>
+  //     Array.isArray(child) ? child.forEach(stubReplace) : stubReplace(child)
+  //   );
+
+  //   return fragment.content;
+  // }
+
+  protected compile(template: TemplateDelegate, context?: Props) {
+    const contextAndStubs = { ...context };
+
+    const html = template(contextAndStubs);
+    console.log({ template, html, context });
+
+    const temp = document.createElement("template");
+    temp.innerHTML = html;
+
+    Object.entries(this.children).forEach(([name, component]) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+      if (!stub) {
+        return;
       }
-    }
 
-    Object.values(this.children).forEach((child) =>
-      Array.isArray(child) ? child.forEach(stubReplace) : stubReplace(child)
-    );
+      stub.replaceWith(component.getContent());
+    });
 
-    return fragment.content;
+    return temp.content;
   }
 }

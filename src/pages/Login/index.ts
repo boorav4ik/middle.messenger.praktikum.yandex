@@ -3,6 +3,7 @@ import { IButtonConstructorProps } from "../../components/Button";
 import { controller } from "../../controllers/AuthController";
 import { SignInData } from "../../api/interfaces";
 import { loginFieldList } from "../../mock/loginFieldList";
+import template from "./index.hbs";
 
 interface ILoginPageProps {
   fields: Record<string, unknown>;
@@ -27,14 +28,6 @@ export class LoginPage extends Block<ILoginPageProps> {
   }
 
   render() {
-    return `{{#Card title="Вход"}}
-      {{#Form fields=fields actions=actions onSubmit=onLogin}}
-        {{#Link
-            to="/sign-up"
-        }}
-            Нет аккаунта?
-        {{/Link}}
-      {{/Form}}
-    {{/Card}}`;
+    return this.compile(template, { ...this.props });
   }
 }

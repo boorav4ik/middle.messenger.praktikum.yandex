@@ -1,5 +1,6 @@
 import { Block } from "../../utils/Block";
 import styles from "./imageButton.pcss";
+import templates from "./imageButton.hbs";
 
 interface IImageComponentButtonProps {
   image: string;
@@ -7,28 +8,12 @@ interface IImageComponentButtonProps {
   onClick: () => void;
 }
 
-interface IImageButtonProps {
-  image: string;
-  label?: string;
-  events: {
-    click: () => void;
-  };
-}
-
-export class ImageButton extends Block<IImageButtonProps> {
+export class ImageButton extends Block {
   constructor({ onClick, ...props }: IImageComponentButtonProps) {
     super({ ...props, events: { click: onClick } });
   }
 
   render() {
-    return `
-        <button
-          class="${styles.image_button}"
-          type="button"
-        >
-          <img src="{{image}}" class="${styles.image_button__image}" title="{{label}}"/>
-          <p class="${styles.image_button__label}">{{ label }}</p>
-        </button>
-    `;
+    return this.compile(templates, { ...this.props, styles });
   }
 }

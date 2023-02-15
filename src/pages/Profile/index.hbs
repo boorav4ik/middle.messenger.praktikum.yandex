@@ -1,0 +1,38 @@
+<div class="{{styles.profile_page_conteiner}}">
+  <aside class="{{styles.aside}}">
+      {{#Link to="/messenger" className="{{styles.prev_arrow}}"}}➜{{/Link}}
+  </aside>
+  <main class="{{styles.main}}">
+      {{#if showAvatar }}
+          <section>
+              {{{ImageButton label="Поменять аватар" image=avatar onClick=showEditAvatarDialog }}}
+              <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>
+                  <h1>Загрузите фаил</h1>
+                  <form method="dialog">
+                      {{{AttachInput label="Выбрать файл на компьютере"}}}
+                      {{{Button label="Сохранить" onClick=hideEditAvatarDialog }}}
+                  </form>
+              </dialog>
+          </section>
+      {{/if}}
+      <section {{#unless showPasswordEditForm}}hidden{{/unless}}>
+        {{#Form fields=passwordFields onSubmit=savePasswordHandle className="{{styles.section}}"}}
+          {{{Button label="Сохранить" type="submit"}}}
+        {{/Form}}
+      </section>
+      <section {{#if showPasswordEditForm}}hidden{{/if}}>
+        {{#Form fields=profileFields values=user onSubmit=saveProfileHandle readonly=redonlyProfile className="{{styles.section}}" }}
+          {{#showProfileEditForm}}
+            {{{Button label="Сохранить" type="submit"}}}
+          {{/showProfileEditForm}}
+        {{/Form}}
+      </section>
+      <footer class="{{styles.section}}">
+          {{#unless showSaveButton}}
+              {{#each actions}}
+                  {{{Button label=label onClick=onClick color=color }}}
+              {{/each}}
+          {{/unless}}
+      </footer>
+  </main>
+</div>

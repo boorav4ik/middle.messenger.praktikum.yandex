@@ -1,0 +1,21 @@
+<form{{#className}} class="{{this}}"{{/className}}>
+  {{#each fields}}
+    {{{TextField
+      label=label
+      name=@key
+      type=type
+      validationType=validationType
+      required=required
+      ref=@key
+      readonly=../readonly
+      placeholder=value
+    }}}
+  {{/each}}
+  {{#each actions}}
+    {{{Button
+      label=label
+      type=type
+      onClick=onClick
+    }}}
+  {{/each}}
+</form>

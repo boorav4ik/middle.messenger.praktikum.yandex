@@ -1,0 +1,7 @@
+{{#ListWithScroll}}
+  <ul>
+    {{#each chats}}
+      {{{ChatListItem chat=. currentUserId=../currentUserId}}}
+    {{/each}}
+  </ul>
+{{/ListWithScroll}}

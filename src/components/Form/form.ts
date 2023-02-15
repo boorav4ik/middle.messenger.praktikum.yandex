@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../Button";
 import { TextField, ITextFieldProps } from "../TextField/textField";
 import { validtor } from "../../utils/Validator";
+import template from "./form.hbs";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;
@@ -62,26 +63,6 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
   }
 
   render() {
-    return `<form{{#className}} class="{{this}}"{{/className}}>
-      {{#each fields}}
-        {{{TextField
-          label=label
-          name=@key
-          type=type
-          validationType=validationType
-          required=required
-          ref=@key
-          readonly=../readonly
-          placeholder=value
-        }}}
-      {{/each}}
-      {{#each actions}}
-        {{{Button
-          label=label
-          type=type
-          onClick=onClick
-        }}}
-      {{/each}}
-    </form>`;
+    return this.compile(template, { ...this.props });
   }
 }

@@ -1,0 +1,28 @@
+<li class="{{styles.chat_card}}">
+  <div style="width: 57px;">
+    <div class="{{styles.chat_card_avatar}}">{{ chat.avatar }}</div>
+  </div>
+  <div class="{{styles.chat_card_content}}">
+    <header class="{{styles.chat_card_content__header}}">
+      <span class="{{styles.chat_card_content__header__title}}">{{chat.title}}</span>
+      <span class="{{styles.time}}">{{time}}</span>
+    </header>
+    <div class="{{styles.content}}">
+      <div class="{{styles.message}}">
+        {{#chat.last_message }}
+          <span>
+            {{#if isOutgoing}}<b>Вы:</b>{{/if}}
+            {{ this.content }}
+          </span>
+        {{/chat.last_message }}
+      </div>
+      <div>
+          {{#if chat.messageCount}}
+              <div class="{{styles.count}}">
+                  {{ chat.messageCount }}
+              </div>
+          {{/if}}
+      </div>
+    </div>
+  </div>
+</li>

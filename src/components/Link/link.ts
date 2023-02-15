@@ -1,13 +1,14 @@
 import { withRouter, PropsWithRouter } from "../../hocs/whitRouter";
 import { Block } from "../../utils/Block";
 import styles from "./link.pcss";
+import template from "./link.hbs";
 
 interface ILinkProps extends PropsWithRouter {
   to: string;
-  class?: string;
+  className?: string;
 }
 
-class Link extends Block<ILinkProps & { events: Record<string, () => void> }> {
+class Link extends Block {
   constructor(props: ILinkProps) {
     super({
       ...props,
@@ -18,8 +19,8 @@ class Link extends Block<ILinkProps & { events: Record<string, () => void> }> {
   }
 
   render() {
-    return `<span class="${this.props.class ?? styles.link}"></span>`;
+    return this.compile(template, { ...this.props, styles });
   }
 }
 
-export const LinkWithRouter = withRouter(Link);
+export const LinkWithRouter = withRouter(Link as typeof Block);

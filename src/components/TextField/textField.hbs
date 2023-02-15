@@ -1,0 +1,16 @@
+<div class="{{styles.labeled__input}}">
+  <label class="{{styles.labeled__inpu__label}}" for="{{name}}">
+    {{label}}
+  </label>
+  {{{Input
+    type=type
+    name=name
+    placeholder=placeholder
+    onFocus=onFocus
+    onBlur=onBlur
+    onInput=onInput
+    readonly=readonly
+    ref="input"
+  }}}
+  {{{Error text="Невалидное значение" isValid=true ref="error"}}}
+</div>

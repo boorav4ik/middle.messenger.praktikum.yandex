@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import { validtor, ValidationType } from "../../utils/Validator";
 import { IInputConstructorProps } from "../Input";
 import styles from "./textField.pcss";
+import template from "./textField.hbs";
 
 export interface ITextFieldProps extends IInputConstructorProps {
   label: string;
@@ -10,7 +11,7 @@ export interface ITextFieldProps extends IInputConstructorProps {
   required?: boolean;
 }
 
-export class TextField extends Block<ITextFieldProps> {
+export class TextField extends Block {
   constructor({ validationType, ...props }: ITextFieldProps) {
     super({
       ...props,
@@ -31,25 +32,6 @@ export class TextField extends Block<ITextFieldProps> {
   }
 
   render() {
-    return `<div class="${styles.labeled__input}">
-      <label class="${styles.labeled__inpu__label}" for="{{ name }}">
-        {{ label }}
-      </label>
-      {{{Input
-        type=type
-        name=name
-        placeholder=placeholder
-        onFocus=onFocus
-        onBlur=onBlur
-        onInput=onInput
-        readonly=readonly
-        ref="input"
-      }}}
-      {{{Error
-        text="Невалидное значение"
-        isValid=true
-        ref="error"
-      }}}
-    </div>`;
+    return this.compile(template, { ...this.props, styles });
   }
 }

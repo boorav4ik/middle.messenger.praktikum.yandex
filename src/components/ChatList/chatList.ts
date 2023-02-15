@@ -1,18 +1,10 @@
 import { Block } from "../../utils/Block";
 import { withStore } from "../../hocs/withStore";
+import template from "./chatList.hbs";
 
 class ChatList extends Block {
-  protected render(): string {
-    return `{{#ListWithScroll}}
-        <ul>
-            {{#each chats}}
-                {{{ChatListItem
-                  chat=.
-                  currentUserId=../currentUserId
-                }}}
-            {{/each}}
-        </ul>
-    {{/ListWithScroll}}`;
+  render() {
+    return this.compile(template, { ...this.props });
   }
 }
 

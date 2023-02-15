@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import { controller } from "../../controllers/AuthController";
 import { SignUpData } from "../../api/interfaces";
 import { registrationFieldList } from "../../mock/registrationFieldList";
+import template from "./index.hbs";
 
 interface IRegistrationPageProps {
   fields: Record<string, unknown>;
@@ -19,10 +20,6 @@ export class RegistrationPage extends Block<IRegistrationPageProps> {
   }
 
   render() {
-    return `{{#Card title="Регистрация"}}
-      {{#Form fields=fields onSubmit=onSubmit}}
-        {{{Button type="submit" label="Зарегистрироваться"}}}
-      {{/Form}}
-    {{/Card}}`;
+    return this.compile(template, { ...this.props });
   }
 }

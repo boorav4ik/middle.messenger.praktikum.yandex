@@ -1,21 +1,10 @@
 import { Block } from "../../utils/Block";
 import { withStore } from "../../hocs/withStore";
+import template from "./messageList.hbs";
 
 class MessageList extends Block {
-  protected render(): string {
-    return `{{#ListWithScroll}}
-      {{#if messages}}
-        <ul>
-          {{#each messages}}
-            {{{MessageListItem
-              message=.
-              currentUserId=../currentUserId}}}
-          {{/each}}
-        </ul>
-      {{else}}
-        <div>Чёkak?</div>
-      {{/if}}
-    {{/ListWithScroll}}`;
+  render() {
+    return this.compile(template, { ...this.props });
   }
 }
 

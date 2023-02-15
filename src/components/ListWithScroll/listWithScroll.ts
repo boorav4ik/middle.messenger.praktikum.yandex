@@ -1,8 +1,9 @@
 import { Block } from "../../utils/Block";
 import styles from "./listWithScroll.pcss";
+import template from "./listWithScroll.hbs";
 
 export class ListWithScroll extends Block {
-  protected render(): string {
-    return `<div class="${styles.listWithScroll}"></div>`;
+  render() {
+    return this.compile(template, { ...this.props, styles });
   }
 }

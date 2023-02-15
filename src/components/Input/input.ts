@@ -1,5 +1,6 @@
 import { Block } from "../../utils/Block";
 import styles from "./input.pcss";
+import template from "./input.hbs";
 
 export interface IInputConstructorProps {
   name: string;
@@ -12,21 +13,7 @@ export interface IInputConstructorProps {
   readonly?: boolean;
 }
 
-export interface IInputProps {
-  name: string;
-  type?: string;
-  placeholder?: string;
-  className?: string;
-  events: {
-    focus?: (event: FocusEvent) => void;
-    input?: (event: InputEvent) => void;
-    blur?: (event: FocusEvent) => void;
-  };
-
-  readonly?: boolean;
-}
-
-export class Input extends Block<IInputProps> {
+export class Input extends Block {
   constructor({ onFocus, onInput, onBlur, ...props }: IInputConstructorProps) {
     super({
       ...props,
@@ -39,14 +26,6 @@ export class Input extends Block<IInputProps> {
   }
 
   render() {
-    return `
-            <input
-                class="${styles.input}{{#if className}} {{ className }}{{/if}}"
-                {{#if type}}type="{{ type }}"{{/if}}
-                name="{{ name }}"
-                {{#if placeholder}}placeholder="{{ placeholder }}"{{/if}}
-                {{#if readonly}}readonly{{/if}}
-            />
-        `;
+    return this.compile(template, { ...this.props, styles });
   }
 }

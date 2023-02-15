@@ -1,16 +1,9 @@
 import { Block } from "../../utils/Block";
 import styles from "./card.pcss";
+import template from "./card.hbs";
 
-interface ICardProps {
-  title: string;
-}
-
-export class Card extends Block<ICardProps> {
+export class Card extends Block {
   render() {
-    return `
-            <div class="${styles.card}">
-                <h1 class="${styles.card__title}>{{title}}</h1>
-            </div>
-        `;
+    return this.compile(template, { ...this.props, styles });
   }
 }
