@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack --mode=production --node-env=production",
     "start": "npm run build && node server.js",
-    "dev": "webpack serve --stats-error-details --open --config --watch webpack/dev.config.js",
+    "dev": "npm run build:dev --watch & npm run serve",
     "test": "mocha --require ts-node/register --require ./mocha.config.js './src/**/*.test.ts'",
     "eslint": "eslint",
     "prettier": "prettier",
