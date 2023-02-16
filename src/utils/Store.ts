@@ -8,6 +8,7 @@ export interface IState {
   chats: IChat[];
   messages: Record<number, IMessage[]>;
   selectedChatId?: number;
+  selectedChatUsers: User[];
 }
 
 class Store extends EventBus<Record<string, (() => void)[]>> {
@@ -15,7 +16,8 @@ class Store extends EventBus<Record<string, (() => void)[]>> {
     user: {} as User,
     chats: [],
     messages: {},
-    selectedChatId: undefined
+    selectedChatId: undefined,
+    selectedChatUsers: []
   };
 
   public set(key: string, value: unknown) {

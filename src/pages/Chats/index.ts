@@ -15,6 +15,11 @@ class ChatsPage extends Block<
     addUserHandle: ({ userId }: { userId: string }) => void;
     addUserFields: Record<string, unknown>;
     addUserActions: [Record<string, unknown>];
+    showRemoveUserDialog: () => void;
+    closeRemoveUserDialog: () => void;
+    onRemoveUserSubmit: ({ userId }: { userId: string }) => void;
+    removeUserActions: [Record<string, unknown>];
+    removeUserFields: Record<string, unknown>;
   }
 > {
   constructor(props: WithChats) {
@@ -57,6 +62,24 @@ class ChatsPage extends Block<
           type: "submit"
         }
       ],
+      showRemoveUserDialog: () => {
+        this.setProps({ openRemoveUserDialog: true });
+      },
+      closeRemoveUserDialog: () => {
+        this.setProps({ openRemoveUserDialog: false });
+      },
+      removeUserActions: [{ type: "submit", label: "удалить пользователя" }],
+      onRemoveUserSubmit: ({ userId }) => {
+        controller.removeUserFromChat(this.props.selectedChatId, Number(userId));
+        this.setProps({ openRemoveUserDialog: false });
+      },
+      removeUserFields: {
+        userId: {
+          label: "Id",
+          validationType: ValidationType.Number,
+          required: true
+        }
+      },
       ...props
     });
   }
@@ -108,7 +131,8 @@ class ChatsPage extends Block<
                     </p>
                     <div class="${styles.chat_options}">
                       {{{Button
-                        label="➕😎"
+                        variant="text"
+                        label="Add User"
                         title="Пригласить пользователя"
                         onClick=showAddUserDialod
                       }}}
@@ -118,7 +142,27 @@ class ChatsPage extends Block<
                         {{/Form}}
                         {{{Button label="Отмена" onClick=closeAddUserDialod}}}
                       </dialog>
-                      {{{Button label="❌" title="Удалить чат" onClick=removeChatHandle}}}
+                      {{{Button
+                        variant="text"
+                        label="Remove user"
+                        title="Удалить пользователя из чата"
+                        onClick=showRemoveUserDialog
+                      }}}
+                      <dialog {{#openRemoveUserDialog}}open{{/openRemoveUserDialog}}>
+                      <h3>Введите Id пользователя</h3>
+                        {{#Form
+                          fields=removeUserFields
+                          actions=removeUserActions
+                          onSubmit=onRemoveUserSubmit
+                        }}
+                        {{/Form}}
+                      </dialog>
+                      {{{Button
+                        variant="text"
+                        label="Remove chat"
+                        title="Удалить чат"
+                        onClick=removeChatHandle
+                      }}}
                     </div>
                 </header>
                 {{{MessageList}}}
@@ -128,7 +172,6 @@ class ChatsPage extends Block<
               {{else}}
               <div> Нужно выбрать чат</div>
               {{/if}}
-
             </main>
         </div>`;
   }

@@ -1,7 +1,8 @@
 import { IChat } from "../../api/interfaces";
 import { Block } from "../../utils/Block";
 import { formatMessageTime } from "../../utils/functions/formatMessageTime";
-import { store } from "../../utils/Store";
+
+import { controller } from "../../controllers/ChatController";
 import styles from "./chatListItem.pcss";
 
 export class ChatListItem extends Block<{
@@ -16,7 +17,7 @@ export class ChatListItem extends Block<{
       ...props,
       events: {
         click: () => {
-          store.set("selectedChatId", props.chat.id);
+          controller.selectChat(props.chat.id);
         }
       }
     });
