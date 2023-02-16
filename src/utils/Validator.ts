@@ -4,7 +4,8 @@ export enum ValidationType {
   Name = "name",
   Login = "login",
   Password = "password",
-  Phone = "phone"
+  Phone = "phone",
+  Number = "number"
 }
 
 type ValidatorMethod = (value: string) => [boolean, string];
@@ -37,6 +38,8 @@ class Validator {
     "Некорректный номер телефона"
   ];
 
+  number: ValidatorMethod = (value) => [!isNaN(Number(value)), "Необходимо ввести число"];
+
   validate(type: ValidationType, value: string): [boolean, string] {
     switch (type) {
       case ValidationType.Email:
@@ -49,6 +52,8 @@ class Validator {
         return this.password(value);
       case ValidationType.Phone:
         return this.phone(value);
+      case ValidationType.Number:
+        return this.number(value);
       default:
         return [!!value.length, "Значение не должно быть пустым"];
     }

@@ -3,11 +3,18 @@ import styles from "./index.pcss";
 import { Routes } from "../../utils/types/Routes";
 import { withChats, WithChats } from "../../hocs/withChats";
 import { controller } from "../../controllers/ChatController";
+import { ValidationType } from "../../utils/Validator";
 
 class ChatsPage extends Block<
   WithChats & {
     showAddChatDialog: () => void;
     addChatHandle: () => void;
+    removeChatHandle: () => void;
+    showAddUserDialod: () => void;
+    closeAddUserDialod: () => void;
+    addUserHandle: ({ userId }: { userId: string }) => void;
+    addUserFields: Record<string, unknown>;
+    addUserActions: [Record<string, unknown>];
   }
 > {
   constructor(props: WithChats) {
@@ -23,6 +30,33 @@ class ChatsPage extends Block<
         if (value) controller.create(value);
         this.setProps({ openAddChatDialog: false });
       },
+      removeChatHandle: () => {
+        controller.delete(this.props.selectedChatId);
+      },
+      showAddUserDialod: () => {
+        this.setProps({ openAddUserDialog: true });
+      },
+      closeAddUserDialod: () => {
+        this.setProps({ openAddUserDialog: false });
+      },
+      addUserHandle: ({ userId }) => {
+        controller.addUsersToChat(this.props.selectedChatId, Number(userId));
+
+        this.setProps({ openAddUserDialog: false });
+      },
+      addUserFields: {
+        userId: {
+          label: "Id",
+          validationType: ValidationType.Number,
+          required: true
+        }
+      },
+      addUserActions: [
+        {
+          label: "Добавить",
+          type: "submit"
+        }
+      ],
       ...props
     });
   }
@@ -51,8 +85,8 @@ class ChatsPage extends Block<
                 {{{ChatList}}}
                 {{{Button label="+" circle=true onClick=showAddChatDialog}}}
                 <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
-                <h1>Твой чат - твои правила</h1>
-                <form method="dialog"  >
+                  <h1>Твой чат - твои правила</h1>
+                    <form method="dialog">
                   {{{Input
                     type="text"
                     name="title"
@@ -60,6 +94,7 @@ class ChatsPage extends Block<
                     ref="newChatTitle"
                   }}}
                   {{{Button label="Создать" onClick=addChatHandle}}}
+                  </form>
                 </dialog>
             </aside>
             <main class="${styles.main}">
@@ -71,6 +106,20 @@ class ChatsPage extends Block<
                     <p class="${styles.chat_name}">
                       ${selectedChat.title}
                     </p>
+                    <div class="${styles.chat_options}">
+                      {{{Button
+                        label="➕😎"
+                        title="Пригласить пользователя"
+                        onClick=showAddUserDialod
+                      }}}
+                      <dialog {{#openAddUserDialog}}open{{/openAddUserDialog}}>
+                        <h3>Введите Id пользователя</h3>
+                        {{#Form fields=addUserFields actions=addUserActions onSubmit=addUserHandle}}
+                        {{/Form}}
+                        {{{Button label="Отмена" onClick=closeAddUserDialod}}}
+                      </dialog>
+                      {{{Button label="❌" title="Удалить чат" onClick=removeChatHandle}}}
+                    </div>
                 </header>
                 {{{MessageList}}}
                 <footer class="${styles.d_flex}">

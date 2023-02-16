@@ -33,7 +33,11 @@ export class ChatListItem extends Block<{
 
     return `<li class="${styles.chat_card}">
         <div style="width: 57px;">
-            <div class="${styles.chat_card_avatar}">{{ chat.avatar }}</div>
+          {{#if chat.avatar}}
+            <img src="{{chat.avatar}}" alt="Chat avatar" class="${styles.chat_card_avatar}></img>
+          {{else}}
+            <div class="${styles.chat_card_avatar}"></div>
+          {{/if}}
         </div>
         <div class="${styles.chat_card_content}">
             <header class="${styles.chat_card_content__header}">

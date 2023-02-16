@@ -28,7 +28,7 @@ class ChatsController {
 
   async delete(id: number) {
     await this.api.delete(id);
-
+    this.selectChat(NaN);
     this.getChats();
   }
 
