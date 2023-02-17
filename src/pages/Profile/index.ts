@@ -70,7 +70,12 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
   }
 
   render() {
-    const { showProfileEditForm, showPasswordEditForm } = this.props;
+    const {
+      showProfileEditForm,
+      showPasswordEditForm,
+      user: { avatar }
+    } = this.props;
+    const avatarUrl = avatar ? `https://ya-praktikum.tech/api/v2/resources/${avatar}` : "";
 
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
@@ -81,7 +86,7 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                     <section>
                         {{{ImageButton
                             label="Поменять аватар"
-                            image=avatar
+                            image="${avatarUrl}"
                             onClick=showEditAvatarDialog
                         }}}
                         <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>

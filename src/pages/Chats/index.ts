@@ -20,6 +20,9 @@ class ChatsPage extends Block<
     onRemoveUserSubmit: ({ userId }: { userId: string }) => void;
     removeUserActions: [Record<string, unknown>];
     removeUserFields: Record<string, unknown>;
+    uploadChatAvatar: ({ target }: SubmitEvent) => void;
+    showUploadChatAvatarDialog: () => void;
+    closeUploadChatAvatarDialog: () => void;
   }
 > {
   constructor(props: WithChats) {
@@ -73,6 +76,19 @@ class ChatsPage extends Block<
         controller.removeUserFromChat(this.props.selectedChatId, Number(userId));
         this.setProps({ openRemoveUserDialog: false });
       },
+      uploadChatAvatar: ({ target }) => {
+        if (!target) return;
+        const data = new FormData(target as HTMLFormElement);
+        data.append("chatId", String(this.props.selectedChatId));
+        controller.uploadChatAvatar(data);
+        this.setProps({ openUploadChatAvatarDialog: false });
+      },
+      showUploadChatAvatarDialog: () => {
+        this.setProps({ openUploadChatAvatarDialog: true });
+      },
+      closeUploadChatAvatarDialog: () => {
+        this.setProps({ openUploadChatAvatarDialog: false });
+      },
       removeUserFields: {
         userId: {
           label: "Id",
@@ -85,95 +101,123 @@ class ChatsPage extends Block<
   }
 
   render() {
-    const { chats = [], selectedChatId } = this.props;
+    const { chats = [], selectedChatId, currentUserId } = this.props;
     const selectedChat = chats.find(({ id }) => id === selectedChatId) ?? {
-      title: "TOP SICRET"
+      title: "TOP SICRET",
+      created_by: undefined,
+      avatar: ""
     };
+    const isAdmin = selectedChat.created_by === currentUserId;
 
     return `<div class="${styles.chat_page_conteiner}">
-            <aside class="${styles.aside}">
-                <header class="${styles.aside__header}">
-                    {{#Link
-                        class="${styles.profile__link}"
-                        to="${Routes.Settings}"
-                    }}
-                        Профиль >
-                    {{/Link}}
-                    {{{Input
-                        type="search"
-                        name="search"
-                        placeholder="🔍 Поиск"
-                    }}}
-                </header>
-                {{{ChatList}}}
-                {{{Button label="+" circle=true onClick=showAddChatDialog}}}
-                <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
-                  <h1>Твой чат - твои правила</h1>
-                    <form method="dialog">
-                  {{{Input
-                    type="text"
-                    name="title"
-                    placeholder="О дивный новый чат"
-                    ref="newChatTitle"
+        <aside class="${styles.aside}">
+            <header class="${styles.aside__header}">
+                {{#Link
+                    class="${styles.profile__link}"
+                    to="${Routes.Settings}"
+                }}
+                    Профиль >
+                {{/Link}}
+                {{{Input
+                    type="search"
+                    name="search"
+                    placeholder="🔍 Поиск"
+                }}}
+            </header>
+            {{{ChatList}}}
+            {{{Button label="+" circle=true onClick=showAddChatDialog}}}
+            <dialog {{#openAddChatDialog}}open{{/openAddChatDialog}}>
+              <h1>Твой чат - твои правила</h1>
+                <form method="dialog">
+              {{{Input
+                type="text"
+                name="title"
+                placeholder="О дивный новый чат"
+                ref="newChatTitle"
+              }}}
+              {{{Button label="Создать" onClick=addChatHandle}}}
+              </form>
+            </dialog>
+        </aside>
+        <main class="${styles.main}">
+          {{#if selectedChatId}}
+            <header class="${styles.d_flex}">
+              <div>
+                {{#if ${isAdmin}}}
+                  {{{ImageButton
+                    className="${styles.avatar} ${styles.large}"
+                    label="Поменять аватар"
+                    image="${
+                      selectedChat.avatar
+                        ? `https://ya-praktikum.tech/api/v2/resources/${selectedChat.avatar}`
+                        : ""
+                    }"
+                    onClick=showUploadChatAvatarDialog}}}
+                    <dialog {{#openUploadChatAvatarDialog}}open{{/openUploadChatAvatarDialog}}>
+                    {{#Form onSubmit=uploadChatAvatar }}
+                      <label for="avatar" title="Выберете файл">
+                      </label>
+                      <input
+                        type="file"
+                        id="avatar"
+                        name="avatar"
+                      />
+                      {{{Button label="Поменять" type="submit"}}}
+                      {{{Button label="Отмена" onClick=closeUploadChatAvatarDialog}}}
+                    {{/Form}}
+                    </dialog>
+                {{else}}
+                <div class="${styles.avatar} ${styles.large}"></div>
+                {{/if}}
+              </div>
+                <p class="${styles.chat_name}">
+                  ${selectedChat.title}
+                </p>
+                <div class="${styles.chat_options}">
+                  {{{Button
+                    variant="text"
+                    label="Add User"
+                    title="Пригласить пользователя"
+                    onClick=showAddUserDialod
                   }}}
-                  {{{Button label="Создать" onClick=addChatHandle}}}
-                  </form>
-                </dialog>
-            </aside>
-            <main class="${styles.main}">
-              {{#if selectedChatId}}
-                <header class="${styles.d_flex}">
-                    <div>
-                        <div class="${styles.avatar} ${styles.large}"></div>
-                    </div>
-                    <p class="${styles.chat_name}">
-                      ${selectedChat.title}
-                    </p>
-                    <div class="${styles.chat_options}">
-                      {{{Button
-                        variant="text"
-                        label="Add User"
-                        title="Пригласить пользователя"
-                        onClick=showAddUserDialod
-                      }}}
-                      <dialog {{#openAddUserDialog}}open{{/openAddUserDialog}}>
-                        <h3>Введите Id пользователя</h3>
-                        {{#Form fields=addUserFields actions=addUserActions onSubmit=addUserHandle}}
-                        {{/Form}}
-                        {{{Button label="Отмена" onClick=closeAddUserDialod}}}
-                      </dialog>
-                      {{{Button
-                        variant="text"
-                        label="Remove user"
-                        title="Удалить пользователя из чата"
-                        onClick=showRemoveUserDialog
-                      }}}
-                      <dialog {{#openRemoveUserDialog}}open{{/openRemoveUserDialog}}>
-                      <h3>Введите Id пользователя</h3>
-                        {{#Form
-                          fields=removeUserFields
-                          actions=removeUserActions
-                          onSubmit=onRemoveUserSubmit
-                        }}
-                        {{/Form}}
-                      </dialog>
-                      {{{Button
-                        variant="text"
-                        label="Remove chat"
-                        title="Удалить чат"
-                        onClick=removeChatHandle
-                      }}}
-                    </div>
-                </header>
-                {{{MessageList}}}
-                <footer class="${styles.d_flex}">
-                    {{{Messenger}}}
-                </footer>
-              {{else}}
-              <div> Нужно выбрать чат</div>
-              {{/if}}
-            </main>
-        </div>`;
+                  <dialog {{#openAddUserDialog}}open{{/openAddUserDialog}}>
+                    <h3>Введите Id пользователя</h3>
+                    {{#Form fields=addUserFields actions=addUserActions onSubmit=addUserHandle}}
+                    {{/Form}}
+                    {{{Button label="Отмена" onClick=closeAddUserDialod}}}
+                  </dialog>
+                  {{{Button
+                    variant="text"
+                    label="Remove user"
+                    title="Удалить пользователя из чата"
+                    onClick=showRemoveUserDialog
+                  }}}
+                  <dialog {{#openRemoveUserDialog}}open{{/openRemoveUserDialog}}>
+                  <h3>Введите Id пользователя</h3>
+                    {{#Form
+                      fields=removeUserFields
+                      actions=removeUserActions
+                      onSubmit=onRemoveUserSubmit
+                    }}
+                    {{/Form}}
+                  </dialog>
+                  {{{Button
+                    variant="text"
+                    label="Remove chat"
+                    title="Удалить чат"
+                    onClick=removeChatHandle
+                  }}}
+                </div>
+            </header>
+            {{{MessageList}}}
+            <footer class="${styles.d_flex}">
+                {{{Messenger}}}
+            </footer>
+          {{else}}
+          <div> Нужно выбрать чат</div>
+          {{/if}}
+        </main>
+    </div>`;
   }
 }
 

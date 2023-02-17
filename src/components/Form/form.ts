@@ -17,7 +17,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
     values,
     onSubmit,
     ...props
-  }: IFormProps & { onSubmit: (data: Record<string, string>) => void }) {
+  }: IFormProps & { onSubmit: (data: Record<string, string> | SubmitEvent) => void }) {
     const fieldsWithValue = values
       ? Object.keys(fields).reduce(
           (acc, key) => ({
@@ -35,12 +35,15 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
           event.preventDefault();
           const data = this.verifyFormData();
           if (data) onSubmit(data);
+          else onSubmit(event);
         }
       }
     });
   }
 
   verifyFormData() {
+    if (!Object.keys(this.refs).length) return null;
+
     let error = false;
     const data: Record<string, string> = {};
     Object.entries(this.refs).forEach(([key, field]: [string, Block]): void => {
@@ -55,8 +58,9 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
         if (!isValid) error = true;
       }
     });
+
     if (error) {
-      return false;
+      return null;
     }
     return data;
   }

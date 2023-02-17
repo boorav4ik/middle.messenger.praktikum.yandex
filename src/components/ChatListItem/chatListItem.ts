@@ -33,9 +33,13 @@ export class ChatListItem extends Block<{
     const time = lastMessage ? formatMessageTime(lastMessage.time) : "";
 
     return `<li class="${styles.chat_card}">
-        <div style="width: 57px;">
+        <div>
           {{#if chat.avatar}}
-            <img src="{{chat.avatar}}" alt="Chat avatar" class="${styles.chat_card_avatar}></img>
+            <img
+              src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}"
+              alt="Chat avatar"
+              class="${styles.chat_card_avatar}"
+            />
           {{else}}
             <div class="${styles.chat_card_avatar}"></div>
           {{/if}}

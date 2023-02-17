@@ -13,6 +13,7 @@ interface IImageButtonProps {
   events: {
     click: () => void;
   };
+  className?: string;
 }
 
 export class ImageButton extends Block<IImageButtonProps> {
@@ -23,7 +24,7 @@ export class ImageButton extends Block<IImageButtonProps> {
   render() {
     return `
         <button
-          class="${styles.image_button}"
+          class="${styles.image_button}${this.props.className ? ` ${this.props.className}` : ""}"
           type="button"
         >
           <img src="{{image}}" class="${styles.image_button__image}" title="{{label}}"/>

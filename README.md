@@ -12,7 +12,7 @@
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7ce4e61c-536a-41cf-8279-7aa6d4181323/deploy-status)](https://app.netlify.com/sites/magnificent-stroopwafel-546831/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ce4e61c-536a-41cf-8279-7aa6d4181323/deploy-status)](https://magnificent-stroopwafel-546831.netlify.app/messenger)
 
 # Установка
 

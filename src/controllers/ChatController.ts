@@ -50,6 +50,14 @@ class ChatsController {
     const users = await this.api.getUsers(chatId);
     store.set("selectedChatUsers", users);
   }
+
+  async uploadChatAvatar(data: FormData) {
+    const chat = this.api.setAvatar(data);
+    const { chats, selectedChatId } = { ...store.getState() };
+    const selectedChat = chats.find(({ id }) => id === selectedChatId);
+    selectedChat!.avatar = (await chat).avatar;
+    store.set("chats", chats);
+  }
 }
 
 export const controller = new ChatsController();

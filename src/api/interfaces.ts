@@ -27,8 +27,9 @@ export interface ChatDeleteData {
 export interface IChat {
   id: number;
   title: string;
-  avatat: string;
+  avatar: string;
   unread_count: number;
+  created_by: number;
   last_message: {
     user: User;
     time: string;
