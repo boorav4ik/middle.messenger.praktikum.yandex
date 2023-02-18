@@ -49,7 +49,9 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
     Object.entries(this.refs).forEach(([key, field]: [string, Block]): void => {
       const refs = field instanceof TextField ? field.getRefs() : null;
       if (!refs) return;
-      const { value } = refs.input.getContent() as HTMLInputElement;
+      const { required, value } = refs.input.getContent() as HTMLInputElement;
+      if (!value && !required) return;
+
       data[key] = value;
       const { validationType } = this.props.fields[key];
       if (validationType) {

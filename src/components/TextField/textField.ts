@@ -44,6 +44,7 @@ export class TextField extends Block<ITextFieldProps> {
         onInput=onInput
         readonly=readonly
         ref="input"
+        required=required
       }}}
       {{{Error
         text="Невалидное значение"

@@ -5,6 +5,8 @@ import { withChats, WithChats } from "../../hocs/withChats";
 import { controller } from "../../controllers/ChatController";
 import { ValidationType } from "../../utils/Validator";
 
+type TFormActions = [Record<string, unknown>];
+
 class ChatsPage extends Block<
   WithChats & {
     showAddChatDialog: () => void;
@@ -14,11 +16,11 @@ class ChatsPage extends Block<
     closeAddUserDialod: () => void;
     addUserHandle: ({ userId }: { userId: string }) => void;
     addUserFields: Record<string, unknown>;
-    addUserActions: [Record<string, unknown>];
+    addUserActions: TFormActions;
     showRemoveUserDialog: () => void;
     closeRemoveUserDialog: () => void;
     onRemoveUserSubmit: ({ userId }: { userId: string }) => void;
-    removeUserActions: [Record<string, unknown>];
+    removeUserActions: TFormActions;
     removeUserFields: Record<string, unknown>;
     uploadChatAvatar: ({ target }: SubmitEvent) => void;
     showUploadChatAvatarDialog: () => void;

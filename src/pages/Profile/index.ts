@@ -12,14 +12,16 @@ interface IProfilePageProps {
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
-  saveProfileHandle: () => void;
-  savePasswordHandle: () => void;
+  saveProfileHandle: (data: Record<string, string>) => void;
+  savePasswordHandle: (data: Record<string, string>) => void;
   showEditAvatarDialog: () => void;
   hideEditAvatarDialog: () => void;
   showProfileEditForm: boolean;
   showPasswordEditForm: boolean;
   openEditAvatarDialog: boolean;
   uploadUserAvatar: (event: SubmitEvent) => void;
+  hidePasswordEditForm: () => void;
+  hideProfileEditForm: () => void;
 }
 
 class ProfilePage extends Block<IProfilePageProps & { user: User }> {
@@ -52,11 +54,36 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
           }
         }
       },
-      saveProfileHandle: () => {
+      saveProfileHandle: (data) => {
+        const requiredFields = [
+          "first_name",
+          "second_name",
+          ["display_name", this.props.user.login],
+          "login",
+          "email",
+          "phone"
+        ];
+
+        if (Object.keys(data).length)
+          userController.uploadProfile(
+            requiredFields.reduce((profile, field) => {
+              const [key, value] = typeof field === "string" ? [field] : field;
+              return {
+                ...profile,
+                [key]: data[key] ?? this.props.user[key as keyof User] ?? value
+              };
+            }, {})
+          );
         this.setProps({ showProfileEditForm: false });
       },
-      savePasswordHandle: () => {
-        this.setProps({ showPasswordEditForm: false });
+      savePasswordHandle: (data) => {
+        if (Object.keys(data).length === 3) {
+          userController.uploadPassword({
+            newPassword: data.newPassword,
+            oldPassword: data.oldPassword
+          });
+          this.setProps({ showPasswordEditForm: false });
+        }
       },
       showEditAvatarDialog: () => {
         this.setProps({ openEditAvatarDialog: true });
@@ -72,6 +99,12 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
         const data = new FormData(target as HTMLFormElement);
         userController.uploadAvatar(data);
         this.setProps({ openEditAvatarDialog: false });
+      },
+      hidePasswordEditForm: () => {
+        this.setProps({ showPasswordEditForm: false });
+      },
+      hideProfileEditForm: () => {
+        this.setProps({ showProfileEditForm: false });
       },
       user
     });
@@ -126,6 +159,10 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                     className="${styles.section}"
                   }}
                     {{{Button label="Сохранить" type="submit"}}}
+                    {{{Button
+                      label="Отмена"
+                      onClick=hidePasswordEditForm
+                      color="secondary"}}}
                   {{/Form}}
                 </section>
                 <section {{#if showPasswordEditForm}}hidden{{/if}}>
@@ -138,6 +175,10 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                   }}
                     {{#if showProfileEditForm}}
                       {{{Button label="Сохранить" type="submit"}}}
+                      {{{Button
+                        label="Отмена"
+                        onClick=hideProfileEditForm
+                        color="secondary"}}}
                     {{/if}}
                   {{/Form}}
                 </section>

@@ -46,6 +46,7 @@ export class Input extends Block<IInputProps> {
                 name="{{ name }}"
                 {{#if placeholder}}placeholder="{{ placeholder }}"{{/if}}
                 {{#if readonly}}readonly{{/if}}
+                {{#required}}required{{/required}}
             />
         `;
   }

@@ -6,11 +6,15 @@ class UserApi extends BaseApi {
   }
 
   changeProfile(data: Record<string, string>) {
-    this.http.put("/profile", { data });
+    return this.http.put("/profile", { data });
   }
 
   changeAvatar(data: FormData) {
     return this.http.put("/profile/avatar", { data });
+  }
+
+  changePassword(data: { oldPassword: string; newPassword: string }) {
+    return this.http.put("/password", { data });
   }
 }
 
