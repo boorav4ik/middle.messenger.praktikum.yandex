@@ -6,8 +6,6 @@
 - Регистрация: sigin.html
 - Чаты: chats.html
 - Настройки: profile.html
-- ошибка 404: 404.html
-- ошибка 500: 500.html
 
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
@@ -25,8 +23,8 @@
 - `npm run dev` —  позволяет запустить сервер разработки на `localhost:3000`.
 - `npm run test` — запуск тестов
 
-[Демо приложения](https://magnificent-stroopwafel-546831.netlify.app)
-
+[Демо приложения на Netlify](https://magnificent-stroopwafel-546831.netlify.app)
+[Демо приложения на Render](https://chokak.onrender.com/)
 ---
 
 # Спринт 1 [Pull requests !1](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/1)
@@ -53,3 +51,5 @@
 # Спринт 4
   - Добавил тесты для роутера, блока и http транспорта
   - Настроен Webpack: ts, hbs, pcss
+  - Добавлен Dockerfile
+  - задеплоен на render.com https://chokak.onrender.com/
