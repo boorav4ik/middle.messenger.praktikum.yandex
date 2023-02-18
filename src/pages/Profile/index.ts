@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
 import { withUser } from "../../hocs/withUser";
 import { controller } from "../../controllers/AuthController";
+import { controller as userController } from "../../controllers/UserController";
 import { User } from "../../api/interfaces";
 import { profileFieldList } from "../../mock/profileFieldList";
 import { passwordFieldList } from "../../mock/passwordFieldList";
@@ -18,10 +19,11 @@ interface IProfilePageProps {
   showProfileEditForm: boolean;
   showPasswordEditForm: boolean;
   openEditAvatarDialog: boolean;
+  uploadUserAvatar: (event: SubmitEvent) => void;
 }
 
 class ProfilePage extends Block<IProfilePageProps & { user: User }> {
-  constructor(user: User) {
+  constructor({ user }: { user: User }) {
     document.title = "Chokak - Settings";
 
     super({
@@ -65,6 +67,12 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
+      uploadUserAvatar: ({ target }) => {
+        if (!target) return;
+        const data = new FormData(target as HTMLFormElement);
+        userController.uploadAvatar(data);
+        this.setProps({ openEditAvatarDialog: false });
+      },
       user
     });
   }
@@ -90,14 +98,24 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                             onClick=showEditAvatarDialog
                         }}}
                         <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>
-                            <h1>Загрузите фаил</h1>
-                            <form method="dialog">
-                                {{{AttachInput label="Выбрать файл на компьютере"}}}
-                                {{{Button
-                                    label="Сохранить"
-                                    onClick=hideEditAvatarDialog
-                                }}}
-                            </form>
+                          <h1>Загрузите фаил</h1>
+                          {{#Form onSubmit=uploadUserAvatar}}
+                            <label for="avatar" title="Выберете файл">
+                            </label>
+                            <input
+                              type="file"
+                              id="avatar"
+                              name="avatar"
+                            />
+                            {{{Button
+                              label="Сохранить"
+                              type="submit"
+                            }}}
+                            {{{Button
+                              label="Отмена"
+                              onClick=hideEditAvatarDialog
+                              color="secondary"}}}
+                          {{/Form}}
                         </dialog>
                     </section>
                 {{/unless}}

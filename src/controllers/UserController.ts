@@ -6,7 +6,8 @@ class UserController {
 
   public async uploadAvatar(data: FormData) {
     try {
-      store.set("user.avatar", (await this.api.changeAvatar(data)).avatar);
+      const user = await this.api.changeAvatar(data);
+      store.set("user", user);
     } catch (e) {
       console.error(e);
     }

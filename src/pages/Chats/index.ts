@@ -163,7 +163,10 @@ class ChatsPage extends Block<
                         name="avatar"
                       />
                       {{{Button label="Поменять" type="submit"}}}
-                      {{{Button label="Отмена" onClick=closeUploadChatAvatarDialog}}}
+                      {{{Button
+                        label="Отмена"
+                        onClick=closeUploadChatAvatarDialog
+                        color="secondary"}}}
                     {{/Form}}
                     </dialog>
                 {{else}}
@@ -184,7 +187,7 @@ class ChatsPage extends Block<
                     <h3>Введите Id пользователя</h3>
                     {{#Form fields=addUserFields actions=addUserActions onSubmit=addUserHandle}}
                     {{/Form}}
-                    {{{Button label="Отмена" onClick=closeAddUserDialod}}}
+                    {{{Button label="Отмена" onClick=closeAddUserDialod color="secondary"}}}
                   </dialog>
                   {{{Button
                     variant="text"
