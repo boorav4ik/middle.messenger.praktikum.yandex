@@ -4,8 +4,7 @@ import Handlebars, { HelperOptions } from "handlebars";
 import { Block } from "./Block";
 import { templateComponent } from "./templateComponent";
 
-export function registerComponent(Component: typeof Block) {
-  const name = Component.componentName ?? Component.name;
+export function registerComponent(name: string, Component: typeof Block) {
   Handlebars.registerHelper(name, function helperDelegate({ hash, data, fn }: HelperOptions) {
     data.root.children ??= {};
     data.root.refs ??= {};

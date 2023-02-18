@@ -1,7 +1,7 @@
 import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../Button";
 import { TextField, ITextFieldProps } from "../TextField/textField";
-import { validtor } from "../../utils/Validator";
+import { validator } from "../../utils/Validator";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;
@@ -53,7 +53,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
       data[key] = value;
       const { validationType } = this.props.fields[key];
       if (validationType) {
-        const [isValid, text] = validtor.validate(validationType, value);
+        const [isValid, text] = validator.validate(validationType, value);
         refs.error.setProps({ isValid, text });
         if (!isValid) error = true;
       }

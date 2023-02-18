@@ -1,5 +1,5 @@
-import { registerComponent } from "./utils/registerComponent";
-import * as components from "./components";
+// import { registerComponent } from "./utils/registerComponent";
+import { registerComponents } from "./components";
 import { LoginPage } from "./pages/Login";
 import { RegistrationPage } from "./pages/Registration";
 import { ChatsPage } from "./pages/Chats";
@@ -11,7 +11,7 @@ import { Block } from "./utils/Block";
 import "./styles/global.pcss";
 
 window.addEventListener("DOMContentLoaded", async () => {
-  Object.values(components).forEach((component) => registerComponent(component as typeof Block));
+  registerComponents();
 
   let isProtected = true;
 

@@ -60,4 +60,4 @@ class Validator {
   }
 }
 
-export const validtor = new Validator();
+export const validator = new Validator();

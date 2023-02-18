@@ -1,4 +1,4 @@
-import { withRouter, PropsWithRouter } from "../../hocs/whitRouter";
+import { withRouter, PropsWithRouter } from "../../hocs/withRouter";
 import { Block } from "../../utils/Block";
 import styles from "./link.pcss";
 
@@ -22,4 +22,4 @@ class Link extends Block<ILinkProps & { events: Record<string, () => void> }> {
   }
 }
 
-export const LinkWithRouter = withRouter(Link);
+export const LinkWithRouter = withRouter(Link as typeof Block);
