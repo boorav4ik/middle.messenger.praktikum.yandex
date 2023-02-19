@@ -26,9 +26,13 @@ class ChatsController {
     this.api.addUsers(chatId, Array.isArray(users) ? users : [users]);
   }
 
+  removeUserFromChat(chatId: number, users: number | number[]) {
+    this.api.removeUser(chatId, Array.isArray(users) ? users : [users]);
+  }
+
   async delete(id: number) {
     await this.api.delete(id);
-
+    this.selectChat(NaN);
     this.getChats();
   }
 
@@ -39,6 +43,20 @@ class ChatsController {
   // eslint-disable-next-line class-methods-use-this
   selectChat(id: number) {
     store.set("selectedChatId", id);
+    this.getUsers(id);
+  }
+
+  async getUsers(chatId: number) {
+    const users = await this.api.getUsers(chatId);
+    store.set("selectedChatUsers", users);
+  }
+
+  async uploadChatAvatar(data: FormData) {
+    const chat = this.api.setAvatar(data);
+    const { chats, selectedChatId } = { ...store.getState() };
+    const selectedChat = chats.find(({ id }) => id === selectedChatId);
+    selectedChat!.avatar = (await chat).avatar;
+    store.set("chats", chats);
   }
 }
 

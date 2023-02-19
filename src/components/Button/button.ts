@@ -1,25 +1,17 @@
 import { Block } from "../../utils/Block";
 import styles from "./button.pcss";
 
-interface IButtonProps {
-  label: string;
-  events: {
-    click: () => void;
-  };
-  type?: string;
-  color: string;
-  className?: string;
-}
-
 export interface IButtonConstructorProps {
   label: string;
   onClick?: () => void;
   type?: string;
   color?: string;
   circle?: boolean;
+  title?: string;
+  variant?: string;
 }
 
-export class Button extends Block<IButtonProps> {
+export class Button extends Block {
   constructor({
     onClick = () => undefined,
     type = "button",
@@ -30,12 +22,18 @@ export class Button extends Block<IButtonProps> {
   }
 
   render() {
-    const className = `${styles.button} ${styles[this.props.color]}`.concat(
-      ` ${this.props.className ?? ""}`
-    );
+    const className = `${styles.button} ${styles[this.props.color]}`
+      .concat(` ${this.props.className ?? ""}`)
+      .concat(
+        this.props.variant && this.props.variant in styles ? ` ${styles[this.props.variant]}` : ""
+      );
 
     return `
-        <button class="${className}{{#circle}} ${styles.circle}{{/circle}}" type={{type}}>
+        <button
+          class="${className}{{#circle}} ${styles.circle}{{/circle}}"
+          type={{type}}
+          {{#title}}title="{{this}}"{{/title}}
+        >
             {{ label }}
         </button>
     `;

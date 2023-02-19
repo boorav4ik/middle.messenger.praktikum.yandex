@@ -2,6 +2,7 @@ import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../../components/Button";
 import { withUser } from "../../hocs/withUser";
 import { controller } from "../../controllers/AuthController";
+import { controller as userController } from "../../controllers/UserController";
 import { User } from "../../api/interfaces";
 import { profileFieldList } from "../../mock/profileFieldList";
 import { passwordFieldList } from "../../mock/passwordFieldList";
@@ -11,16 +12,20 @@ interface IProfilePageProps {
   profileFields: Record<string, unknown>;
   passwordFields: Record<string, unknown>;
   actions: Record<string, IButtonConstructorProps>;
-  saveProfileHandle: () => void;
-  savePasswordHandle: () => void;
+  saveProfileHandle: (data: Record<string, string>) => void;
+  savePasswordHandle: (data: Record<string, string>) => void;
   showEditAvatarDialog: () => void;
   hideEditAvatarDialog: () => void;
   showProfileEditForm: boolean;
   showPasswordEditForm: boolean;
   openEditAvatarDialog: boolean;
+  uploadUserAvatar: (event: SubmitEvent) => void;
+  hidePasswordEditForm: () => void;
+  hideProfileEditForm: () => void;
 }
+
 class ProfilePage extends Block<IProfilePageProps & { user: User }> {
-  constructor(user: User) {
+  constructor({ user }: { user: User }) {
     document.title = "Chokak - Settings";
 
     super({
@@ -49,11 +54,36 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
           }
         }
       },
-      saveProfileHandle: () => {
+      saveProfileHandle: (data) => {
+        const requiredFields = [
+          "first_name",
+          "second_name",
+          ["display_name", this.props.user.login],
+          "login",
+          "email",
+          "phone"
+        ];
+
+        if (Object.keys(data).length)
+          userController.uploadProfile(
+            requiredFields.reduce((profile, field) => {
+              const [key, value] = typeof field === "string" ? [field] : field;
+              return {
+                ...profile,
+                [key]: data[key] ?? this.props.user[key as keyof User] ?? value
+              };
+            }, {})
+          );
         this.setProps({ showProfileEditForm: false });
       },
-      savePasswordHandle: () => {
-        this.setProps({ showPasswordEditForm: false });
+      savePasswordHandle: (data) => {
+        if (Object.keys(data).length === 3) {
+          userController.uploadPassword({
+            newPassword: data.newPassword,
+            oldPassword: data.oldPassword
+          });
+          this.setProps({ showPasswordEditForm: false });
+        }
       },
       showEditAvatarDialog: () => {
         this.setProps({ openEditAvatarDialog: true });
@@ -64,12 +94,29 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
       showProfileEditForm: false,
       showPasswordEditForm: false,
       openEditAvatarDialog: false,
+      uploadUserAvatar: ({ target }) => {
+        if (!target) return;
+        const data = new FormData(target as HTMLFormElement);
+        userController.uploadAvatar(data);
+        this.setProps({ openEditAvatarDialog: false });
+      },
+      hidePasswordEditForm: () => {
+        this.setProps({ showPasswordEditForm: false });
+      },
+      hideProfileEditForm: () => {
+        this.setProps({ showProfileEditForm: false });
+      },
       user
     });
   }
 
   render() {
-    const { showProfileEditForm, showPasswordEditForm } = this.props;
+    const {
+      showProfileEditForm,
+      showPasswordEditForm,
+      user: { avatar }
+    } = this.props;
+    const avatarUrl = avatar ? `https://ya-praktikum.tech/api/v2/resources/${avatar}` : "";
 
     return `<div class="${styles.profile_page_conteiner}">
             <aside class="${styles.aside}">
@@ -80,18 +127,28 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                     <section>
                         {{{ImageButton
                             label="Поменять аватар"
-                            image=avatar
+                            image="${avatarUrl}"
                             onClick=showEditAvatarDialog
                         }}}
                         <dialog {{#openEditAvatarDialog}}open{{/openEditAvatarDialog}}>
-                            <h1>Загрузите фаил</h1>
-                            <form method="dialog">
-                                {{{AttachInput label="Выбрать файл на компьютере"}}}
-                                {{{Button
-                                    label="Сохранить"
-                                    onClick=hideEditAvatarDialog
-                                }}}
-                            </form>
+                          <h1>Загрузите фаил</h1>
+                          {{#Form onSubmit=uploadUserAvatar}}
+                            <label for="avatar" title="Выберете файл">
+                            </label>
+                            <input
+                              type="file"
+                              id="avatar"
+                              name="avatar"
+                            />
+                            {{{Button
+                              label="Сохранить"
+                              type="submit"
+                            }}}
+                            {{{Button
+                              label="Отмена"
+                              onClick=hideEditAvatarDialog
+                              color="secondary"}}}
+                          {{/Form}}
                         </dialog>
                     </section>
                 {{/unless}}
@@ -102,6 +159,10 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                     className="${styles.section}"
                   }}
                     {{{Button label="Сохранить" type="submit"}}}
+                    {{{Button
+                      label="Отмена"
+                      onClick=hidePasswordEditForm
+                      color="secondary"}}}
                   {{/Form}}
                 </section>
                 <section {{#if showPasswordEditForm}}hidden{{/if}}>
@@ -114,6 +175,10 @@ class ProfilePage extends Block<IProfilePageProps & { user: User }> {
                   }}
                     {{#if showProfileEditForm}}
                       {{{Button label="Сохранить" type="submit"}}}
+                      {{{Button
+                        label="Отмена"
+                        onClick=hideProfileEditForm
+                        color="secondary"}}}
                     {{/if}}
                   {{/Form}}
                 </section>

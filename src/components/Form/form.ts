@@ -1,7 +1,7 @@
 import { Block } from "../../utils/Block";
 import { IButtonConstructorProps } from "../Button";
 import { TextField, ITextFieldProps } from "../TextField/textField";
-import { validtor } from "../../utils/Validator";
+import { validator } from "../../utils/Validator";
 
 export interface IFormProps {
   fields: Record<string, ITextFieldProps>;
@@ -17,7 +17,7 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
     values,
     onSubmit,
     ...props
-  }: IFormProps & { onSubmit: (data: Record<string, string>) => void }) {
+  }: IFormProps & { onSubmit: (data: Record<string, string> | SubmitEvent) => void }) {
     const fieldsWithValue = values
       ? Object.keys(fields).reduce(
           (acc, key) => ({
@@ -35,34 +35,40 @@ export class Form extends Block<IFormProps & { events: { submit: (event: SubmitE
           event.preventDefault();
           const data = this.verifyFormData();
           if (data) onSubmit(data);
+          else onSubmit(event);
         }
       }
     });
   }
 
   verifyFormData() {
+    if (!Object.keys(this.refs).length) return null;
+
     let error = false;
     const data: Record<string, string> = {};
     Object.entries(this.refs).forEach(([key, field]: [string, Block]): void => {
       const refs = field instanceof TextField ? field.getRefs() : null;
       if (!refs) return;
-      const { value } = refs.input.getContent() as HTMLInputElement;
+      const { required, value } = refs.input.getContent() as HTMLInputElement;
+      if (!value && !required) return;
+
       data[key] = value;
       const { validationType } = this.props.fields[key];
       if (validationType) {
-        const [isValid, text] = validtor.validate(validationType, value);
+        const [isValid, text] = validator.validate(validationType, value);
         refs.error.setProps({ isValid, text });
         if (!isValid) error = true;
       }
     });
+
     if (error) {
-      return false;
+      return null;
     }
     return data;
   }
 
   render() {
-    return `<form class={{className}}>
+    return `<form{{#className}} class="{{this}}"{{/className}}>
       {{#each fields}}
         {{{TextField
           label=label

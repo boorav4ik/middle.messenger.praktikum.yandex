@@ -1,29 +1,10 @@
 import { WSTransport, WSEvent } from "../utils/WSTransport";
 import { store } from "../utils/Store";
-import { User } from "../api/interfaces";
+import { IMessage, User } from "../api/interfaces";
 
 enum WSType {
   Message = "message",
   GetOld = "get old"
-}
-
-interface IFile {
-  id: number;
-  user_id: number;
-  path: string;
-  filename: string;
-  content_type: string;
-  content_size: number;
-  upload_date: string;
-}
-
-export interface IMessage {
-  chat_id: number;
-  time: string;
-  type: string;
-  user_id: number;
-  content: string;
-  file?: IFile;
 }
 
 class MessagesController {

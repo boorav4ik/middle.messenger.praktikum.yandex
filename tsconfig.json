@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "lib": ["ESNext", "dom", "dom.iterable"],
+    "target": "es2021",
     "module": "commonjs",
+    "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
+    "noImplicitThis": false,
+    "strictNullChecks": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "sourceMap": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": false,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
-  }
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "files": true
+  },
 }

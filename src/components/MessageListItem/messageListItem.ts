@@ -1,4 +1,4 @@
-import { IMessage } from "../../controllers/MessagesController";
+import { IMessage } from "../../api/interfaces";
 import { Block } from "../../utils/Block";
 import { formatMessageTime } from "../../utils/functions/formatMessageTime";
 import styles from "./messageListItem.pcss";

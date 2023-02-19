@@ -25,6 +25,7 @@ export interface IInputProps {
 
   readonly?: boolean;
 }
+
 export class Input extends Block<IInputProps> {
   constructor({ onFocus, onInput, onBlur, ...props }: IInputConstructorProps) {
     super({
@@ -45,6 +46,7 @@ export class Input extends Block<IInputProps> {
                 name="{{ name }}"
                 {{#if placeholder}}placeholder="{{ placeholder }}"{{/if}}
                 {{#if readonly}}readonly{{/if}}
+                {{#required}}required{{/required}}
             />
         `;
   }

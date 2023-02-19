@@ -1,7 +1,8 @@
 import { IChat } from "../../api/interfaces";
 import { Block } from "../../utils/Block";
 import { formatMessageTime } from "../../utils/functions/formatMessageTime";
-import { store } from "../../utils/Store";
+
+import { controller } from "../../controllers/ChatController";
 import styles from "./chatListItem.pcss";
 
 export class ChatListItem extends Block<{
@@ -16,7 +17,7 @@ export class ChatListItem extends Block<{
       ...props,
       events: {
         click: () => {
-          store.set("selectedChatId", props.chat.id);
+          controller.selectChat(props.chat.id);
         }
       }
     });
@@ -32,8 +33,16 @@ export class ChatListItem extends Block<{
     const time = lastMessage ? formatMessageTime(lastMessage.time) : "";
 
     return `<li class="${styles.chat_card}">
-        <div style="width: 57px;">
-            <div class="${styles.chat_card_avatar}">{{ chat.avatar }}</div>
+        <div>
+          {{#if chat.avatar}}
+            <img
+              src="https://ya-praktikum.tech/api/v2/resources/{{chat.avatar}}"
+              alt="Chat avatar"
+              class="${styles.chat_card_avatar}"
+            />
+          {{else}}
+            <div class="${styles.chat_card_avatar}"></div>
+          {{/if}}
         </div>
         <div class="${styles.chat_card_content}">
             <header class="${styles.chat_card_content__header}">

@@ -28,7 +28,9 @@ export class Route {
     }
     root.innerHTML = "";
 
-    root.append(this.block.getContent() as Node);
+    const content = this.block.getContent();
+
+    root.append(content as Node);
     return root;
   }
 

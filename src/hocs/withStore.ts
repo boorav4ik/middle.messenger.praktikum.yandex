@@ -9,12 +9,11 @@ export function withStore<SP>(mapStateToProps: (state: IState) => SP) {
     return class WhitSrore extends Component {
       public static componentName = Component.componentName || Component.name;
 
-      constructor(props: Omit<P, keyof SP>) {
+      constructor(props: P) {
         let oldProps = mapStateToProps(store.getState());
 
         super({ ...props, ...oldProps });
         store.on(StoreEvents.Updated, () => {
-          // eslint-disable-next-line @typescript-eslint/no-shadow
           const state = store.getState();
           const newProps = mapStateToProps(state);
           if (isEqual(oldProps as PlainObject, newProps as PlainObject)) return;

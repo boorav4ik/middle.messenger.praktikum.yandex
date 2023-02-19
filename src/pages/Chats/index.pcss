@@ -52,9 +52,15 @@ body {
 
   & > header {
     border-bottom: var(--divider);
+    justify-content: space-between;
 
     & > .chat_name {
       font-family: Inter, sans-serif;
+    }
+
+    & > .chat_options {
+      display: flex;
+      width: fit-content;
     }
   }
 }
@@ -68,6 +74,10 @@ body {
 .large {
   width: 34px;
   height: 34px;
+}
+
+.upload_avatar {
+  cursor: pointer;
 }
 
 .d_flex {

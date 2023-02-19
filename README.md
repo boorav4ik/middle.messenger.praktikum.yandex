@@ -6,13 +6,11 @@
 - Регистрация: sigin.html
 - Чаты: chats.html
 - Настройки: profile.html
-- ошибка 404: 404.html
-- ошибка 500: 500.html
 
 В качестве сборщика используется [Parcel](https://parceljs.org)
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7ce4e61c-536a-41cf-8279-7aa6d4181323/deploy-status)](https://app.netlify.com/sites/magnificent-stroopwafel-546831/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ce4e61c-536a-41cf-8279-7aa6d4181323/deploy-status)](https://magnificent-stroopwafel-546831.netlify.app/messenger)
 
 # Установка
 
@@ -23,9 +21,10 @@
 - `npm run build` — собирает проект в статику в папку `./dist`,
 - `npm run start` — сначала выполняет команду `npm run build`, а затем поднимает сервер раздающий статику на `localhost:3000`,
 - `npm run dev` —  позволяет запустить сервер разработки на `localhost:3000`.
+- `npm run test` — запуск тестов
 
-[Демо приложения](https://magnificent-stroopwafel-546831.netlify.app)
-
+[Демо приложения на Netlify](https://magnificent-stroopwafel-546831.netlify.app)
+[Демо приложения на Render](https://chokak.onrender.com/)
 ---
 
 # Спринт 1 [Pull requests !1](https://github.com/boorav4ik/middle.messenger.praktikum.yandex/pull/1)
@@ -48,3 +47,9 @@
 - Внедрите [HTTP API](https://ya-praktikum.tech/api/v2/swagger/#/) чатов, авторизации и пользователей
 - Подключите [WebSocket](https://ya-praktikum.tech/api/v2/openapi/ws)
 - refactor
+
+# Спринт 4
+  - Добавил тесты для роутера, блока и http транспорта
+  - Настроен Webpack: ts, hbs, pcss
+  - Добавлен Dockerfile
+  - задеплоен на render.com https://chokak.onrender.com/

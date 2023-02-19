@@ -3,6 +3,7 @@ import { Route } from "./Route";
 import { PlainObject } from "./types/PlainObject";
 
 class Router {
+  // eslint-disable-next-line no-use-before-define
   private static instance: Router;
 
   private routes: Array<Route> = [];
@@ -12,6 +13,7 @@ class Router {
   private currentRoute: Route | null = null;
 
   constructor(private readonly rootQuery: string) {
+    // eslint-disable-next-line no-constructor-return
     if (Router.instance) return Router.instance;
     Router.instance = this;
   }
@@ -50,10 +52,18 @@ class Router {
     const route = this.getRoute(pathname);
     if (!route) return;
 
-    this.currentRoute?.leave();
+    if (this.currentRoute && this.currentRoute !== route) {
+      this.currentRoute.leave();
+    }
+
     this.currentRoute = route;
 
     route.render();
+  }
+
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
   }
 }
 

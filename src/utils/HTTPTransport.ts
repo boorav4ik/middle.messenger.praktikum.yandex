@@ -1,4 +1,4 @@
-enum Method {
+export enum Method {
   Get = "GET",
   Post = "POST",
   Put = "PUT",
@@ -85,7 +85,7 @@ export class HTTPTransport {
       if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   };
